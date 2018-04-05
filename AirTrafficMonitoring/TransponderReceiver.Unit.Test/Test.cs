@@ -14,6 +14,12 @@ namespace TransponderReceiver.Unit.Test
         [SetUp]
         public void setup()
         {
+            TransponderDataEventArgs x = new TransponderDataEventArgs();
+            RawTransponderDataEventArgs rawX = new RawTransponderDataEventArgs(x.TransponderData);
+
+            ITransponderReceiver xy;
+
+            xy.TransponderDataReady += new EventHandler<RawTransponderDataEventArgs>();
 
         }
 
