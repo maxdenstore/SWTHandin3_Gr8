@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransponderReceiver.Unit.Test", "TransponderReceiver.Unit.Test\TransponderReceiver.Unit.Test.csproj", "{F41AFF5D-ADFE-4A50-9B8A-46981A6B7FF5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TOS.Unit.Test", "TOS.Unit.Test\TOS.Unit.Test.csproj", "{15F4E192-F68F-47D3-AD55-A747B496F318}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TOS", "TOS\TOS.csproj", "{FA2A6DDE-B9DF-4994-B97B-B103EB5C5E3D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F41AFF5D-ADFE-4A50-9B8A-46981A6B7FF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F41AFF5D-ADFE-4A50-9B8A-46981A6B7FF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F41AFF5D-ADFE-4A50-9B8A-46981A6B7FF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F41AFF5D-ADFE-4A50-9B8A-46981A6B7FF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15F4E192-F68F-47D3-AD55-A747B496F318}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15F4E192-F68F-47D3-AD55-A747B496F318}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15F4E192-F68F-47D3-AD55-A747B496F318}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15F4E192-F68F-47D3-AD55-A747B496F318}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA2A6DDE-B9DF-4994-B97B-B103EB5C5E3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA2A6DDE-B9DF-4994-B97B-B103EB5C5E3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA2A6DDE-B9DF-4994-B97B-B103EB5C5E3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA2A6DDE-B9DF-4994-B97B-B103EB5C5E3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
