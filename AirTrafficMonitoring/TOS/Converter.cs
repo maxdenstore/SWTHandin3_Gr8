@@ -12,7 +12,7 @@ namespace TOS
     public class Converter
     {
         private ITransponderReceiver _transponderReceiver;
-        private TOS Converted = null;
+        private TOS Converted;
         public Converter(ITransponderReceiver receiver)
         {
             _transponderReceiver = receiver;
@@ -27,7 +27,6 @@ namespace TOS
 
             string tag = DataSep[0];
             string xCord = PutOnMeters(DataSep[1]);
-
             string yCord = PutOnMeters(DataSep[2]);
             string Alt = PutOnMeters(DataSep[3]) ;
             string time =FormateDate(DataSep[4]);
@@ -72,7 +71,12 @@ namespace TOS
             {
                 Converted = this.convert(track);
             }
-            Converted.print();
+
+            if (Converted != null)
+            {
+                Converted.print();
+            }
+
         }
     }
 
