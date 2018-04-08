@@ -12,20 +12,15 @@ namespace TOS
     {
         private ITransponderReceiver _transponderReceiver;
 
-
-
         public Converter(ITransponderReceiver receiver)
         {
             _transponderReceiver = receiver;
 
             _transponderReceiver.TransponderDataReady += transponderReceiverData;
 
-
-
         }
 
-
-        public void transponderReceiverData object sender, Raw e) //her
+        public void transponderReceiverData( object sender, RawTransponderDataEventArgs e) //her
         {
             foreach (var track in e.TransponderData)
             {
@@ -34,8 +29,5 @@ namespace TOS
             }
         }
     }
-
-    
-
 
 }
