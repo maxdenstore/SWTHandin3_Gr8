@@ -42,6 +42,29 @@ namespace TOS
             return result;
         }
 
+        private string PutOnMeters(string thisOne)
+        {
+            thisOne += " Meters";
+            return thisOne;
+        }
+
+        private string FormateDate(string RawDate)
+        {
+            string year = RawDate.Substring(0, 4);
+            string month = RawDate.Substring(4, 2);
+            string dateOfMonth = RawDate.Substring(6, 2);
+            string hour = RawDate.Substring(8, 2);
+            string minute = RawDate.Substring(10, 2);
+            string second = RawDate.Substring(12, 2);
+            string milisecond = RawDate.Substring(14, 3);
+
+            DateTime date = new DateTime(Int32.Parse(year), Int32.Parse(month), Int32.Parse(dateOfMonth), Int32.Parse(hour), Int32.Parse(minute), Int32.Parse(second));
+
+            string formatted = date.ToString();
+            formatted += milisecond;
+            return formatted;
+        }
+
         public void transponderReceiverData( object sender, RawTransponderDataEventArgs e) 
         {
             foreach (var track in e.TransponderData)
