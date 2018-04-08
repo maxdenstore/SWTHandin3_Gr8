@@ -24,28 +24,20 @@ namespace TOS
         public TOS convert(string data)
         {
             string[] DataSep = Seperator(data);
-            String tag = DataSep[0];
 
-            return new TOS(tag, "", "", "", "");
+            string tag = DataSep[0];
+            string xCord = DataSep[1];
+            string yCord = DataSep[2];
+            string Alt = DataSep[3];
+            string time = DataSep[4];
+
+            return new TOS(tag, xCord, yCord, Alt, time);
         }
 
         private string[] Seperator(string Seperate)
         {
             string pattern = "(;)";
             string[] result = Regex.Split(Seperate, pattern);
-
-            string x = result[1];
-            string y = result[2];
-            string altitude = result[3];
-            string year = result[4];
-            string month = result[5];
-            string date = result[6];
-            string hour = result[7];
-            string minute = result[8];
-            string second = result[9];
-            string milisecond = result[10];
-
-
 
             return result;
         }
