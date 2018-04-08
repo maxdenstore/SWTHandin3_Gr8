@@ -20,18 +20,11 @@ namespace TOS
 
             string[] ReceivedArray = Seperator(Receive);
 
-            if (TagTest(ReceivedArray[0]))
+            if (new TagValidator().validateTag(ReceivedArray[0]))
             {
                 Tag = ReceivedArray[0];
             }
 
-        }
-
-        private bool TagTest(string tag)
-        {
-            if (tag.Length == 6 && tag.Any(char.IsLetterOrDigit))
-                return true;
-            else return false;
         }
 
         private string[] Seperator(string Seperate)
@@ -40,6 +33,16 @@ namespace TOS
             string[] result = Regex.Split(Seperate, pattern);
 
             return result;
+        }
+    }
+
+    public class TagValidator
+    {
+        public bool validateTag(string tag)
+        {
+            if (tag.Length == 6 && tag.Any(char.IsLetterOrDigit))
+                return true;
+            else return false;
         }
     }
 }
