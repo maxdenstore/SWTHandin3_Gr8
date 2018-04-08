@@ -56,11 +56,11 @@ namespace TOS
             string hour = RawDate.Substring(8, 2);
             string minute = RawDate.Substring(10, 2);
             string second = RawDate.Substring(12, 2);
-            string milisecond = RawDate.Substring(14, 3);
+            string milisecond = " and " + RawDate.Substring(14, 3) + " miliseconds";
 
-            DateTime date = new DateTime(Int32.Parse(year), Int32.Parse(month), Int32.Parse(dateOfMonth), Int32.Parse(hour), Int32.Parse(minute), Int32.Parse(second));
-
-            string formatted = date.ToString();
+            DateTime dates = new DateTime(Int32.Parse(year), Int32.Parse(month), Int32.Parse(dateOfMonth), Int32.Parse(hour), Int32.Parse(minute), Int32.Parse(second));
+            
+            string formatted = dates.ToString("F");
             formatted += milisecond;
             return formatted;
         }
