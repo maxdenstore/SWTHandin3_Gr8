@@ -20,7 +20,7 @@ namespace TOS
 
         }
 
-        public void transponderReceiverData( object sender, RawTransponderDataEventArgs e) //her
+        public void transponderReceiverData( object sender, RawTransponderDataEventArgs e) 
         {
             foreach (var track in e.TransponderData)
             {

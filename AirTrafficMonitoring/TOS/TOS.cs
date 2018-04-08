@@ -30,13 +30,19 @@ namespace TOS
             TimeStamp = timeStamp;
         }
 
-        //private string[] Seperator(string Seperate)
-        //{
-        //    string pattern = "(;)";
-        //    string[] result = Regex.Split(Seperate, pattern);
+        public void convert(string data)
+        {
+            string[] DataSep = Seperator(data);
+            Tag = DataSep[0];
+        }
 
-        //    return result;
-        //}
+        private string[] Seperator(string Seperate)
+        {
+            string pattern = "(;)";
+            string[] result = Regex.Split(Seperate, pattern);
+
+            return result;
+        }
     }
 
 }
