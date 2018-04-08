@@ -6,18 +6,19 @@ namespace TOS
 {
     public class TOS
     {
-        public string Tag { get; set; }
-        public string PosistionX { get; set; }
-        public string PosistionY { get; set; }
-        public string Altitude { get; set; }
-        public string TimeStamp { get; set; }
+        public string Tag { get; private set; }
+        public string PosistionX { get; private set; }
+        public string PosistionY { get; private set; }
+        public string Altitude { get; private set; }
+        public string TimeStamp { get;private set; }
 
-        //public string HorizontalVelocity { get; set; }
-        //public string CompassDegress { get; set; }
-
-        public TOS(string Receive)
+        public TOS(string tag, string posistionX, string posistionY, string altitude, string timeStamp)
         {
-
+            Tag = tag;
+            PosistionX = posistionX;
+            PosistionY = posistionY;
+            Altitude = altitude;
+            TimeStamp = timeStamp;
         }
 
         private string[] Seperator(string Seperate)
