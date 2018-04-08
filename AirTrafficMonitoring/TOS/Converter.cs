@@ -26,10 +26,10 @@ namespace TOS
             string[] DataSep = Seperator(data);
 
             string tag = DataSep[0];
-            string xCord = PutOnMeters(DataSep[1]);
-            string yCord = PutOnMeters(DataSep[2]);
-            string Alt = PutOnMeters(DataSep[3]) ;
-            string time =FormateDate(DataSep[4]);
+            string xCord = PutOnMeters(DataSep[2]);
+            string yCord = PutOnMeters(DataSep[4]);
+            string Alt = PutOnMeters(DataSep[6]) ;
+            string time =FormateDate(DataSep[8]);
 
             return new TOS(tag, xCord, yCord, Alt, time);
         }
