@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TOS.Unit.Test.Tests
 {
-    class PosistionXTest
+    class TOSTest
     {
     }
 }

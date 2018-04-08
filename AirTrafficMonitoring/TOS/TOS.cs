@@ -1,6 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿
 using System.Text.RegularExpressions;
+using System.Xml.Schema;
 
 namespace TOS
 {
@@ -18,13 +18,6 @@ namespace TOS
         public TOS(string Receive)
         {
 
-            string[] ReceivedArray = Seperator(Receive);
-
-            if (new TagValidator().validateTag(ReceivedArray[0]))
-            {
-                Tag = ReceivedArray[0];
-            }
-
         }
 
         private string[] Seperator(string Seperate)
@@ -36,13 +29,4 @@ namespace TOS
         }
     }
 
-    public class TagValidator
-    {
-        public bool validateTag(string tag)
-        {
-            if (tag.Length == 6 && tag.Any(char.IsLetterOrDigit))
-                return true;
-            else return false;
-        }
-    }
 }
