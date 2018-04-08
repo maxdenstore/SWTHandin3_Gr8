@@ -21,13 +21,13 @@ namespace TOS
             TimeStamp = timeStamp;
         }
 
-        private string[] Seperator(string Seperate)
-        {
-            string pattern = "(;)";
-            string[] result = Regex.Split(Seperate, pattern);
+        //private string[] Seperator(string Seperate)
+        //{
+        //    string pattern = "(;)";
+        //    string[] result = Regex.Split(Seperate, pattern);
 
-            return result;
-        }
+        //    return result;
+        //}
     }
 
 }

@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using NUnit.Framework;
+using NUnit.Framework.Internal;
 
 namespace TOS.Unit.Test.Tests
 {
-    class TOSTest
+    [TestFixture]
+    public class TOSTest
     {
+        [Test]
+        public void Test1()
+        {
+
+        }
+
     }
 }
