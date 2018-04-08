@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace TOS.Unit.Test
 {
     [TestFixture]
-    public class TOSTagTest
+    public class TagTest
     {
         [Test]
         public void SendTag6_TagEqualTag()

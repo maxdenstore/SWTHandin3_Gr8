@@ -46,8 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TOS.cs" />
+    <Compile Include="Tests\AltitudeTest.cs" />
+    <Compile Include="Tests\PosistionXTest.cs" />
+    <Compile Include="Tests\PosistionYTest.cs" />
+    <Compile Include="Tests\TagTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\TestTogetherTest.cs" />
+    <Compile Include="Tests\TimeStampTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
