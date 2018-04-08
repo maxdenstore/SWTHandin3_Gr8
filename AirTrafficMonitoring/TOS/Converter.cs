@@ -11,9 +11,8 @@ namespace TOS
 {
     public class Converter
     {
-        private string Tag { get; set; }
         private ITransponderReceiver _transponderReceiver;
-
+        private TOS Converted = null;
         public Converter(ITransponderReceiver receiver)
         {
             _transponderReceiver = receiver;
@@ -22,13 +21,13 @@ namespace TOS
 
         }
 
-
-        public void convert(string data)
+        public TOS convert(string data)
         {
             string[] DataSep = Seperator(data);
-            Tag = DataSep[0];
-        }
+            String tag = DataSep[0];
 
+            return new TOS(tag, "", "", "", "");
+        }
 
         private string[] Seperator(string Seperate)
         {
@@ -42,9 +41,9 @@ namespace TOS
         {
             foreach (var track in e.TransponderData)
             {
-                TOS Convert_Data = Convert(track);
-                Console.WriteLine(ConvertetTrack.ToString());
+                Converted = this.convert(track);
             }
+            Converted.print();
         }
     }
 

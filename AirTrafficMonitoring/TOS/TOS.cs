@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Text.RegularExpressions;
 using System.Xml.Schema;
 
@@ -30,18 +31,9 @@ namespace TOS
             TimeStamp = timeStamp;
         }
 
-        public void convert(string data)
+        public void print()
         {
-            string[] DataSep = Seperator(data);
-            Tag = DataSep[0];
-        }
-
-        private string[] Seperator(string Seperate)
-        {
-            string pattern = "(;)";
-            string[] result = Regex.Split(Seperate, pattern);
-
-            return result;
+            Console.WriteLine("Tag:\t\t\t" + Tag);
         }
     }
 
