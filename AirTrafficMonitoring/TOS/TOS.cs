@@ -34,6 +34,10 @@ namespace TOS
         public void print()
         {
             Console.WriteLine("Tag:\t\t\t" + Tag);
+            Console.WriteLine("X Coordinate:\t\t\t" + PosistionX);
+            Console.WriteLine("Y Corrdniate:\t\t\t" + PosistionY);
+            Console.WriteLine("Altitude:\t\t\t" + Altitude);
+            Console.WriteLine("Timestamp:\t\t\t" + TimeStamp);
         }
     }
 
