@@ -4,7 +4,16 @@ using System.Xml.Schema;
 
 namespace TOS
 {
-    public class TOS
+
+    public interface ITOS
+    {
+        string Tag { get;}
+        string PosistionX { get;}
+        string PosistionY { get;}
+        string Altitude { get; }
+        string TimeStamp { get;}
+    }
+    public class TOS : ITOS
     {
         public string Tag { get; private set; }
         public string PosistionX { get; private set; }
