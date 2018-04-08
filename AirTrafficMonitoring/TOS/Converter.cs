@@ -34,6 +34,19 @@ namespace TOS
             string pattern = "(;)";
             string[] result = Regex.Split(Seperate, pattern);
 
+            string x = result[1];
+            string y = result[2];
+            string altitude = result[3];
+            string year = result[4];
+            string month = result[5];
+            string date = result[6];
+            string hour = result[7];
+            string minute = result[8];
+            string second = result[9];
+            string milisecond = result[10];
+
+
+
             return result;
         }
 
