@@ -44,38 +44,7 @@ namespace TOS.Unit.Test.Tests
         }
 
 
-
         //Test X Cord
-
-        [Test]
-        public void PosXExactTest() //exact
-        {
-            TOS xy = uut.convert("ATR423;39045;12932;14000;20151006213456789");
-            Assert.That(xy.PosistionX == "39045");
-        }
-
-
-        [Test]
-        public void PosXLength() //Lenght
-        {
-            TOS xy = uut.convert("ATR423;39045;12932;14000;20151006213456789");
-            Assert.That(xy.PosistionX.Length, Is.EqualTo(5)); // XXXXX+METER
-        }
-
-        [Test]
-        public void PosXContains() //no diff to 1-9
-        {
-            TOS xy = uut.convert("ATR423;39045;12932;14000;20151006213456789");
-            Assert.That(xy.PosistionX.All(char.IsDigit));
-        }
-
-
-        [Test]
-        public void PosXHigh() //To High
-        {
-            TOS xy = uut.convert("ATR423;100000;12932;14000;20151006213456789");
-            Assert.That(xy.PosistionX.Length, Is.EqualTo("0"));
-        }
 
 
         //Test Y Cord
