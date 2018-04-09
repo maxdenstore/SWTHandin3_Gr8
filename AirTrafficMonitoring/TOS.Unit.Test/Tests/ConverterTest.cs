@@ -46,14 +46,28 @@ namespace TOS.Unit.Test.Tests
 
         //Test X Cord
 
+        [Test]
+        public void XCordExact() //Exact
+        {
+            TOS xy = uut.convert("ATR423;39045;12932;14000;20151006213456789");
+            Assert.That(xy.PosistionX == "39045 Meters");
+        }
 
         //Test Y Cord
 
+        [Test]
+        public void YCordContains() //Exact
+        {
+            TOS xy = uut.convert("ATR423;39045;12932;14000;20151006213456789");
+            Assert.That(xy.PosistionY == "12932 Meters");
+        }
 
         //Test Altitude
 
 
         //Test Timestamp
+
+        //Test transponderReceiverData
 
     }
 
