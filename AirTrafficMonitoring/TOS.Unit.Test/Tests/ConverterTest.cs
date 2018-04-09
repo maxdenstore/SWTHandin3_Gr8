@@ -29,7 +29,7 @@ namespace TOS.Unit.Test.Tests
 
 
         [Test]
-        public void tagLength() //equal
+        public void tagLength() //Lenght
         {
             TOS xy = uut.convert("ATR423;39045;12932;14000;20151006213456789");
             Assert.That(xy.Tag.Length, Is.EqualTo(6));
@@ -56,7 +56,7 @@ namespace TOS.Unit.Test.Tests
 
 
         [Test]
-        public void PosXLength() //equal
+        public void PosXLength() //Lenght
         {
             TOS xy = uut.convert("ATR423;39045;12932;14000;20151006213456789");
             Assert.That(xy.PosistionX.Length, Is.EqualTo(5));
@@ -69,6 +69,22 @@ namespace TOS.Unit.Test.Tests
             Assert.That(xy.PosistionX.All(char.IsDigit));
         }
 
+
+        [Test]
+        public void PosXHigh() //To High
+        {
+            TOS xy = uut.convert("ATR423;100000;12932;14000;20151006213456789");
+            Assert.That(xy.PosistionX.Length, Is.EqualTo(0));
+        }
+
+
+        //Test Y Cord
+
+
+        //Test Altitude
+
+
+        //Test Timestamp
 
     }
 
