@@ -19,6 +19,7 @@ namespace TOS.Unit.Test.Tests
 
         }
 
+        //Test Tag
         [Test]
         public void tagTest() //exact
         {
@@ -34,19 +35,6 @@ namespace TOS.Unit.Test.Tests
             Assert.That(xy.Tag.Length, Is.EqualTo(6));
         }
 
-        [Test]
-        public void tagLengthMax()  //border
-        {
-            TOS xy = uut.convert("ATR423;39045;12932;14000;20151006213456789");
-            Assert.That(xy.Tag.Length, Is.LessThan(7));
-        }
-
-        [Test]
-        public void tagLengthMin() //border
-        {
-            TOS xy = uut.convert("ATR423;39045;12932;14000;20151006213456789");
-            Assert.That(xy.Tag.Length, Is.GreaterThan(5));
-        }
 
         [Test]
         public void tagContains() //no diff to A-Z, 1-9
@@ -54,5 +42,36 @@ namespace TOS.Unit.Test.Tests
             TOS xy = uut.convert("ATR423;39045;12932;14000;20151006213456789");
             Assert.That(xy.Tag.All(char.IsLetterOrDigit));
         }
+
+
+
+        //Test X Cord
+
+        [Test]
+        public void PosXExactTest() //exact
+        {
+            TOS xy = uut.convert("ATR423;39045;12932;14000;20151006213456789");
+            Assert.That(xy.PosistionX == "39045");
+        }
+
+
+        [Test]
+        public void PosXLength() //equal
+        {
+            TOS xy = uut.convert("ATR423;39045;12932;14000;20151006213456789");
+            Assert.That(xy.PosistionX.Length, Is.EqualTo(5));
+        }
+
+        [Test]
+        public void PosXContains() //no diff to 1-9
+        {
+            TOS xy = uut.convert("ATR423;39045;12932;14000;20151006213456789");
+            Assert.That(xy.PosistionX.All(char.IsDigit));
+        }
+
+
     }
+
+
+
 }
