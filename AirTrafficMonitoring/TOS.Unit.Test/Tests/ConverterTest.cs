@@ -119,7 +119,7 @@ namespace TOS.Unit.Test.Tests
 
         //Test transponderReceiverData
         [Test]
-        public void bla()
+        public void transponderRecieverDataTest()
         {
             List<string> test = new List<string>();
             test.Add("TestTag;39045;12932;14000;20151006213456789");
