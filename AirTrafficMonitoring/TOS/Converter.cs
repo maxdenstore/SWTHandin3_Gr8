@@ -12,7 +12,7 @@ namespace TOS
     public class Converter
     {
         private ITransponderReceiver _transponderReceiver;
-        private TOS Converted;
+        public TOS Converted;
         public Converter(ITransponderReceiver receiver)
         {
             _transponderReceiver = receiver;
