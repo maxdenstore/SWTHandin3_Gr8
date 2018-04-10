@@ -9,11 +9,11 @@ using TransponderReceiver;
 
 namespace TOS
 {
-    public class Converter
+    public class TransponderReceiver
     {
         private ITransponderReceiver _transponderReceiver;
-        public TOS Converted;
-        public Converter(ITransponderReceiver receiver)
+        public TOS Received;
+        public TransponderReceiver(ITransponderReceiver receiver)
         {
             _transponderReceiver = receiver;
 
@@ -21,15 +21,15 @@ namespace TOS
 
         }
 
-        public TOS convert(string data)
+        public TOS receive(string data)
         {
             string[] DataSep = Seperator(data);
 
             string tag = DataSep[0];
-            string xCord = PutOnMeters(DataSep[2]);
-            string yCord = PutOnMeters(DataSep[4]);
-            string Alt = PutOnMeters(DataSep[6]) ;
-            string time =FormateDate(DataSep[8]);
+            int xCord = Int32.Parse(DataSep[2]);
+            int yCord = Int32.Parse(DataSep[4]);
+            int Alt = Int32.Parse(DataSep[6]); 
+            DateTime time =FormateDate(DataSep[8]);
 
             return new TOS(tag, xCord, yCord, Alt, time);
         }
@@ -42,13 +42,7 @@ namespace TOS
             return result;
         }
 
-        private string PutOnMeters(string thisOne)
-        {
-            thisOne += " Meters";
-            return thisOne;
-        }
-
-        private string FormateDate(string RawDate)
+        private DateTime FormateDate(string RawDate)
         {
             string year = RawDate.Substring(0, 4);
             string month = RawDate.Substring(4, 2);
@@ -56,25 +50,23 @@ namespace TOS
             string hour = RawDate.Substring(8, 2);
             string minute = RawDate.Substring(10, 2);
             string second = RawDate.Substring(12, 2);
-            string milisecond = " and " + RawDate.Substring(14, 3) + " miliseconds";
+            string msec = RawDate.Substring(14, 3);
 
-            DateTime dates = new DateTime(Int32.Parse(year), Int32.Parse(month), Int32.Parse(dateOfMonth), Int32.Parse(hour), Int32.Parse(minute), Int32.Parse(second));
+            DateTime dates = new DateTime(Int32.Parse(year), Int32.Parse(month), Int32.Parse(dateOfMonth), Int32.Parse(hour), Int32.Parse(minute), Int32.Parse(second), Int32.Parse((msec)));
 
-            string formatted = dates.ToString("F");
-            formatted += milisecond;
-            return formatted;
+            return dates;
         }
 
         public void transponderReceiverData( object sender, RawTransponderDataEventArgs e) 
         {
             foreach (var track in e.TransponderData)
             {
-                Converted = this.convert(track);
+                Received = this.receive(track);
             }
 
-            if (Converted != null)
+            if (Received != null)
             {
-                Converted.print();
+                Received.print();
             }
 
         }

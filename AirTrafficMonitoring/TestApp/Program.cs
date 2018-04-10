@@ -13,11 +13,10 @@ namespace TestApp
         static void Main(string[] args)
         {
 
-            Converter con = new Converter(TransponderReceiverFactory.CreateTransponderDataReceiver());
+            TOS.TransponderReceiver con = new TOS.TransponderReceiver(TransponderReceiverFactory.CreateTransponderDataReceiver());
             Console.ReadLine();
 
         }
-
 
     }
 }

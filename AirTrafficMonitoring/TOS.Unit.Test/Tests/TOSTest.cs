@@ -1,4 +1,5 @@
 ﻿
+using System;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 
@@ -8,10 +9,11 @@ namespace TOS.Unit.Test.Tests
     public class TOSTest
     {
         public string tag = "ATR423";
-        public string PosistionX = "39045 meters";
-        public string PosistionY = "12932 meters";
-        public string altitude = "14000 meters";
-        public string DateTime = "October 6th, 2015, at 21:34:56 and 789 milliseconds";
+        public int PosistionX = 39045;
+        public int PosistionY = 12932;
+        public int altitude = 14000;
+
+        public DateTime DateTime = new DateTime(2015,10,6,21,34,56,789);
         public ITOS uut;
 
         [SetUp]

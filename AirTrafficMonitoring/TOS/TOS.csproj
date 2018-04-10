@@ -44,7 +44,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converter.cs" />
+    <Compile Include="TransponderReceiver.cs" />
     <Compile Include="TOS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

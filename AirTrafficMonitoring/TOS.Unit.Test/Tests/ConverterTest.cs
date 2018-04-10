@@ -12,7 +12,12 @@ namespace TOS.Unit.Test.Tests
     [TestFixture]
     class ConverterTest
     {
-        private Converter uut = new Converter(TransponderReceiverFactory.CreateTransponderDataReceiver());
+        private TransponderReceiver uut = new TransponderReceiver(TransponderReceiverFactory.CreateTransponderDataReceiver());
+        public string tag = "ATR423";
+        public int PosistionX = 39045;
+        public int PosistionY = 12932;
+        public int altitude = 14000;
+        public DateTime DateTime = new DateTime(2015, 10, 6, 21, 34, 56, 789);
         [SetUp]
         public void Setup()
         {
@@ -23,21 +28,21 @@ namespace TOS.Unit.Test.Tests
         [Test]
         public void tagTest() //exact
         {
-           TOS xy = uut.convert("ATR423;39045;12932;14000;20151006213456789");
+           TOS xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
            Assert.That(xy.Tag == "ATR423");
         }
 
         [Test]
         public void tagLength() //Lenght
         {
-            TOS xy = uut.convert("ATR423;39045;12932;14000;20151006213456789");
+            TOS xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
             Assert.That(xy.Tag.Length, Is.EqualTo(6));
         }
 
         [Test]
         public void tagContains() //no diff to A-Z, 1-9
         {
-            TOS xy = uut.convert("ATR423;39045;12932;14000;20151006213456789");
+            TOS xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
             Assert.That(xy.Tag.All(char.IsLetterOrDigit));
         }
 
@@ -46,8 +51,8 @@ namespace TOS.Unit.Test.Tests
         [Test]
         public void XCordExact() //Exact
         {
-            TOS xy = uut.convert("ATR423;39045;12932;14000;20151006213456789");
-            Assert.That(xy.PosistionX == "39045 Meters");
+            TOS xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
+            Assert.That(xy.PosistionX == 39045);
         }
 
         //Test Y Cord
@@ -55,66 +60,66 @@ namespace TOS.Unit.Test.Tests
         [Test]
         public void YCordContains() //Exact
         {
-            TOS xy = uut.convert("ATR423;39045;12932;14000;20151006213456789");
-            Assert.That(xy.PosistionY == "12932 Meters");
+            TOS xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
+            Assert.That(xy.PosistionY == 12932);
         }
 
         //Test Altitude
         [Test]
         public void AltitudeIsSame()
         {
-            TOS xy = uut.convert("ATR423;39045;12932;14000;20151006213456789");
-            Assert.That(xy.Altitude.Contains("14000"));
+            TOS xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
+            Assert.That(xy.Altitude == 14000);
         }
 
         //Test Timestamp
         [Test]
         public void TimeStampDay()
         {
-            TOS xy = uut.convert("ATR423;39045;12932;14000;20151006213456789");
-            Assert.That(xy.TimeStamp.Contains("6."));
+            TOS xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
+            Assert.That(xy.TimeStamp.Day == 6);
         }
 
         [Test]
         public void TimeStampMonth()
         {
-            TOS xy = uut.convert("ATR423;39045;12932;14000;20151006213456789");
-            Assert.That(xy.TimeStamp.Contains("oktober"));
+            TOS xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
+            Assert.That(xy.TimeStamp.Month == 10);
         }
 
         [Test]
         public void TimeStampYear()
         {
-            TOS xy = uut.convert("ATR423;39045;12932;14000;20151006213456789");
-            Assert.That(xy.TimeStamp.Contains("2015"));
+            TOS xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
+            Assert.That(xy.TimeStamp.Year == 2015);
         }
 
         [Test]
         public void TimeStampHour()
         {
-            TOS xy = uut.convert("ATR423;39045;12932;14000;20151006213456789");
-            Assert.That(xy.TimeStamp.Contains("21:"));
+            TOS xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
+            Assert.That(xy.TimeStamp.Hour == 21);
         }
 
         [Test]
         public void TimeStampMinute()
         {
-            TOS xy = uut.convert("ATR423;39045;12932;14000;20151006213456789");
-            Assert.That(xy.TimeStamp.Contains("34:"));
+            TOS xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
+            Assert.That(xy.TimeStamp.Minute == 34);
         }
 
         [Test]
         public void TimeStampSecond()
         {
-            TOS xy = uut.convert("ATR423;39045;12932;14000;20151006213456789");
-            Assert.That(xy.TimeStamp.Contains("56"));
+            TOS xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
+            Assert.That(xy.TimeStamp.Second == 56);
         }
 
         [Test]
         public void TimeStampMSec()
         {
-            TOS xy = uut.convert("ATR423;39045;12932;14000;20151006213456789");
-            Assert.That(xy.TimeStamp.Contains(" 789 miliseconds"));
+            TOS xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
+            Assert.That(xy.TimeStamp.Millisecond == 789);
         }
 
         //Test transponderReceiverData
@@ -125,7 +130,7 @@ namespace TOS.Unit.Test.Tests
             test.Add("TestTag;39045;12932;14000;20151006213456789");
             uut.transponderReceiverData(this,new RawTransponderDataEventArgs(test));
 
-            Assert.That(uut.Converted.Tag == "TestTag");
+            Assert.That(uut.Received.Tag == "TestTag");
         }
     }
 

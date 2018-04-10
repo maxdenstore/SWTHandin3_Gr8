@@ -9,20 +9,20 @@ namespace TOS
     public interface ITOS
     {
         string Tag { get;}
-        string PosistionX { get;}
-        string PosistionY { get;}
-        string Altitude { get; }
-        string TimeStamp { get;}
+        int PosistionX { get;}
+        int PosistionY { get;}
+        int Altitude { get; }
+        DateTime TimeStamp { get;}
     }
     public class TOS : ITOS
     {
         public string Tag { get; private set; }
-        public string PosistionX { get; private set; }
-        public string PosistionY { get; private set; }
-        public string Altitude { get; private set; }
-        public string TimeStamp { get;private set; }
+        public int PosistionX { get; private set; }
+        public int PosistionY { get; private set; }
+        public int Altitude { get; private set; }
+        public DateTime TimeStamp { get;private set; }
 
-        public TOS(string tag, string posistionX, string posistionY, string altitude, string timeStamp)
+        public TOS(string tag, int posistionX, int posistionY, int altitude, DateTime timeStamp)
         {
             Tag = tag;
             PosistionX = posistionX;
@@ -33,11 +33,13 @@ namespace TOS
 
         public void print()
         {
+            string formattedDate = TimeStamp.ToString("F");
+            formattedDate += " " + TimeStamp.Millisecond + " miliseconds";
             Console.WriteLine("Tag:\t\t\t" + Tag);
-            Console.WriteLine("X Coordinate:\t\t\t" + PosistionX);
-            Console.WriteLine("Y Corrdniate:\t\t\t" + PosistionY);
-            Console.WriteLine("Altitude:\t\t\t" + Altitude);
-            Console.WriteLine("Timestamp:\t\t\t" + TimeStamp);
+            Console.WriteLine("X Coordinate:\t\t\t" + PosistionX + " Meters");
+            Console.WriteLine("Y Corrdniate:\t\t\t" + PosistionY + " Meters");
+            Console.WriteLine("Altitude:\t\t\t" + Altitude + "Meters ");
+            Console.WriteLine("Timestamp:\t\t\t" + formattedDate);
         }
     }
 
