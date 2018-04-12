@@ -17,7 +17,6 @@ namespace ATMSystem
         public airMonitor()
         {
 
-           
         }
 
         public void getEvent()
@@ -25,11 +24,8 @@ namespace ATMSystem
             while (true)
             {
 
-                //con.Received.TimeStamp < DateTime.Now.Subtract(TimeSpan.FromSeconds(5))
-                Console.WriteLine("Test");
             }
         }
-
 
     }
 }

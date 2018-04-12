@@ -11,6 +11,9 @@ namespace TOS
 {
     public class TransponderReceiver
     {
+        public EventArgs e = null;
+        public delegate void TosReceived(TOS sender, EventArgs e);
+        public event TosReceived recivedEvent;
         private ITransponderReceiver _transponderReceiver;
         public TOS Received;
         public TransponderReceiver(ITransponderReceiver receiver)
@@ -67,6 +70,8 @@ namespace TOS
             if (Received != null)
             {
                 Received.print();
+                recivedEvent(Received, this.e);
+                
             }
 
         }

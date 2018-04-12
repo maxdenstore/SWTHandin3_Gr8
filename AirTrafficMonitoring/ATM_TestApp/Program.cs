@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ATMSystem;
 
 namespace ATM_TestApp
 {
@@ -10,7 +11,8 @@ namespace ATM_TestApp
     {
         static void Main(string[] args)
         {
-            
+            ATMSystem.airMonitor X = new airMonitor();
+            Console.ReadLine();
         }
     }
 }
