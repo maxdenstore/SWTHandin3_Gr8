@@ -21,7 +21,7 @@ namespace ATMSystem
 
         public void getEvent()
         {
-            while (con.)
+            while ()
             {
                 
             }

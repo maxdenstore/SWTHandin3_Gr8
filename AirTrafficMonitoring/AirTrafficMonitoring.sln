@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TOS", "TOS\TOS.csproj", "{F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{53AEA9EE-9EC2-408A-99F5-39D67C4B5DF9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATMSystem", "ATMSystem\ATMSystem.csproj", "{FB5DD22B-8B43-4697-B68D-205413A18F95}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{53AEA9EE-9EC2-408A-99F5-39D67C4B5DF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53AEA9EE-9EC2-408A-99F5-39D67C4B5DF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53AEA9EE-9EC2-408A-99F5-39D67C4B5DF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB5DD22B-8B43-4697-B68D-205413A18F95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB5DD22B-8B43-4697-B68D-205413A18F95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB5DD22B-8B43-4697-B68D-205413A18F95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB5DD22B-8B43-4697-B68D-205413A18F95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
