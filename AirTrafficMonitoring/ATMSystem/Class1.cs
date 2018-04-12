@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Resources;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using TOS;
@@ -19,12 +20,12 @@ namespace ATMSystem
 
         }
 
-        public void getEvent()
+        public void subscribe(TOS.TransponderReceiver m)
         {
-            while (true)
-            {
+            m.recivedEvent += new TOS.TransponderReceiver.TosReceived(m.);
+           
 
-            }
+
         }
 
     }
