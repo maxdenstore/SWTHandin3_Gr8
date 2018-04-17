@@ -19,9 +19,9 @@ namespace ATMSystem
             
         }
 
-        public void ReceiveNewTOS(TOS.TOS NewTOs)
+        public void ReceiveNewTOS(TOS.TOS NewTOS)
         {
-
+            monitorList.Add(NewTOS);
         }
 
     }

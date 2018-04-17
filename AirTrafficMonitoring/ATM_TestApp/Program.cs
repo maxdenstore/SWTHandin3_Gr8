@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ATMSystem;
+using TOS;
+using TransponderReceiver;
 
 namespace ATM_TestApp
 {
@@ -12,6 +14,8 @@ namespace ATM_TestApp
         static void Main(string[] args)
         {
             ATMSystem.AirMonitor X = new AirMonitor();
+            ReceiveTranspond transpond = new ReceiveTranspond((TransponderReceiverFactory.CreateTransponderDataReceiver()),X);
+
             Console.ReadLine();
         }
     }
