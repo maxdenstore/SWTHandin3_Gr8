@@ -14,6 +14,7 @@ namespace ATMSystem
     {
         public List<TOS.TOS> monitorList = new List<TOS.TOS>();
         private MeasureVelocity _measureVelocity = new MeasureVelocity();
+        private MeasureDegress _measureDegress = new MeasureDegress();
         public AirMonitor()
         {
             
@@ -30,9 +31,11 @@ namespace ATMSystem
                 //measue speed
                 _measureVelocity.Measure(old,NewTOS);
 
-                monitorList[index] = NewTOS;
-
                 //measure degress
+                _measureDegress.Measure(old,NewTOS);
+
+                //replace
+                monitorList[index] = NewTOS;
             }
 
             else

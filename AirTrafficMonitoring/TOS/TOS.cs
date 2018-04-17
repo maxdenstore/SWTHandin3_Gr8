@@ -45,6 +45,8 @@ namespace TOS
             Console.WriteLine("Y Corrdniate:\t\t\t" + PosistionY + " Meters");
             Console.WriteLine("Altitude:\t\t\t" + Altitude + "Meters ");
             Console.WriteLine("Timestamp:\t\t\t" + formattedDate);
+            Console.WriteLine($"Velocity:\t\t\t{Velocity}");
+            Console.WriteLine($"Degress:\t\t\t{degress}");
         }
     }
 
