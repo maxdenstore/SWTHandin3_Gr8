@@ -21,8 +21,15 @@ namespace ATMSystem
 
         public void ReceiveNewTOS(TOS.TOS NewTOS)
         {
-            monitorList.Add(NewTOS);
+            if (monitorList.Find(x => x.Tag == NewTOS.Tag) != null) //if the tag exsists in the list
+            {
+                //measue speed etc
+            }
 
+            else
+            {
+                monitorList.Add(NewTOS);
+            }
             monitorList[monitorList.Count-1].print();
 
         }

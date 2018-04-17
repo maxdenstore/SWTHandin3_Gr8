@@ -77,6 +77,10 @@ namespace TOS
                 //Received.print(); for old version
                 if (_airspace != null)
                 {
+
+                    //also calculate if its withing this airspace parameters!
+                    Console.WriteLine("not implemented : sort for the airspace parameters!!");
+
                     _airspace.ReceiveNewTOS(Received);
                 }
                 

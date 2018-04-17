@@ -13,6 +13,9 @@ namespace TOS
         int PosistionY { get;}
         int Altitude { get; }
         DateTime TimeStamp { get;}
+        int Velocity { get; set; }
+        int degress { get; set; }
+
     }
     public class TOS : ITOS
     {
@@ -21,6 +24,8 @@ namespace TOS
         public int PosistionY { get; private set; }
         public int Altitude { get; private set; }
         public DateTime TimeStamp { get;private set; }
+        public int Velocity { get; set; }
+        public int degress { get; set; }
 
         public TOS(string tag, int posistionX, int posistionY, int altitude, DateTime timeStamp)
         {
