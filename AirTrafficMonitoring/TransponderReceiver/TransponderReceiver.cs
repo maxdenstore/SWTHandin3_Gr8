@@ -1,4 +1,4 @@
-﻿using ATMSystem;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +12,7 @@ namespace TOS
 {
     public class TransponderReceiver
     {
+        
         public EventArgs e = null;
         public delegate void TosReceived(TOS sender, EventArgs e);
         public event TosReceived recivedEvent;
