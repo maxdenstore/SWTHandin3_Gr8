@@ -10,21 +10,20 @@ using TransponderReceiver;
 
 namespace ATMSystem
 {
-    public class airMonitor
+    public class AirMonitor
     {
 
         TOS.TransponderReceiver con = new TOS.TransponderReceiver(TransponderReceiverFactory.CreateTransponderDataReceiver());
         List<TOS.TOS> monitorList = new List<TOS.TOS>();
-        public airMonitor()
-        {
 
+        public AirMonitor()
+        {
+            
         }
 
         public void subscribe(TOS.TransponderReceiver m)
         {
             m.recivedEvent += new TOS.TransponderReceiver.TosReceived(m.);
-           
-
 
         }
 
