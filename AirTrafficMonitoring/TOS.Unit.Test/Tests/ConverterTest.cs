@@ -12,7 +12,7 @@ namespace TOS.Unit.Test.Tests
     [TestFixture]
     class ConverterTest
     {
-        private TransponderReceiver uut = new TransponderReceiver(TransponderReceiverFactory.CreateTransponderDataReceiver());
+        private ReceiveTranspond uut = new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver());
         public string tag = "ATR423";
         public int PosistionX = 39045;
         public int PosistionY = 12932;

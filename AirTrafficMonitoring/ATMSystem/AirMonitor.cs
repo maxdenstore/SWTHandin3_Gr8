@@ -19,7 +19,7 @@ namespace ATMSystem
             
         }
 
-        public void ReceiveNewTOS()
+        public void ReceiveNewTOS(TOS.TOS NewTOs)
         {
 
         }

@@ -6,23 +6,26 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using ATMSystem;
 using TransponderReceiver;
 
 namespace TOS
 {
-    public class TransponderReceiver
+    public class ReceiveTranspond
     {
-        
+        private AirMonitor _airspace = null;
         public EventArgs e = null;
         public delegate void TosReceived(TOS sender, EventArgs e);
         public event TosReceived recivedEvent;
         private ITransponderReceiver _transponderReceiver;
         public TOS Received;
-        public TransponderReceiver(ITransponderReceiver receiver, AirMonitor airSpace)
+        public ReceiveTranspond(ITransponderReceiver receiver, AirMonitor airSpace = null)
         {
             _transponderReceiver = receiver;
 
             _transponderReceiver.TransponderDataReady += transponderReceiverData;
+
+            _airspace = airSpace;
 
         }
 
@@ -72,7 +75,10 @@ namespace TOS
             if (Received != null)
             {
                 Received.print();
-                recivedEvent(Received, this.e);
+                if (_airspace != null)
+                {
+                    _airspace.ReceiveNewTOS(Received);
+                }
                 
             }
 

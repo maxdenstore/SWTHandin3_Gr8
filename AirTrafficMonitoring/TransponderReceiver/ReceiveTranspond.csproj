@@ -7,8 +7,8 @@
     <ProjectGuid>{8CF65586-28CE-4E77-B57D-0B3586399CCE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TransponderReceiver</RootNamespace>
-    <AssemblyName>TransponderReceiver</AssemblyName>
+    <RootNamespace>ReceiveTranspond</RootNamespace>
+    <AssemblyName>ReceiveTranspond</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TransponderReceiver.cs" />
+    <Compile Include="ReceiveTranspond.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ATMSystem\ATMSystem.csproj">
