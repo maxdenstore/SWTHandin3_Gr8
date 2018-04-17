@@ -11,7 +11,7 @@ namespace ATM_TestApp
     {
         static void Main(string[] args)
         {
-            ATMSystem.airMonitor X = new airMonitor();
+            ATMSystem.AirMonitor X = new AirMonitor();
             Console.ReadLine();
         }
     }
