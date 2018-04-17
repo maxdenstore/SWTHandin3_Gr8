@@ -74,7 +74,7 @@ namespace TOS
 
             if (Received != null)
             {
-                Received.print();
+                //Received.print(); for old version
                 if (_airspace != null)
                 {
                     _airspace.ReceiveNewTOS(Received);

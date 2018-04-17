@@ -12,7 +12,7 @@ namespace ATMSystem
 {
     public class AirMonitor
     {
-        List<TOS.TOS> monitorList = new List<TOS.TOS>();
+        public List<TOS.TOS> monitorList = new List<TOS.TOS>();
 
         public AirMonitor()
         {
@@ -22,6 +22,9 @@ namespace ATMSystem
         public void ReceiveNewTOS(TOS.TOS NewTOS)
         {
             monitorList.Add(NewTOS);
+
+            monitorList[monitorList.Count-1].print();
+
         }
 
     }
