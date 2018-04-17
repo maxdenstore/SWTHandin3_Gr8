@@ -13,7 +13,7 @@ namespace TestApp
         static void Main(string[] args)
         {
 
-            TOS.TransponderReceiver con = new TOS.TransponderReceiver(TransponderReceiverFactory.CreateTransponderDataReceiver());
+            //TOS.TransponderReceiver con = new TOS.TransponderReceiver(TransponderReceiverFactory.CreateTransponderDataReceiver());
             Console.ReadLine();
 
         }

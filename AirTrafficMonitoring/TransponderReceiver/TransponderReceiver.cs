@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ATMSystem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -16,7 +17,7 @@ namespace TOS
         public event TosReceived recivedEvent;
         private ITransponderReceiver _transponderReceiver;
         public TOS Received;
-        public TransponderReceiver(ITransponderReceiver receiver)
+        public TransponderReceiver(ITransponderReceiver receiver, AirMonitor airSpace)
         {
             _transponderReceiver = receiver;
 

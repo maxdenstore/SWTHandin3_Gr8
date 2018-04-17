@@ -12,8 +12,6 @@ namespace ATMSystem
 {
     public class AirMonitor
     {
-
-        TOS.TransponderReceiver con = new TOS.TransponderReceiver(TransponderReceiverFactory.CreateTransponderDataReceiver());
         List<TOS.TOS> monitorList = new List<TOS.TOS>();
 
         public AirMonitor()
@@ -21,9 +19,8 @@ namespace ATMSystem
             
         }
 
-        public void subscribe(TOS.TransponderReceiver m)
+        public void ReceiveNewTOS()
         {
-            m.recivedEvent += new TOS.TransponderReceiver.TosReceived(m.);
 
         }
 

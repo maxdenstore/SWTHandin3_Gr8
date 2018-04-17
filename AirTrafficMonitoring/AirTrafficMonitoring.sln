@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATMSystem", "ATMSystem\ATMS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATM_TestApp", "ATM_TestApp\ATM_TestApp.csproj", "{F3073A42-7840-4855-9CD4-5AAFFF8FF087}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransponderReceiver", "TransponderReceiver\TransponderReceiver.csproj", "{8CF65586-28CE-4E77-B57D-0B3586399CCE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{F3073A42-7840-4855-9CD4-5AAFFF8FF087}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3073A42-7840-4855-9CD4-5AAFFF8FF087}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3073A42-7840-4855-9CD4-5AAFFF8FF087}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CF65586-28CE-4E77-B57D-0B3586399CCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CF65586-28CE-4E77-B57D-0B3586399CCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CF65586-28CE-4E77-B57D-0B3586399CCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CF65586-28CE-4E77-B57D-0B3586399CCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
