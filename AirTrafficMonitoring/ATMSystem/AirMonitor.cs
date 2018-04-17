@@ -21,11 +21,17 @@ namespace ATMSystem
 
         public void ReceiveNewTOS(TOS.TOS NewTOS)
         {
-            TOS.TOS old = monitorList.Find(x => x.Tag == NewTOS.Tag);
-            if (old != null) //if the tag exsists in the list
+            
+            if (monitorList.Exists(x => x.Tag == NewTOS.Tag)) //if the tag exsists in the list
             {
+                int index = monitorList.FindIndex(x => x.Tag == NewTOS.Tag);
+                TOS.TOS old = monitorList[index];
+                
                 //measue speed
                 _measureVelocity.Measure(old,NewTOS);
+
+                monitorList[index] = NewTOS;
+
                 //measure degress
             }
 
