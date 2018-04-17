@@ -13,7 +13,7 @@ namespace ATMSystem
     public class AirMonitor
     {
         public List<TOS.TOS> monitorList = new List<TOS.TOS>();
-
+        private MeasureVelocity _measureVelocity = new MeasureVelocity();
         public AirMonitor()
         {
             
@@ -21,9 +21,12 @@ namespace ATMSystem
 
         public void ReceiveNewTOS(TOS.TOS NewTOS)
         {
-            if (monitorList.Find(x => x.Tag == NewTOS.Tag) != null) //if the tag exsists in the list
+            TOS.TOS old = monitorList.Find(x => x.Tag == NewTOS.Tag);
+            if (old != null) //if the tag exsists in the list
             {
-                //measue speed etc
+                //measue speed
+                _measureVelocity.Measure(old,NewTOS);
+                //measure degress
             }
 
             else
