@@ -57,6 +57,8 @@ namespace ATMSystem
                     //there is conflict, do something mate!
                     FlightsInConflic.Add(new Separtation(VARIABLE.Tag,VARIABLE.TimeStamp));
                     FlightsInConflic.Add(new Separtation(NewTOS.Tag, NewTOS.TimeStamp));
+
+                    //check all conflicts
                 }
             }
 
