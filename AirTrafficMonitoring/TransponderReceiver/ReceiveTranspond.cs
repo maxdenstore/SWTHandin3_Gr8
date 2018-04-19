@@ -1,11 +1,5 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
+﻿using System;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using ATMSystem;
 using TransponderReceiver;
 
@@ -13,12 +7,13 @@ namespace TOS
 {
     public class ReceiveTranspond
     {
-        private AirMonitor _airspace = null;
-        public EventArgs e = null;
         public delegate void TosReceived(TOS sender, EventArgs e);
-        public event TosReceived recivedEvent;
-        private ITransponderReceiver _transponderReceiver;
+
+        private readonly AirMonitor _airspace;
+        private readonly ITransponderReceiver _transponderReceiver;
+        public EventArgs e = null;
         public TOS Received;
+
         public ReceiveTranspond(ITransponderReceiver receiver, AirMonitor airSpace = null)
         {
             _transponderReceiver = receiver;
@@ -26,67 +21,68 @@ namespace TOS
             _transponderReceiver.TransponderDataReady += transponderReceiverData;
 
             _airspace = airSpace;
-
         }
+
+        public event TosReceived recivedEvent;
 
         public TOS receive(string data)
         {
-            string[] DataSep = Seperator(data);
+            var DataSep = Seperator(data);
 
-            string tag = DataSep[0];
-            int xCord = Int32.Parse(DataSep[2]);
-            int yCord = Int32.Parse(DataSep[4]);
-            int Alt = Int32.Parse(DataSep[6]); 
-            DateTime time =FormateDate(DataSep[8]);
+            var tag = DataSep[0];
+            var xCord = int.Parse(DataSep[2]);
+            var yCord = int.Parse(DataSep[4]);
+            var Alt = int.Parse(DataSep[6]);
+            var time = FormateDate(DataSep[8]);
 
             return new TOS(tag, xCord, yCord, Alt, time);
         }
 
         private string[] Seperator(string Seperate)
         {
-            string pattern = "(;)";
-            string[] result = Regex.Split(Seperate, pattern);
+            var pattern = "(;)";
+            var result = Regex.Split(Seperate, pattern);
 
             return result;
         }
 
         private DateTime FormateDate(string RawDate)
         {
-            string year = RawDate.Substring(0, 4);
-            string month = RawDate.Substring(4, 2);
-            string dateOfMonth = RawDate.Substring(6, 2);
-            string hour = RawDate.Substring(8, 2);
-            string minute = RawDate.Substring(10, 2);
-            string second = RawDate.Substring(12, 2);
-            string msec = RawDate.Substring(14, 3);
+            var year = RawDate.Substring(0, 4);
+            var month = RawDate.Substring(4, 2);
+            var dateOfMonth = RawDate.Substring(6, 2);
+            var hour = RawDate.Substring(8, 2);
+            var minute = RawDate.Substring(10, 2);
+            var second = RawDate.Substring(12, 2);
+            var msec = RawDate.Substring(14, 3);
 
-            DateTime dates = new DateTime(Int32.Parse(year), Int32.Parse(month), Int32.Parse(dateOfMonth), Int32.Parse(hour), Int32.Parse(minute), Int32.Parse(second), Int32.Parse((msec)));
+            var dates = new DateTime(int.Parse(year), int.Parse(month), int.Parse(dateOfMonth), int.Parse(hour),
+                int.Parse(minute), int.Parse(second), int.Parse(msec));
 
             return dates;
         }
 
-        public void transponderReceiverData( object sender, RawTransponderDataEventArgs e) 
+        public void transponderReceiverData(object sender, RawTransponderDataEventArgs e)
         {
-            foreach (var track in e.TransponderData)
-            {
-                Received = this.receive(track);
-            }
+            foreach (var track in e.TransponderData) Received = receive(track);
 
             if (Received != null)
-            {
-                //Received.print(); for old version
                 if (_airspace != null)
                 {
-
                     //also calculate if its withing this airspace parameters!
-                    Console.WriteLine("not implemented : sort for the airspace parameters!!");
+                    //we only have one airspace so its defined here..
+                    if (Received.PosistionX >= 10000 && Received.PosistionY >= 10000 && Received.PosistionX <= 90000 &&
+                        Received.PosistionY <= 90000)
+                    {
+                        _airspace.ReceiveNewTOS(Received);
+                    }
 
-                    _airspace.ReceiveNewTOS(Received);
+                    else //remove the aircraft from the airspace list
+                    {
+                        _airspace.monitorList.RemoveAt(_airspace.monitorList.FindIndex(x => x.Tag == Received.Tag));
+                    }
+                    
                 }
-                
-            }
-
         }
     }
-
 }
