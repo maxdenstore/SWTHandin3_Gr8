@@ -67,22 +67,31 @@ namespace TOS
             foreach (var track in e.TransponderData) Received = receive(track);
 
             if (Received != null)
+            {
                 if (_airspace != null)
                 {
                     //also calculate if its withing this airspace parameters!
                     //we only have one airspace so its defined here..
-                    if (Received.PosistionX >= 10000 && Received.PosistionY >= 10000 && Received.PosistionX <= 90000 &&
-                        Received.PosistionY <= 90000)
+                    
+                    if ((Received.PosistionX >= 10000) &&
+                        (Received.PosistionY >= 10000) &&
+                        (Received.PosistionX <= 90000) &&
+                        (Received.PosistionY <= 90000))
                     {
                         _airspace.ReceiveNewTOS(Received);
                     }
 
                     else //remove the aircraft from the airspace list
                     {
-                        _airspace.monitorList.RemoveAt(_airspace.monitorList.FindIndex(x => x.Tag == Received.Tag));
+                        if (_airspace.monitorList.Exists(x => x.Tag == Received.Tag)) //check if it exsists in the airspace, means its now out of our airspace
+                        {
+                            _airspace.monitorList.RemoveAt(_airspace.monitorList.FindIndex(x => x.Tag == Received.Tag));
+                        }
+                        
                     }
-                    
+
                 }
+            }
         }
     }
 }
