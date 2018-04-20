@@ -45,21 +45,24 @@ namespace ATMSystem
                 monitorList.Add(NewTOS);
             }
 
-            Console.Clear();
-            Console.WriteLine("New data: ");
-
-            //check for conflicts for each
+           // Console.WriteLine("New data: ");
+            
+            //check for conflicts for each in monitor
             foreach (var VARIABLE in monitorList)
             {
-               Conflict = checkForConflict(VARIABLE,NewTOS);
-                if (Conflict)
+                if (VARIABLE.Tag != NewTOS.Tag)
                 {
-                    //there is conflict, do something mate!
-                    FlightsInConflic.Add(new Separtation(VARIABLE.Tag,VARIABLE.TimeStamp));
-                    FlightsInConflic.Add(new Separtation(NewTOS.Tag, NewTOS.TimeStamp));
+                    Conflict = checkForConflict(VARIABLE, NewTOS);
+                    if (Conflict)
+                    {
+                        //there is conflict, do something mate!
+                        FlightsInConflic.Add(new Separtation(NewTOS.Tag, NewTOS.TimeStamp));
+                        FlightsInConflic.Add(new Separtation(VARIABLE.Tag, VARIABLE.TimeStamp));
 
-                    //check all conflicts
+                        //check all conflicts
+                    }
                 }
+
             }
 
             foreach (var VARIABLE in monitorList)

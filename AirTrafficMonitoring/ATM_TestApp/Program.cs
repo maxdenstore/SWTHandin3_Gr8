@@ -16,7 +16,15 @@ namespace ATM_TestApp
             ATMSystem.AirMonitor X = new AirMonitor();
             ReceiveTranspond transpond = new ReceiveTranspond((TransponderReceiverFactory.CreateTransponderDataReceiver()),X);
 
-            Console.ReadLine();
+            string pre = Console.ReadLine();
+
+            if (pre == "New data: ")
+            {
+                Console.Clear();
+            }
+            else
+                Console.ReadLine();
+
         }
     }
 }
