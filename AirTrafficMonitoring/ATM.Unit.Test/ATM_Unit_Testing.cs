@@ -87,11 +87,13 @@ namespace ATM.Unit.Test
             Assert.That(air.monitorList[air.monitorList.Count - 1].TimeStamp, Is.EqualTo(DateTime.Parse("2015-10-06 21:34:56.789")));
         }
 
+
+        //Test if X < +/- 300 and Y is +/-300.
         [Test]
-        public void TestxConflictAltitudeNotOK()
+        public void TestXConflicts()
         {
             string Test1xConflict = "DTR423;39000;12932;14000;20151006213456789";
-            string Test2xConflict = "ATR423;39045;12933;14001;20151006213456789";
+            string Test2xConflict = "ATR423;39299;12933;14001;20151006213456789";
 
             List<string> test = new List<string>();
             test.Add(Test1xConflict);
@@ -102,8 +104,27 @@ namespace ATM.Unit.Test
             test.Add(Test2xConflict);
 
             uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
-            //Assert.That(air.FlightsInConflic.Exists(x => x.Tag == "ATR423"));
-            Assert.That(air.FlightsInConflic.Exists(x => x.Tag == "DTR423"));
+            Assert.That(air.FlightsInConflic.Exists(x => x.Tag == "ATR423"));
+         //   Assert.That(air.FlightsInConflic.Exists(x => x.Tag == "DTR423"));
+        }
+
+        //Test if X > 300 but Y is not +/-300.
+        [Test]
+        public void TestXNoConflictsK()
+        {
+            string Test1xNoConflict = "DTR423;39000;13000;14000;20151006213456789";
+            string Test2xNoConflict = "ATR423;39301;12933;14001;20151006213456789";
+
+            List<string> test = new List<string>();
+            test.Add(Test1xNoConflict);
+
+            uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+
+            test.Add(Test2xNoConflict);
+
+            uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+            Assert.That(air.FlightsInConflic.Exists(x => x.Tag == "ATR423"), Is.False);
+         //   Assert.That(air.FlightsInConflic.Exists(x => x.Tag == "DTR423"),Is.False);
         }
 
     }

@@ -78,7 +78,7 @@ namespace ATMSystem
             int y = a.PosistionY - b.PosistionY;
             int z = a.Altitude - b.Altitude;
 
-            if ((x <= 300 && x >= -300 || y <= 300 && y >= -300) && z <= 5000 && z >= -5000) //conflict
+            if ((x <= 300 && x >= -300 && y <= 300 && y >= -300) && z <= 5000 && z >= -5000) //conflict
             {
                 return true;
             }
