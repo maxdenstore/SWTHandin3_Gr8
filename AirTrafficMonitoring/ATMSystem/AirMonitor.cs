@@ -45,8 +45,8 @@ namespace ATMSystem
                 monitorList.Add(NewTOS);
             }
 
-           // Console.WriteLine("New data: ");
-            
+            Console.WriteLine("\n\n\n\n\n\n\n\nNew data: ");
+                
             //check for conflicts for each in monitor
             foreach (var VARIABLE in monitorList)
             {
