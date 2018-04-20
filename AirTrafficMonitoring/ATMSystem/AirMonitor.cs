@@ -10,6 +10,7 @@ using TransponderReceiver;
 
 namespace ATMSystem
 {
+
     public class AirMonitor
     {
         public List<TOS.TOS> monitorList = new List<TOS.TOS>();
@@ -44,27 +45,39 @@ namespace ATMSystem
             {
                 monitorList.Add(NewTOS);
             }
-
-            Console.WriteLine("\n\n\n\n\n\n\n\nNew data: ");
+            Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            Console.WriteLine("New data: ");
                 
             //check for conflicts for each in monitor
-            foreach (var VARIABLE in monitorList)
+            foreach (var Outer in monitorList)
             {
-                if (VARIABLE.Tag != NewTOS.Tag)
+                foreach (var Inner in monitorList)//checking each against each other
                 {
-                    Conflict = checkForConflict(VARIABLE, NewTOS);
-                    if (Conflict)
+                    if (Outer.Tag != Inner.Tag)
                     {
-                        //there is conflict, do something mate!
-                        FlightsInConflic.Add(new Separtation(NewTOS.Tag, NewTOS.TimeStamp));
-                        FlightsInConflic.Add(new Separtation(VARIABLE.Tag, VARIABLE.TimeStamp));
+                        Conflict = checkForConflict(Outer, Inner); //checking for conflicts
+                        if (Conflict)
+                        {
+                            //there is conflict, do something mate!
+                            FlightsInConflic.Add(new Separtation(Inner.Tag, Inner.TimeStamp));
+                            FlightsInConflic.Add(new Separtation(Outer.Tag, Outer.TimeStamp)); 
+                        }
+                        //no conflict, check if its in the flights in conflict
+                        if (FlightsInConflic.Exists(x => x.Tag == Outer.Tag))
+                        {
+                            FlightsInConflic.RemoveAt(FlightsInConflic.FindIndex(x => x.Tag == Outer.Tag));
+                        }
 
-                        //check all conflicts
+                        if (FlightsInConflic.Exists(x=>x.Tag == Inner.Tag))
+                        {
+                            FlightsInConflic.RemoveAt(FlightsInConflic.FindIndex(x => x.Tag == Inner.Tag));
+                        }
+
                     }
                 }
 
             }
-
+            //print everything in our monitored airspace
             foreach (var VARIABLE in monitorList)
             {
                 VARIABLE.print();
@@ -74,6 +87,8 @@ namespace ATMSystem
 
         private bool checkForConflict(TOS.TOS a, TOS.TOS b)
         {
+            //need to check for timestamp too.
+
             int x = a.PosistionX - b.PosistionX;
             int y = a.PosistionY - b.PosistionY;
             int z = a.Altitude - b.Altitude;

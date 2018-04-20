@@ -87,6 +87,7 @@ namespace ATM.Unit.Test
             Assert.That(air.monitorList[air.monitorList.Count - 1].TimeStamp, Is.EqualTo(DateTime.Parse("2015-10-06 21:34:56.789")));
         }
 
+        //***********************************************************************TEST OF Y CORDS*********************************************************************
 
         //Test if X is +/- 300 and Y is +/-300.
         [Test]
@@ -104,7 +105,7 @@ namespace ATM.Unit.Test
             test.Add(Test2xConflict);
 
             uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
-            Assert.That(air.FlightsInConflic.Exists(x => x.Tag == "ATR423"));
+            Assert.That(air.FlightsInConflic.Exists(x => x.Tag == "ATR423"), Is.True);
          //   Assert.That(air.FlightsInConflic.Exists(x => x.Tag == "DTR423"));
         }
 
@@ -127,6 +128,26 @@ namespace ATM.Unit.Test
          //   Assert.That(air.FlightsInConflic.Exists(x => x.Tag == "DTR423"),Is.False);
         }
 
+        //Test if X is +/- 300 and Y is +/-300. But Alt diff over 5000
+        [Test]
+        public void TestXAltNotConflictsK()
+        {
+            string Test1xNoConflict = "DTR423;39000;13000;02000;20151006213456789";
+            string Test2xNoConflict = "ATR423;39299;12233;14001;20151006213456789";
+
+            List<string> test = new List<string>();
+            test.Add(Test1xNoConflict);
+
+            uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+
+            test.Add(Test2xNoConflict);
+
+            uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+            Assert.That(air.FlightsInConflic.Exists(x => x.Tag == "ATR423"), Is.False);
+            //   Assert.That(air.FlightsInConflic.Exists(x => x.Tag == "DTR423"),Is.False);
+        }
+
+		//********************************************************TEST OF Y CORDS******************************************************'******************************
 
         //Test if Y is +/- 300 and X is +/-300.|
         [Test]
@@ -144,16 +165,16 @@ namespace ATM.Unit.Test
             test.Add(Test2yConflict);
 
             uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
-            Assert.That(air.FlightsInConflic.Exists(x => x.Tag == "ATR423"));
+            Assert.That(air.FlightsInConflic.Exists(x => x.Tag == "ATR423"), Is.True);
             //   Assert.That(air.FlightsInConflic.Exists(x => x.Tag == "DTR423"));
         }
 
-        //Test if X > 300 but Y is not +/-300.
+        //Test if Y is not +/- 300 but X is +/-300.
         [Test]
         public void TestYNoConflictsK()
         {
             string Test1yNoConflict = "DTR423;39000;13000;14000;20151006213456789";
-            string Test2yNoConflict = "ATR423;39301;12933;14001;20151006213456789";
+            string Test2yNoConflict = "ATR423;39299;12233;14001;20151006213456789";
 
             List<string> test = new List<string>();
             test.Add(Test1yNoConflict);
@@ -164,6 +185,121 @@ namespace ATM.Unit.Test
 
             uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
             Assert.That(air.FlightsInConflic.Exists(x => x.Tag == "ATR423"), Is.False);
+            //   Assert.That(air.FlightsInConflic.Exists(x => x.Tag == "DTR423"),Is.False);
+        }
+
+        //Test if Y is +/- 300 and X is +/-300. But Alt diff over 5000
+        [Test]
+        public void TestYAltNotConflictsK()
+        {
+            string Test1yNoConflict = "DTR423;39000;13000;02000;20151006213456789";
+            string Test2yNoConflict = "ATR423;39299;12233;14001;20151006213456789";
+
+            List<string> test = new List<string>();
+            test.Add(Test1yNoConflict);
+
+            uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+
+            test.Add(Test2yNoConflict);
+
+            uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+            Assert.That(air.FlightsInConflic.Exists(x => x.Tag == "ATR423"), Is.False);
+            //   Assert.That(air.FlightsInConflic.Exists(x => x.Tag == "DTR423"),Is.False);
+        }
+
+		//****************************************************TEST IF CONFLICT IS OVER***********************************************************************'
+
+        //Test if planes exist after conflict is ended
+        [Test]
+        public void TestConflictsIsOver()
+        {
+			//start a conflict Y&X +/-300 & Alt within 5000meters ****************
+            string Test1IsConflict = "DTR423;39000;13000;12000;20151006213456789";
+            string Test2IsConflict = "ATR423;39299;12933;14001;20151006213456789";
+
+            List<string> test = new List<string>();
+            test.Add(Test1IsConflict);
+
+            uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+
+            test.Add(Test2IsConflict);
+
+            uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+
+            //End conflict        ************************************************
+
+            string Test1NoConflict = "DTR423;39000;13000;12000;20151006213456789";
+            string Test2NoConflict = "ATR423;39599;15933;02001;20151006213456789";
+
+            List<string> test2 = new List<string>();
+            test.Add(Test1NoConflict);
+
+            uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+
+            test.Add(Test2NoConflict);
+
+            uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+
+			//assert removed from list.
+
+            Assert.That(air.FlightsInConflic.Exists(x => x.Tag == "ATR423"), Is.False);
+            //   Assert.That(air.FlightsInConflic.Exists(x => x.Tag == "DTR423"),Is.False);
+        }
+
+        //Test if bool goes true
+		[Test]
+        public void TestConflictsBoolIsTrue()
+        {
+            //start a conflict Y&X +/-300 & Alt within 5000meters ****************
+            string Test1IsConflict = "DTR423;39000;13000;12000;20151006213456789";
+            string Test2IsConflict = "ATR423;39299;12933;14001;20151006213456789";
+
+            List<string> test = new List<string>();
+            test.Add(Test1IsConflict);
+
+            uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+
+            test.Add(Test2IsConflict);
+
+            uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+
+            Assert.That(air.Conflict, Is.True);
+        }
+
+        //Test if bool is false after raised event of conflict/none conflict
+        [Test]
+        public void TestConflictsBoolIsFalse()
+        {
+            //start a conflict Y&X +/-300 & Alt within 5000meters ****************
+            string Test1IsConflict = "DTR423;39000;13000;12000;20151006213456789";
+            string Test2IsConflict = "ATR423;39299;12933;14001;20151006213456789";
+
+            List<string> test = new List<string>();
+            test.Add(Test1IsConflict);
+
+            uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+
+            test.Add(Test2IsConflict);
+
+            uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+
+            //End conflict        ************************************************
+
+            string Test1NoConflict = "DTR423;39000;13000;12000;20151006213456789";
+            string Test2NoConflict = "ATR423;39599;15933;02001;20151006213456789";
+
+            List<string> test2 = new List<string>();
+            test.Add(Test1NoConflict);
+
+            uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+
+            test.Add(Test2NoConflict);
+
+            uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+
+            //assert bool is false
+
+            Assert.That(air.Conflict, Is.False);
             //   Assert.That(air.FlightsInConflic.Exists(x => x.Tag == "DTR423"),Is.False);
         }
 

@@ -38,6 +38,7 @@ namespace TOS
 
         public void print()
         {
+            
             string formattedDate = TimeStamp.ToString("F");
             formattedDate += " " + TimeStamp.Millisecond + " miliseconds";
             Console.WriteLine("Tag:\t\t\t" + Tag);
