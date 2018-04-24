@@ -60,20 +60,35 @@ namespace ATMSystem
                         Conflict = checkForConflict(Outer, Inner); //checking for conflicts
                         if (Conflict)
                         {
+
                             //there is conflict, do something mate!
-                            FlightsInConflic.Add(new Separtation(Inner.Tag, Inner.TimeStamp));
+
+                            //are the tags already in conflict??
+                            if (FlightsInConflic.Exists(separtation => separtation.Tag == Inner.Tag))//yes
+                            {
+                                FlightsInConflic.RemoveAt(FlightsInConflic.FindIndex(x => x.Tag == Inner.Tag));
+                            }
+
+                            if (FlightsInConflic.Exists(separtation => separtation.Tag == Outer.Tag))
+                            {
+                                FlightsInConflic.RemoveAt(FlightsInConflic.FindIndex(x => x.Tag == Outer.Tag));
+                            }
+
                             FlightsInConflic.Add(new Separtation(Outer.Tag, Outer.TimeStamp));
+                            FlightsInConflic.Add(new Separtation(Inner.Tag, Inner.TimeStamp));
+
+                            //
 
                             foreach (var separtation in FlightsInConflic)
                             {
                                 separtation.PrintSeperation();
                             }
-                            
-                            
+
                         }
                         //no conflict, check if its in the flights in conflict
                         if (!Conflict)
                         {
+
                             if (FlightsInConflic.Exists(x => x.Tag == Outer.Tag))
                             {
                                 FlightsInConflic.RemoveAt(FlightsInConflic.FindIndex(x => x.Tag == Outer.Tag));
@@ -96,8 +111,6 @@ namespace ATMSystem
             }
 
         }
-
-
 
         private bool checkForConflict(TOS.TOS a, TOS.TOS b)
         {
