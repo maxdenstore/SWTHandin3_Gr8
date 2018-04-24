@@ -79,12 +79,8 @@ namespace ATMSystem
 
                             //
 
-                            foreach (var separtation in FlightsInConflic)
-                            {
-                                separtation.PrintSeperation();
-                            }
-
                         }
+
                         //no conflict, check if its in the flights in conflict
                         if (!Conflict)
                         {
@@ -103,6 +99,12 @@ namespace ATMSystem
                     }
                 }
 
+            }
+
+            //print all separations (if any)
+            foreach (var separtation in FlightsInConflic)
+            {
+                separtation.PrintSeperation();
             }
             //print everything in our monitored airspace
             foreach (var VARIABLE in monitorList)
