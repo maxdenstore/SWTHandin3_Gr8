@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -39,5 +40,34 @@ namespace Integration_Test_ATM
             uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
         }
+
+        //***********************************************************************TEST OF INPUT*********************************************************************
+        // Test transponderReceive
+        [Test]
+        public void ATM_Printtest()
+        {
+
+                AirMonitor uut = new AirMonitor();
+
+                ReceiveTranspond receive =
+                    new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), uut);
+
+                string Test1xNoConflict = "DTR423;39000;13000;12000;20151006213456789";
+                string Test2xNoConflict = "ATR423;39099;13033;12001;20151006213456789";
+                ISeperation stub = Substitute.For<ISeperation>();
+                List<string> test = new List<string>();
+                test.Add(Test1xNoConflict);
+
+                receive.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+
+                test.Add(Test2xNoConflict);
+
+                receive.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+
+                Assert.That(stub.Tag.Equals("ATR423"),Is.True);
+
+        }
+
+
     }
 }

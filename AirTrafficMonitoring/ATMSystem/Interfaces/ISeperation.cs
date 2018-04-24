@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ATMSystem.Interfaces
 {
-    interface ISeperation
+    public interface ISeperation
     {
         string Tag { get; set; }
         DateTime Occurence { get; set; }
