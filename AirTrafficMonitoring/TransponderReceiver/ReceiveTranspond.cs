@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using ATMSystem;
+using ATMSystem.Interfaces;
 using TOS.Interfaces;
 using TransponderReceiver;
 
@@ -9,12 +10,12 @@ namespace TOS
     public class ReceiveTranspond :IReceive
     {
 
-        private readonly AirMonitor _airspace;
+        private readonly IAirmonitor _airspace;
         private readonly ITransponderReceiver _transponderReceiver;
         public EventArgs e = null;
         public TOS Received;
 
-        public ReceiveTranspond(ITransponderReceiver receiver, AirMonitor airSpace = null)
+        public ReceiveTranspond(ITransponderReceiver receiver, IAirmonitor airSpace = null)
         {
             _transponderReceiver = receiver;
 
