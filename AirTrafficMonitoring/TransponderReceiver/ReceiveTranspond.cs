@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using ATMSystem;
+using TOS.Interfaces;
 using TransponderReceiver;
 
 namespace TOS
 {
-    public class ReceiveTranspond
+    public class ReceiveTranspond :IReceive
     {
         public delegate void TosReceived(TOS sender, EventArgs e);
 
