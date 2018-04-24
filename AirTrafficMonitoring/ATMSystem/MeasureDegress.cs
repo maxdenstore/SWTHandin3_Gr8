@@ -14,7 +14,7 @@ namespace ATMSystem
             int xDiff = newer.PosistionX - old.PosistionX;
             int yDiff = newer.PosistionY - old.PosistionY;
 
-            double result = Math.Atan2(yDiff, xDiff) * 180 / Math.PI;
+            double result = Math.Round(Math.Atan2(yDiff, xDiff) * 180 / Math.PI);
 
             if (result < 0)
             {

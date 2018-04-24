@@ -63,14 +63,17 @@ namespace ATMSystem
                             FlightsInConflic.Add(new Separtation(Outer.Tag, Outer.TimeStamp)); 
                         }
                         //no conflict, check if its in the flights in conflict
-                        if (FlightsInConflic.Exists(x => x.Tag == Outer.Tag))
+                        if (!Conflict)
                         {
-                            FlightsInConflic.RemoveAt(FlightsInConflic.FindIndex(x => x.Tag == Outer.Tag));
-                        }
+                            if (FlightsInConflic.Exists(x => x.Tag == Outer.Tag))
+                            {
+                                FlightsInConflic.RemoveAt(FlightsInConflic.FindIndex(x => x.Tag == Outer.Tag));
+                            }
 
-                        if (FlightsInConflic.Exists(x=>x.Tag == Inner.Tag))
-                        {
-                            FlightsInConflic.RemoveAt(FlightsInConflic.FindIndex(x => x.Tag == Inner.Tag));
+                            if (FlightsInConflic.Exists(x => x.Tag == Inner.Tag))
+                            {
+                                FlightsInConflic.RemoveAt(FlightsInConflic.FindIndex(x => x.Tag == Inner.Tag));
+                            }
                         }
 
                     }
