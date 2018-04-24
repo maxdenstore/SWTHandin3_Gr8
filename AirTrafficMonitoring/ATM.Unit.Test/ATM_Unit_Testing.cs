@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -496,6 +497,50 @@ namespace ATM.Unit.Test
 
             //assert bool is false
             Assert.That(air.monitorList[air.monitorList.Count - 1].Velocity, Is.EqualTo(216.0));
+
+        }
+
+
+        [Test]
+        public void testDoubleConflict_RemvovedAndAddedAgain()
+        {
+
+            AirMonitor air = new AirMonitor();
+
+            ReceiveTranspond uut =
+                new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
+
+            //First Conflict
+            string Test1 = "DTR423;39000;13000;12000;20151006213456700";
+            string Test2 = "ATR423;38099;12033;12001;20151006213456700";
+
+            List<string> test = new List<string>();
+            test.Add(Test1);
+
+            uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+
+            test.Add(Test2);
+
+            uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+
+
+            //new Timestamp same conflict
+
+            //diff only few MS
+            string Test3 = "DTR423;39000;13000;12000;20151006213456700";
+            string Test4 = "ATR423;38099;12033;12001;20151006213456789";
+
+            List<string> test2 = new List<string>();
+            test.Add(Test3);
+
+            uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+
+            test.Add(Test4);
+
+            uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+
+            //assert bool is false
+            Assert.That(air.FlightsInConflic.FindAll(x => x.Tag == Test1),Is.EqualTo(1));
 
         }
     }
