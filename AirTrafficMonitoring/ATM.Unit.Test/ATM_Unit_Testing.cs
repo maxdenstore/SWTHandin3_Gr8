@@ -34,6 +34,8 @@ namespace ATM.Unit.Test
 
         }
 
+
+        //***********************************************************************TEST OF DATASET*********************************************************************
         //Test transponderReceiverData
         [Test]
         public void transponderRecieverDataTest()
@@ -120,7 +122,7 @@ namespace ATM.Unit.Test
                 Is.EqualTo(DateTime.Parse("2015-10-06 21:34:56.789")));
         }
 
-        //***********************************************************************TEST OF Y CORDS*********************************************************************
+        //****************************************************TEST IF CONFLICT***********************************************************************'
 
         //Test if X is +/- 300 and Y is +/-300.
         [Test]
@@ -194,7 +196,6 @@ namespace ATM.Unit.Test
 
         }
 
-        //********************************************************TEST OF Y CORDS******************************************************'******************************
 
         //Test if Y is +/- 300 and X is +/-300.|
         [Test]
@@ -313,6 +314,8 @@ namespace ATM.Unit.Test
 
         }
 
+        //****************************************************TEST THE CONFLICT BOOL GOES TRUE/FALSE ACCORDINGLY***********************************************************************'
+
         //Test if bool goes true
         [Test]
         public void TestConflictsBoolIsTrue()
@@ -382,6 +385,7 @@ namespace ATM.Unit.Test
             //Time diff 1 hour but cords within range should conflict as we do not handle time of occurance
         }
 
+        //****************************************************TEST OF TIME, NOT IMPLEMENTATION OF TIME IS CONSIDERED THEREFORE ALLWAYS FALSE IF TIME IS != TIME***********************************************************************'
         [Test]
         public void testTimeNoConflict()
         {
@@ -432,14 +436,14 @@ namespace ATM.Unit.Test
 
             uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
-            //assert bool is false
+            //assert bool is true
             Assert.That(air.Conflict, Is.True);
 
         }
 
-        //*****************************************Test of degrees****************************************
+        //*********************************************************************************TEST OF DEGREES*******************************************************************
         [Test]
-        public void testDegrees()
+        public void testDegrees_227()
         {
 
             AirMonitor air = new AirMonitor();
@@ -465,8 +469,10 @@ namespace ATM.Unit.Test
 
         }
 
+
+        //****************************************************************************TEST OF VELOCITY********************************************************************************
         [Test]
-        public void testVelo()
+        public void testVelocity_216ms()
         {
             AirMonitor air = new AirMonitor();
 
