@@ -2,6 +2,6 @@
 {
     public interface IMessureVelocity
     {
-        
+        double velocity { get; set; }
     }
 }

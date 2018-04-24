@@ -8,5 +8,9 @@ namespace ATMSystem.Interfaces
 {
     interface ISeperation
     {
+        string Tag { get; set; }
+        DateTime Occurence { get; set; }
+        void PrintSeperation();
+
     }
 }

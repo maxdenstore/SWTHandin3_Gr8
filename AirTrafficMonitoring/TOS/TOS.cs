@@ -2,21 +2,12 @@
 using System;
 using System.Text.RegularExpressions;
 using System.Xml.Schema;
+using TOS.Interfaces;
 
 namespace TOS
 {
 
-    public interface ITOS
-    {
-        string Tag { get;}
-        int PosistionX { get;}
-        int PosistionY { get;}
-        int Altitude { get; }
-        DateTime TimeStamp { get;}
-        double Velocity { get; set; }
-        double degress { get; set; }
 
-    }
     public class TOS : ITOS
     {
         public string Tag { get; private set; }

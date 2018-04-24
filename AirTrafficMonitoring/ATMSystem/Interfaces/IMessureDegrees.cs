@@ -2,6 +2,7 @@
 {
     public interface IMessureDegrees
     {
-        
+        double degrees { get; set; }
+    }
     }
 }

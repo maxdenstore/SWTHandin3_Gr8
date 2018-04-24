@@ -8,6 +8,7 @@ namespace ATMSystem.Interfaces
 {
     interface IPrint
     {
-        void Print(Separtation)
+        void Print(Separtation e);
+
     }
 }
