@@ -60,8 +60,7 @@ namespace ATM.Unit.Test
         {
             AirMonitor air = new AirMonitor();
 
-            ReceiveTranspond uut =
-                new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
+            ReceiveTranspond uut = new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
 
             List<string> test = new List<string>();
             test.Add(testString);

@@ -4,5 +4,4 @@
     {
         double degrees { get; set; }
     }
-    }
 }

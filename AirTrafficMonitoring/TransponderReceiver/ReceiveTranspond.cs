@@ -10,7 +10,7 @@ namespace TOS
     {
         public delegate void TosReceived(TOS sender, EventArgs e);
 
-        private readonly AirMonitor _airspace;
+        private readonly AirMonitor _airspace = new AirMonitor();
         private readonly ITransponderReceiver _transponderReceiver;
         public EventArgs e = null;
         public TOS Received;
