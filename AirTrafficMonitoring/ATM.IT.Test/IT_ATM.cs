@@ -50,7 +50,7 @@ namespace Integration_Test_ATM
                 AirMonitor uut = new AirMonitor();
 
                 ReceiveTranspond receive =
-                    new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), uut);
+                new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), uut);
 
                 string Test1xNoConflict = "DTR423;39000;13000;12000;20151006213456789";
                 string Test2xNoConflict = "ATR423;39099;13033;12001;20151006213456789";
@@ -63,8 +63,8 @@ namespace Integration_Test_ATM
                 test.Add(Test2xNoConflict);
 
                 receive.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
-
-                Assert.That(stub.Tag.Equals("ATR423"),Is.True);
+                Thread.Sleep(1000);
+                stub.Received(1).PrintSeperation();
 
         }
 
