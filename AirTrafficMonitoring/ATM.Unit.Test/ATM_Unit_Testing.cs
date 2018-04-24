@@ -18,10 +18,10 @@ namespace ATM.Unit.Test
     {
         private string testString = "ATR423;39045;12932;14000;20151006213456789";
 
-        private static AirMonitor air = new AirMonitor();
+        //private static AirMonitor air = new AirMonitor();
 
-        private ReceiveTranspond uut =
-            new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
+        //private ReceiveTranspond uut =
+        //    new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
         //public string tag = "ATR423";
         //public int PosistionX = 39045;
         //public int PosistionY = 12932;
@@ -38,7 +38,13 @@ namespace ATM.Unit.Test
         [Test]
         public void transponderRecieverDataTest()
         {
-            List<string> test = new List<string>();
+
+        AirMonitor air = new AirMonitor();
+
+        ReceiveTranspond uut =
+            new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
+
+        List<string> test = new List<string>();
             test.Add(testString);
             uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
@@ -49,6 +55,11 @@ namespace ATM.Unit.Test
         [Test]
         public void transponderRecieverDataTestXCord()
         {
+            AirMonitor air = new AirMonitor();
+
+            ReceiveTranspond uut =
+                new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
+
             List<string> test = new List<string>();
             test.Add(testString);
             uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
@@ -61,6 +72,11 @@ namespace ATM.Unit.Test
         [Test]
         public void transponderRecieverDataTestYCord()
         {
+            AirMonitor air = new AirMonitor();
+
+            ReceiveTranspond uut =
+                new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
+
             List<string> test = new List<string>();
             test.Add(testString);
             uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
@@ -73,6 +89,11 @@ namespace ATM.Unit.Test
         [Test]
         public void transponderRecieverDataTestAltitude()
         {
+            AirMonitor air = new AirMonitor();
+
+            ReceiveTranspond uut =
+                new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
+
             List<string> test = new List<string>();
             test.Add(testString);
             uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
@@ -85,6 +106,12 @@ namespace ATM.Unit.Test
         [Test]
         public void transponderRecieverDataTestTimestamp()
         {
+
+            AirMonitor air = new AirMonitor();
+
+            ReceiveTranspond uut =
+                new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
+
             List<string> test = new List<string>();
             test.Add(testString);
             uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
@@ -99,6 +126,11 @@ namespace ATM.Unit.Test
         [Test]
         public void TestXConflicts()
         {
+            AirMonitor air = new AirMonitor();
+
+            ReceiveTranspond uut =
+                new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
+
             string Test1xConflict = "DTR423;39000;12932;14000;20151006213456789";
             string Test2xConflict = "ATR423;39299;12933;14001;20151006213456789";
 
@@ -118,6 +150,11 @@ namespace ATM.Unit.Test
         [Test]
         public void TestXNoConflictsK()
         {
+            AirMonitor air = new AirMonitor();
+
+            ReceiveTranspond uut =
+                new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
+
             string Test1xNoConflict = "DTR423;39000;13000;14000;20151006213456789";
             string Test2xNoConflict = "ATR423;39399;12933;14001;20151006213456789";
 
@@ -137,6 +174,11 @@ namespace ATM.Unit.Test
         [Test]
         public void TestXAltNotConflictsK()
         {
+            AirMonitor air = new AirMonitor();
+
+            ReceiveTranspond uut =
+                new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
+
             string Test1xNoConflict = "DTR423;39000;13000;02000;20151006213456789";
             string Test2xNoConflict = "ATR423;39299;12233;14001;20151006213456789";
 
@@ -158,6 +200,11 @@ namespace ATM.Unit.Test
         [Test]
         public void TestYConflicts()
         {
+            AirMonitor air = new AirMonitor();
+
+            ReceiveTranspond uut =
+                new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
+
             string Test1yConflict = "DTR423;39000;10000;14000;20151006213456789";
             string Test2yConflict = "ATR423;39299;10299;14001;20151006213456789";
 
@@ -177,6 +224,11 @@ namespace ATM.Unit.Test
         [Test]
         public void TestYNoConflictsK()
         {
+            AirMonitor air = new AirMonitor();
+
+            ReceiveTranspond uut =
+                new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
+
             string Test1yNoConflict = "DTR423;39000;13000;14000;20151006213456789";
             string Test2yNoConflict = "ATR423;39299;12233;14001;20151006213456789";
 
@@ -196,6 +248,11 @@ namespace ATM.Unit.Test
         [Test]
         public void TestYAltNotConflictsK()
         {
+            AirMonitor air = new AirMonitor();
+
+            ReceiveTranspond uut =
+                new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
+
             string Test1yNoConflict = "DTR423;39000;13000;02000;20151006213456789";
             string Test2yNoConflict = "ATR423;39299;12233;14001;20151006213456789";
 
@@ -218,6 +275,11 @@ namespace ATM.Unit.Test
         [Test]
         public void TestConflictsIsOver()
         {
+            AirMonitor air = new AirMonitor();
+
+            ReceiveTranspond uut =
+                new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
+
             //start a conflict Y&X +/-300 & Alt within 5000meters ****************
             string Test1IsConflict = "DTR423;39000;13000;12000;20151006213456789";
             string Test2IsConflict = "ATR423;39299;12933;14001;20151006213456789";
@@ -255,6 +317,11 @@ namespace ATM.Unit.Test
         [Test]
         public void TestConflictsBoolIsTrue()
         {
+            AirMonitor air = new AirMonitor();
+
+            ReceiveTranspond uut =
+                new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
+
             //start a conflict Y&X +/-300 & Alt within 5000meters ****************
             string Test1IsConflict = "DTR423;39000;13000;12000;20151006213456789";
             string Test2IsConflict = "ATR423;39299;12933;14001;20151006213456789";
@@ -275,6 +342,11 @@ namespace ATM.Unit.Test
         [Test]
         public void TestConflictsBoolIsFalse()
         {
+            AirMonitor air = new AirMonitor();
+
+            ReceiveTranspond uut =
+                new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
+
             //start a conflict Y&X +/-300 & Alt within 5000meters ****************
             string Test1IsConflict = "DTR423;39000;13000;12000;20151006213456789";
             string Test2IsConflict = "ATR423;39299;12933;14001;20151006213456789";
@@ -313,6 +385,11 @@ namespace ATM.Unit.Test
         [Test]
         public void testTimeNoConflict()
         {
+            AirMonitor air = new AirMonitor();
+
+            ReceiveTranspond uut =
+                new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
+
             string Test1Time = "DTR423;39000;13000;12000;20151006203456789";
             string Test2Time = "ATR423;39099;13033;12001;20151006213456789";
 
@@ -336,6 +413,12 @@ namespace ATM.Unit.Test
         [Test]
         public void testTimeDoesConflict()
         {
+
+            AirMonitor air = new AirMonitor();
+
+            ReceiveTranspond uut =
+                new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
+
             //diff only few MS
             string Test1Time = "DTR423;39000;13000;12000;20151006213456700";
             string Test2Time = "ATR423;39099;13033;12001;20151006213456789";
@@ -358,6 +441,12 @@ namespace ATM.Unit.Test
         [Test]
         public void testDegrees()
         {
+
+            AirMonitor air = new AirMonitor();
+
+            ReceiveTranspond uut =
+                new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
+
             //diff only few MS
             string Test1Deg = "DTR423;39000;13000;12000;20151006213456700";
             string Test2Deg = "DTR423;38099;12033;12001;20151006213456789";
@@ -379,6 +468,11 @@ namespace ATM.Unit.Test
         [Test]
         public void testVelo()
         {
+            AirMonitor air = new AirMonitor();
+
+            ReceiveTranspond uut =
+                new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
+
             //diff only few MS
             string Test1 = "DTR423;39000;13000;12000;20151006213456700";
             string Test2 = "DTR423;39019;13003;12001;20151006213456789";
