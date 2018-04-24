@@ -68,6 +68,5 @@ namespace Integration_Test_ATM
 
         }
 
-
     }
 }
