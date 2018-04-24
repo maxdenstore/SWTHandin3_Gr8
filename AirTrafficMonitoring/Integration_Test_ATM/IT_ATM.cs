@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Integration_Test_ATM
 {
-    public class Class1
+    public class IT_ATM
     {
     }
 }

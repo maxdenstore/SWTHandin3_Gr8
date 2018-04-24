@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F98ACDDB-2EBD-4684-BCE6-0926E3F4D6EF}</ProjectGuid>
+    <ProjectGuid>{E1FD101C-399B-472C-A845-EAAE00E5955F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Integration_Test_ATM</RootNamespace>
-    <AssemblyName>Integration_Test_ATM</AssemblyName>
+    <RootNamespace>IT_Test_Receive</RootNamespace>
+    <AssemblyName>IT_Test_Receive</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IT_ATM.cs" />
+    <Compile Include="IT_Test_Receive.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
