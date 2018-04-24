@@ -110,7 +110,7 @@ namespace ATM.Unit.Test
             test.Add(Test2xConflict);
 
             uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
-            //Assert.That(air.FlightsInConflic.Exists(x => x.Tag == "ATR423"), Is.True);
+            Assert.That(air.FlightsInConflic.Exists(x => x.Tag == "ATR423"), Is.True);
 
         }
 
