@@ -49,8 +49,7 @@ namespace Integration_Test_ATM
         {
 
                 AirMonitor uut = new AirMonitor();
-                ITOS driver = Substitute.For<ITOS>();
-                 ReceiveTranspond receive =
+                ReceiveTranspond receive =
                 new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), uut);
 
                 string Test1xNoConflict = "DTR423;39000;13000;12000;20151006213456789";
