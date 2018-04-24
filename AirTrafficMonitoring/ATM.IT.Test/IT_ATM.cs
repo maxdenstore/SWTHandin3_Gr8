@@ -63,9 +63,9 @@ namespace Integration_Test_ATM
                 test.Add(Test2xNoConflict);
 
                 receive.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
-                Thread.Sleep(1000);
-                stub.Received(1).PrintSeperation();
+                //SThread.Sleep(1000);
 
+                stub.Received(1).PrintSeperation();
         }
 
     }
