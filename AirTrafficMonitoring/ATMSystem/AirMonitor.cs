@@ -5,19 +5,17 @@ using System.Resources;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using ATMSystem.Interfaces;
 using TOS;
 using TransponderReceiver;
 
 namespace ATMSystem
 {
 
-    public class AirMonitor:IAirmonitor
+    public class AirMonitor
     {
-        public List<TOS.TOS> monitorList { get; set; }
-        public List<Separtation> FlightsInConflic { get; set; }
-        public bool Conflict { get; set; }
-
+        public List<TOS.TOS> monitorList = new List<TOS.TOS>();
+        public List<Separtation> FlightsInConflic = new List<Separtation>();
+        public bool Conflict = false;
         private MeasureVelocity _measureVelocity = new MeasureVelocity();
         private MeasureDegress _measureDegress = new MeasureDegress();
         public AirMonitor()
@@ -62,6 +60,7 @@ namespace ATMSystem
                         {
 
                             //there is conflict, do something mate!
+<<<<<<< HEAD
 
                             //are the tags already in conflict??
                             if (FlightsInConflic.Exists(separtation => separtation.Tag == Inner.Tag))//yes
@@ -79,6 +78,10 @@ namespace ATMSystem
 
                             //
 
+=======
+                            FlightsInConflic.Add(new Separtation(Inner.Tag, Inner.TimeStamp));
+                            FlightsInConflic.Add(new Separtation(Outer.Tag, Outer.TimeStamp)); 
+>>>>>>> parent of e7ce202... Updated print metode
                         }
 
                         //no conflict, check if its in the flights in conflict
