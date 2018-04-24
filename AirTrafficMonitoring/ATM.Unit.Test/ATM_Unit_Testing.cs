@@ -35,7 +35,6 @@ namespace ATM.Unit.Test
 
         }
 
-
         //***********************************************************************TEST OF DATASET*********************************************************************
         //Test transponderReceiverData
         [Test]
@@ -43,10 +42,8 @@ namespace ATM.Unit.Test
         {
 
         AirMonitor air = new AirMonitor();
-
-        ReceiveTranspond uut =
-            new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
-
+        
+        ReceiveTranspond uut = new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
         List<string> test = new List<string>();
             test.Add(testString);
             uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
@@ -196,7 +193,6 @@ namespace ATM.Unit.Test
             Assert.That(air.FlightsInConflic.Exists(x => x.Tag == "ATR423"), Is.False);
 
         }
-
 
         //Test if Y is +/- 300 and X is +/-300.|
         [Test]
@@ -386,8 +382,6 @@ namespace ATM.Unit.Test
             //Time diff 1 hour but cords within range should conflict as we do not handle time of occurance
         }
 
-
-
         //****************************************************TEST OF TIME, NO IMPLEMENTATION OF TIME IS CONSIDERED THEREFORE ALLWAYS FALSE IF TIME IS != TIME***********************************************************************'
         [Test]
         public void testTimeNoConflict()
@@ -472,7 +466,6 @@ namespace ATM.Unit.Test
 
         }
 
-
         //****************************************************************************TEST OF VELOCITY********************************************************************************
         [Test]
         public void testVelocity_216ms()
@@ -500,7 +493,6 @@ namespace ATM.Unit.Test
 
         }
 
-
         [Test]
         public void testDoubleConflict_RemvovedAndAddedAgain()
         {
@@ -512,7 +504,7 @@ namespace ATM.Unit.Test
 
             //First Conflict
             string Test1 = "DTR423;39000;13000;12000;20151006213456700";
-            string Test2 = "ATR423;38099;12033;12001;20151006213456700";
+            string Test2 = "ATR423;39099;13033;12001;20151006213456700";
 
             List<string> test = new List<string>();
             test.Add(Test1);
@@ -523,24 +515,23 @@ namespace ATM.Unit.Test
 
             uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
-
             //new Timestamp same conflict
 
             //diff only few MS
             string Test3 = "DTR423;39000;13000;12000;20151006213456700";
-            string Test4 = "ATR423;38099;12033;12001;20151006213456789";
+            string Test4 = "ATR423;39099;13033;12001;20151006213456789";
 
             List<string> test2 = new List<string>();
-            test.Add(Test3);
+            test2.Add(Test3);
 
-            uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+            uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test2));
 
-            test.Add(Test4);
+            test2.Add(Test4);
 
-            uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+            uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test2));
 
             //assert bool is false
-            Assert.That(air.FlightsInConflic.FindAll(x => x.Tag == Test1),Is.EqualTo(1));
+            Assert.That(air.FlightsInConflic.FindAll(x => x.Tag == "DTR423").Count,Is.EqualTo(1));
 
         }
     }

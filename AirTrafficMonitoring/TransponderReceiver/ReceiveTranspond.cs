@@ -8,7 +8,6 @@ namespace TOS
 {
     public class ReceiveTranspond :IReceive
     {
-        public delegate void TosReceived(TOS sender, EventArgs e);
 
         private readonly AirMonitor _airspace;
         private readonly ITransponderReceiver _transponderReceiver;
@@ -23,8 +22,6 @@ namespace TOS
 
             _airspace = airSpace;
         }
-
-        public event TosReceived recivedEvent;
 
         public TOS receive(string data)
         {
@@ -65,7 +62,9 @@ namespace TOS
 
         public void transponderReceiverData(object sender, RawTransponderDataEventArgs e)
         {
-            foreach (var track in e.TransponderData) Received = receive(track);
+            foreach (var track in e.TransponderData)
+            { 
+            Received = receive(track);
 
             if (Received != null)
             {
@@ -94,5 +93,7 @@ namespace TOS
                 }
             }
         }
+            }
     }
+
 }

@@ -2,6 +2,7 @@
 using System;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
+using TOS.Interfaces;
 
 namespace TOS.Unit.Test.Tests
 {

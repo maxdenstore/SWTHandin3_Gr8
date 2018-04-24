@@ -14,9 +14,9 @@ namespace ATMSystem
 
     public class AirMonitor:IAirmonitor
     {
-        public List<TOS.TOS> monitorList { get; set; }
-        public List<Separtation> FlightsInConflic { get; set; }
-        public bool Conflict { get; set; }
+        public List<TOS.TOS> monitorList { get; set; } = new List<TOS.TOS>();
+        public List<Separtation> FlightsInConflic { get; set; } = new List<Separtation>();
+        public bool Conflict { get; set; } = false;
 
         private MeasureVelocity _measureVelocity = new MeasureVelocity();
         private MeasureDegress _measureDegress = new MeasureDegress();
