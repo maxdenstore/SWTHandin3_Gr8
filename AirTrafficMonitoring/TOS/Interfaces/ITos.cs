@@ -12,6 +12,7 @@ namespace TOS.Interfaces
             DateTime TimeStamp { get; }
             double Velocity { get; set; }
             double degress { get; set; }
+            void print();
 
         }
     }
