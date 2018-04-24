@@ -385,6 +385,8 @@ namespace ATM.Unit.Test
             //Time diff 1 hour but cords within range should conflict as we do not handle time of occurance
         }
 
+
+
         //****************************************************TEST OF TIME, NO IMPLEMENTATION OF TIME IS CONSIDERED THEREFORE ALLWAYS FALSE IF TIME IS != TIME***********************************************************************'
         [Test]
         public void testTimeNoConflict()
