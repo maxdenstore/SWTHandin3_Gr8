@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Security.Permissions;
 using System.Text;
 using System.Threading;
@@ -48,9 +49,9 @@ namespace Integration_Test_ATM
         {
 
                 AirMonitor uut = new AirMonitor();
-
-                ReceiveTranspond receive =
-                    new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), uut);
+                ITOS driver = Substitute.For<ITOS>();
+                 ReceiveTranspond receive =
+                new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), uut);
 
                 string Test1xNoConflict = "DTR423;39000;13000;12000;20151006213456789";
                 string Test2xNoConflict = "ATR423;39099;13033;12001;20151006213456789";
@@ -64,7 +65,7 @@ namespace Integration_Test_ATM
 
                 receive.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
-                Assert.That(stub.Tag.Equals("ATR423"),Is.True);
+                stub.Received(1);
 
         }
 
