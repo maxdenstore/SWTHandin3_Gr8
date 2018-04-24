@@ -61,6 +61,7 @@ namespace ATMSystem
 
                             //there is conflict, do something mate!
 <<<<<<< HEAD
+<<<<<<< HEAD
 
                             //are the tags already in conflict??
                             if (FlightsInConflic.Exists(separtation => separtation.Tag == Inner.Tag))//yes
@@ -78,6 +79,10 @@ namespace ATMSystem
 
                             //
 
+=======
+                            FlightsInConflic.Add(new Separtation(Inner.Tag, Inner.TimeStamp));
+                            FlightsInConflic.Add(new Separtation(Outer.Tag, Outer.TimeStamp)); 
+>>>>>>> parent of e7ce202... Updated print metode
 =======
                             FlightsInConflic.Add(new Separtation(Inner.Tag, Inner.TimeStamp));
                             FlightsInConflic.Add(new Separtation(Outer.Tag, Outer.TimeStamp)); 
