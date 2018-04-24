@@ -19,7 +19,7 @@ namespace ATMSystem
 
           double meterPerSec =  (distance*1000)/miliseconds;
 
-            newer.Velocity = meterPerSec;
+            newer.Velocity =Math.Round(meterPerSec);
 
         } 
 

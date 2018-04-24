@@ -375,5 +375,26 @@ namespace ATM.Unit.Test
             Assert.That(air.monitorList[air.monitorList.Count - 1].degress, Is.EqualTo(227.0));
 
         }
+
+        [Test]
+        public void testVelo()
+        {
+            //diff only few MS
+            string Test1 = "DTR423;39000;13000;12000;20151006213456700";
+            string Test2 = "DTR423;39019;13003;12001;20151006213456789";
+
+            List<string> test = new List<string>();
+            test.Add(Test1);
+
+            uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+
+            test.Add(Test2);
+
+            uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+
+            //assert bool is false
+            Assert.That(air.monitorList[air.monitorList.Count - 1].Velocity, Is.EqualTo(216.0));
+
+        }
     }
 }
