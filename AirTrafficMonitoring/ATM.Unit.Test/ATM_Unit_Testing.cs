@@ -41,7 +41,7 @@ namespace ATM.Unit.Test
         public void transponderRecieverDataTest()
         {
 
-        AirMonitor air = new AirMonitor();
+        AirMonitor air = new AirMonitor(new MeasureDegress() , new MeasureVelocity());
         
         ReceiveTranspond uut = new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
         List<string> test = new List<string>();
@@ -55,7 +55,7 @@ namespace ATM.Unit.Test
         [Test]
         public void transponderRecieverDataTestXCord()
         {
-            AirMonitor air = new AirMonitor();
+            AirMonitor air = new AirMonitor(new MeasureDegress() , new MeasureVelocity());
 
             ReceiveTranspond uut =
                 new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
@@ -72,7 +72,7 @@ namespace ATM.Unit.Test
         [Test]
         public void transponderRecieverDataTestYCord()
         {
-            AirMonitor air = new AirMonitor();
+            AirMonitor air = new AirMonitor(new MeasureDegress(), new MeasureVelocity());
 
             ReceiveTranspond uut =
                 new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
@@ -89,7 +89,7 @@ namespace ATM.Unit.Test
         [Test]
         public void transponderRecieverDataTestAltitude()
         {
-            AirMonitor air = new AirMonitor();
+            AirMonitor air = new AirMonitor(new MeasureDegress(), new MeasureVelocity());
 
             ReceiveTranspond uut =
                 new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
@@ -107,7 +107,7 @@ namespace ATM.Unit.Test
         public void transponderRecieverDataTestTimestamp()
         {
 
-            AirMonitor air = new AirMonitor();
+            AirMonitor air = new AirMonitor(new MeasureDegress(), new MeasureVelocity());
 
             ReceiveTranspond uut =
                 new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
@@ -126,7 +126,7 @@ namespace ATM.Unit.Test
         [Test]
         public void TestXConflicts()
         {
-            AirMonitor air = new AirMonitor();
+            AirMonitor air = new AirMonitor(new MeasureDegress(), new MeasureVelocity());
 
             ReceiveTranspond uut =
                 new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
@@ -150,7 +150,7 @@ namespace ATM.Unit.Test
         [Test]
         public void TestXNoConflictsK()
         {
-            AirMonitor air = new AirMonitor();
+            AirMonitor air = new AirMonitor(new MeasureDegress(), new MeasureVelocity());
 
             ReceiveTranspond uut =
                 new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
@@ -174,7 +174,7 @@ namespace ATM.Unit.Test
         [Test]
         public void TestXAltNotConflictsK()
         {
-            AirMonitor air = new AirMonitor();
+            AirMonitor air = new AirMonitor(new MeasureDegress(), new MeasureVelocity());
 
             ReceiveTranspond uut =
                 new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
@@ -198,7 +198,7 @@ namespace ATM.Unit.Test
         [Test]
         public void TestYConflicts()
         {
-            AirMonitor air = new AirMonitor();
+            AirMonitor air = new AirMonitor(new MeasureDegress(), new MeasureVelocity());
 
             ReceiveTranspond uut =
                 new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
@@ -222,7 +222,7 @@ namespace ATM.Unit.Test
         [Test]
         public void TestYNoConflictsK()
         {
-            AirMonitor air = new AirMonitor();
+            AirMonitor air = new AirMonitor(new MeasureDegress(), new MeasureVelocity());
 
             ReceiveTranspond uut =
                 new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
@@ -246,7 +246,7 @@ namespace ATM.Unit.Test
         [Test]
         public void TestYAltNotConflictsK()
         {
-            AirMonitor air = new AirMonitor();
+            AirMonitor air = new AirMonitor(new MeasureDegress(), new MeasureVelocity());
 
             ReceiveTranspond uut =
                 new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
@@ -273,7 +273,7 @@ namespace ATM.Unit.Test
         [Test]
         public void TestConflictsIsOver()
         {
-            AirMonitor air = new AirMonitor();
+            AirMonitor air = new AirMonitor(new MeasureDegress(), new MeasureVelocity());
 
             ReceiveTranspond uut =
                 new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
@@ -317,7 +317,7 @@ namespace ATM.Unit.Test
         [Test]
         public void TestConflictsBoolIsTrue()
         {
-            AirMonitor air = new AirMonitor();
+            AirMonitor air = new AirMonitor(new MeasureDegress(), new MeasureVelocity());
 
             ReceiveTranspond uut =
                 new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
@@ -342,7 +342,7 @@ namespace ATM.Unit.Test
         [Test]
         public void TestConflictsBoolIsFalse()
         {
-            AirMonitor air = new AirMonitor();
+            AirMonitor air = new AirMonitor(new MeasureDegress(), new MeasureVelocity());
 
             ReceiveTranspond uut =
                 new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
@@ -386,7 +386,7 @@ namespace ATM.Unit.Test
         [Test]
         public void testTimeNoConflict()
         {
-            AirMonitor air = new AirMonitor();
+            AirMonitor air = new AirMonitor(new MeasureDegress(), new MeasureVelocity());
 
             ReceiveTranspond uut =
                 new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
@@ -415,7 +415,7 @@ namespace ATM.Unit.Test
         public void testTimeDoesConflict()
         {
 
-            AirMonitor air = new AirMonitor();
+            AirMonitor air = new AirMonitor(new MeasureDegress(), new MeasureVelocity());
 
             ReceiveTranspond uut =
                 new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
@@ -443,7 +443,7 @@ namespace ATM.Unit.Test
         public void testDegrees_227()
         {
 
-            AirMonitor air = new AirMonitor();
+            AirMonitor air = new AirMonitor(new MeasureDegress(), new MeasureVelocity());
 
             ReceiveTranspond uut =
                 new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
@@ -470,7 +470,7 @@ namespace ATM.Unit.Test
         [Test]
         public void testVelocity_216ms()
         {
-            AirMonitor air = new AirMonitor();
+            AirMonitor air = new AirMonitor(new MeasureDegress(), new MeasureVelocity());
 
             ReceiveTranspond uut =
                 new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
@@ -497,7 +497,7 @@ namespace ATM.Unit.Test
         public void testDoubleConflict_RemvovedAndAddedAgain()
         {
 
-            AirMonitor air = new AirMonitor();
+            AirMonitor air = new AirMonitor(new MeasureDegress(), new MeasureVelocity());
 
             ReceiveTranspond uut =
                 new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);

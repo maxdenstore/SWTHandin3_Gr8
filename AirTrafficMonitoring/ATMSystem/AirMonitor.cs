@@ -18,11 +18,14 @@ namespace ATMSystem
         public List<Separtation> FlightsInConflic { get; set; } = new List<Separtation>();
         public bool Conflict { get; set; } = false;
 
-        private MeasureVelocity _measureVelocity = new MeasureVelocity();
-        private MeasureDegress _measureDegress = new MeasureDegress();
-        public AirMonitor()
+
+        private IMessureDegrees _measureDegress;
+        private IMessureVelocity _measureVelocity;
+        
+        public AirMonitor(IMessureDegrees measureDegress, IMessureVelocity measureVelocity)
         {
-            
+            _measureDegress = measureDegress;
+            _measureVelocity = measureVelocity;
         }
 
         public void ReceiveNewTOS(TOS.TOS NewTOS)

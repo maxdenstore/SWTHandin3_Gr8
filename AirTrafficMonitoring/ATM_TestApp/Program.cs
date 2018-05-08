@@ -13,7 +13,7 @@ namespace ATM_TestApp
     {
         static void Main(string[] args)
         {
-            ATMSystem.AirMonitor X = new AirMonitor();
+            ATMSystem.AirMonitor X = new AirMonitor(new MeasureDegress(), new MeasureVelocity());
             ReceiveTranspond transpond = new ReceiveTranspond((TransponderReceiverFactory.CreateTransponderDataReceiver()),X);
 
             string pre = Console.ReadLine();

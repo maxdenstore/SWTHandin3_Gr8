@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ATMSystem.Interfaces;
 
 namespace ATMSystem
 {
-    public class MeasureDegress
+    public class MeasureDegress : IMessureDegrees
     {
+        public double degrees { get; set; }
 
         public void Measure(TOS.TOS old, TOS.TOS newer)
         {
@@ -22,7 +24,6 @@ namespace ATMSystem
             }
 
             newer.degress = result;
-
         }
     }
 }
