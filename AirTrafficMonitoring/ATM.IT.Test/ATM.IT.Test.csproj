@@ -74,14 +74,6 @@
       <Project>{fb5dd22b-8b43-4697-b68d-205413a18f95}</Project>
       <Name>ATMSystem</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TOS\TOS.csproj">
-      <Project>{fa2a6dde-b9df-4994-b97b-b103eb5c5e3d}</Project>
-      <Name>TOS</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TransponderReceiver\ReceiveTranspond.csproj">
-      <Project>{8cf65586-28ce-4e77-b57d-0b3586399cce}</Project>
-      <Name>ReceiveTranspond</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace ATMSystem.Interfaces
 {
-    class Class1
+    public interface IOutput
     {
+        void Print(string _out);
+
     }
 }

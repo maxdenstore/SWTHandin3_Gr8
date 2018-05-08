@@ -56,10 +56,6 @@
       <Project>{fb5dd22b-8b43-4697-b68d-205413a18f95}</Project>
       <Name>ATMSystem</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TransponderReceiver\ReceiveTranspond.csproj">
-      <Project>{8cf65586-28ce-4e77-b57d-0b3586399cce}</Project>
-      <Name>ReceiveTranspond</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

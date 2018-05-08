@@ -56,10 +56,6 @@
       <Project>{15f4e192-f68f-47d3-ad55-a747b496f318}</Project>
       <Name>TOS.Unit.Test</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TOS\TOS.csproj">
-      <Project>{fa2a6dde-b9df-4994-b97b-b103eb5c5e3d}</Project>
-      <Name>TOS</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
