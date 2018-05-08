@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AirMonitor.cs" />
+    <Compile Include="DetectSepartation.cs" />
+    <Compile Include="Interfaces\IDetectSepartation.cs" />
     <Compile Include="Interfaces\IOutput.cs" />
     <Compile Include="Interfaces\IAirmonitor.cs" />
     <Compile Include="Interfaces\IMessureDegrees.cs" />
