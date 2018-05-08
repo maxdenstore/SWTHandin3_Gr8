@@ -18,8 +18,6 @@ namespace TOS
         public double Velocity { get; set; }
         public double degress { get; set; }
 
-        
-
         public TOS(string tag, int posistionX, int posistionY, int altitude, DateTime timeStamp)
         {
             Tag = tag;
