@@ -9,17 +9,19 @@ namespace ATMSystem
 {
     public class Separtation :ISeperation
     {
-        public Separtation(string tag, DateTime occurence)
+        public IOutput _out;
+        public Separtation(string tag, DateTime occurence, IOutput @out)
         {
             Tag = tag;
             Occurence = occurence;
+            _out = @out;
         }
 
 
         public void PrintSeperation()
         {
-            Console.WriteLine("Seperation event occured: Tag" + Tag + " Occurance: " + Occurence);
-
+         
+            _out.Print("Seperation event occured: Tag" + Tag + " Occurance: " + Occurence);
         }
 
         public string Tag { get; set; }

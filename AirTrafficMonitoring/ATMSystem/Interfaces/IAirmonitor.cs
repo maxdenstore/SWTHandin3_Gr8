@@ -6,7 +6,6 @@ namespace ATMSystem.Interfaces
     {
         void ReceiveNewTOS(TOS.TOS NewTOS);
         List<TOS.TOS> monitorList { get; set; }
-        List<Separtation> FlightsInConflic { get; set; }
-        bool Conflict { get; set; }
+
     }
 }
