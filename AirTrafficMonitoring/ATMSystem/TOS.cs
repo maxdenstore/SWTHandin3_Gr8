@@ -2,6 +2,7 @@
 using System;
 using System.Text.RegularExpressions;
 using System.Xml.Schema;
+using ATMSystem.Interfaces;
 using TOS.Interfaces;
 
 namespace TOS
@@ -18,28 +19,27 @@ namespace TOS
         public double Velocity { get; set; }
         public double degress { get; set; }
 
-        public TOS(string tag, int posistionX, int posistionY, int altitude, DateTime timeStamp)
+        public TOS(string tag, int posistionX, int posistionY, int altitude, DateTime timeStamp, IOutput output)
         {
             Tag = tag;
             PosistionX = posistionX;
             PosistionY = posistionY;
             Altitude = altitude;
             TimeStamp = timeStamp;
-        }
 
-        public void print()
-        {
-            
             string formattedDate = TimeStamp.ToString("F");
             formattedDate += " " + TimeStamp.Millisecond + " miliseconds";
-            Console.WriteLine("Tag:\t\t\t" + Tag);
-            Console.WriteLine("X Coordinate:\t\t\t" + PosistionX + " Meters");
-            Console.WriteLine("Y Corrdniate:\t\t\t" + PosistionY + " Meters");
-            Console.WriteLine("Altitude:\t\t\t" + Altitude + "Meters ");
-            Console.WriteLine("Timestamp:\t\t\t" + formattedDate);
-            Console.WriteLine($"Velocity:\t\t\t{Velocity}");
-            Console.WriteLine($"Degress:\t\t\t{degress}");
+
+            output.Print(("Tag:\t\t\t" + Tag));
+            output.Print("X Coordinate:\t\t\t" + PosistionX + " Meters");
+            output.Print("Y Corrdniate:\t\t\t" + PosistionY + " Meters");
+            output.Print("Altitude:\t\t\t" + Altitude + "Meters ");
+            output.Print("Timestamp:\t\t\t" + formattedDate);
+            output.Print($"Velocity:\t\t\t{Velocity}");
+            output.Print($"Degress:\t\t\t{degress}");
+
         }
+
     }
 
 }
