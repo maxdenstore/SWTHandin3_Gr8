@@ -18,26 +18,31 @@ namespace TOS
         public DateTime TimeStamp { get;private set; }
         public double Velocity { get; set; }
         public double degress { get; set; }
+        public IOutput _output;
 
-        public TOS(string tag, int posistionX, int posistionY, int altitude, DateTime timeStamp, IOutput output)
+        public TOS(string tag, int posistionX, int posistionY, int altitude, DateTime timeStamp, IOutput _out)
         {
+            _output = _out;
             Tag = tag;
             PosistionX = posistionX;
             PosistionY = posistionY;
             Altitude = altitude;
             TimeStamp = timeStamp;
+            print();
+        }
 
+         private void print()
+        {
             string formattedDate = TimeStamp.ToString("F");
             formattedDate += " " + TimeStamp.Millisecond + " miliseconds";
-
-            output.Print(("Tag:\t\t\t" + Tag));
-            output.Print("X Coordinate:\t\t\t" + PosistionX + " Meters");
-            output.Print("Y Corrdniate:\t\t\t" + PosistionY + " Meters");
-            output.Print("Altitude:\t\t\t" + Altitude + "Meters ");
-            output.Print("Timestamp:\t\t\t" + formattedDate);
-            output.Print($"Velocity:\t\t\t{Velocity}");
-            output.Print($"Degress:\t\t\t{degress}");
-
+            
+            _output.Print(("Tag:\t\t\t" + Tag));
+            _output.Print("X Coordinate:\t\t\t" + PosistionX + " Meters");
+            _output.Print("Y Corrdniate:\t\t\t" + PosistionY + " Meters");
+            _output.Print("Altitude:\t\t\t" + Altitude + "Meters ");
+            _output.Print("Timestamp:\t\t\t" + formattedDate);
+            _output.Print($"Velocity:\t\t\t{Velocity}");
+            _output.Print($"Degress:\t\t\t{degress}");
         }
 
     }
