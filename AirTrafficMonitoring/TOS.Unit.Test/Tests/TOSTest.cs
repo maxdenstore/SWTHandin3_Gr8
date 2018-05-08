@@ -1,5 +1,6 @@
 ﻿
 using System;
+using ATMSystem.Interfaces;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 using TOS.Interfaces;
@@ -16,11 +17,13 @@ namespace TOS.Unit.Test.Tests
 
         public DateTime DateTime = new DateTime(2015,10,6,21,34,56,789);
         public ITOS uut;
+        public IOutput Output;
 
         [SetUp]
         public void setup()
         {
-            uut = new TOS(tag, PosistionX, PosistionY, altitude, DateTime);
+
+            uut = new TOS(tag, PosistionX, PosistionY, altitude, DateTime,Output);
             
         }
         [Test]

@@ -17,14 +17,17 @@ namespace IT_Test_Receive
     [TestFixture]
     public class IT_Test_Receive
     {
+        private IOutput _fakeOutput = Substitute.For<IOutput>();
+        
         private string testString = "ATR423;39045;12932;14000;20151006213456789";
-        global::TOS.TOS testTos = new TOS.TOS("ATR423", 39045,12932,14000,
-           new DateTime(2015,10,06,21,34,56,789));
+
+        public TOS.TOS testTos;
 
         [SetUp]
         public void Setup()
         {
-
+            testTos = new TOS.TOS("ATR423", 39045, 12932, 14000,
+                new DateTime(2015, 10, 06, 21, 34, 56, 789), _fakeOutput);
         }
 
         //***********************************************************************TEST OF INPUT*********************************************************************
@@ -64,6 +67,19 @@ namespace IT_Test_Receive
             uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
             air.DidNotReceiveWithAnyArgs().ReceiveNewTOS(testTos);
+
+        }
+
+        [Test]
+        public void transponderRecieverDataTest_Printed()
+        {
+            IAirmonitor air = Substitute.For<IAirmonitor>();
+            ReceiveTranspond uut = new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
+            List<string> test = new List<string>();
+
+            uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+
+            Assert.That(_fakeOutput.Received(1), testString);
 
         }
     }
