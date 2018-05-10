@@ -45,8 +45,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AirMonitor.cs" />
-    <Compile Include="DetectSepartation.cs" />
+    <Compile Include="Classes\AirMonitor.cs" />
+    <Compile Include="Classes\DetectSepartation.cs" />
     <Compile Include="Interfaces\IDetectSepartation.cs" />
     <Compile Include="Interfaces\IOutput.cs" />
     <Compile Include="Interfaces\IAirmonitor.cs" />
@@ -56,13 +56,13 @@
     <Compile Include="Interfaces\IReceive.cs" />
     <Compile Include="Interfaces\ISeperation.cs" />
     <Compile Include="Interfaces\ITranspondObject.cs" />
-    <Compile Include="MeasureDegress.cs" />
-    <Compile Include="MeasureVelocity.cs" />
-    <Compile Include="Output.cs" />
+    <Compile Include="Classes\MeasureDegress.cs" />
+    <Compile Include="Classes\MeasureVelocity.cs" />
+    <Compile Include="Classes\Output.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReceiveTranspond.cs" />
-    <Compile Include="Separtation.cs" />
-    <Compile Include="TranspondObject.cs" />
+    <Compile Include="Classes\ReceiveTranspond.cs" />
+    <Compile Include="Classes\Separtation.cs" />
+    <Compile Include="Classes\TranspondObject.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
