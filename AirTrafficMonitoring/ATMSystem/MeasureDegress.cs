@@ -9,9 +9,7 @@ namespace ATMSystem
 {
     public class MeasureDegress : IMessureDegrees
     {
-        public double degrees { get; set; }
-
-        public void Measure(TOS.TOS old, TOS.TOS newer)
+        public void Measure(TranspondObject old, TranspondObject newer)
         {
             int xDiff = newer.PosistionX - old.PosistionX;
             int yDiff = newer.PosistionY - old.PosistionY;

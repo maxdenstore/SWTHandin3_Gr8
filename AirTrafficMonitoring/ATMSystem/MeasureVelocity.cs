@@ -9,9 +9,9 @@ namespace ATMSystem
 {
     public class MeasureVelocity : IMessureVelocity
     {
-        public double velocity { get; set; }
 
-        public void Measure(TOS.TOS old,TOS.TOS newer)
+
+        public void Measure(TranspondObject old,TranspondObject newer)
         {
 
           double distance = Math.Sqrt(Math.Pow(newer.PosistionX - old.PosistionX, 2) + Math.Pow(newer.PosistionY - old.PosistionY, 2));

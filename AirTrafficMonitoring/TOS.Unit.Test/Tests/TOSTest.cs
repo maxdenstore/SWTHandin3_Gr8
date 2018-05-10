@@ -16,7 +16,7 @@ namespace TOS.Unit.Test.Tests
         public int altitude = 14000;
 
         public DateTime DateTime = new DateTime(2015,10,6,21,34,56,789);
-        public ITOS uut;
+        public ITranspondObject uut;
         public IOutput Output;
 
         [SetUp]

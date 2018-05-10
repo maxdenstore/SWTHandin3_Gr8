@@ -3,7 +3,7 @@
 namespace TOS.Interfaces
 {
 
-        public interface ITOS
+        public interface ITranspondObject
         {
             string Tag { get; }
             int PosistionX { get; }

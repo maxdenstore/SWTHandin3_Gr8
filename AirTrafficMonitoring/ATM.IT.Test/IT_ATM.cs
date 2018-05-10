@@ -31,7 +31,7 @@ namespace Integration_Test_ATM
         [Test]
         public void transponderRecieverDataTest()
         {
-            ITOS stubTos = Substitute.For<ITOS>();
+            ITranspondObject stubTos = Substitute.For<ITranspondObject>();
             AirMonitor air = new AirMonitor(new MeasureDegress(), new MeasureVelocity());
             ReceiveTranspond uut = new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
             List<string> test = new List<string>();

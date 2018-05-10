@@ -14,7 +14,7 @@ namespace ATMSystem
 
     public class AirMonitor: IAirmonitor
     {
-        public List<TOS.TOS> monitorList { get; set; } = new List<TOS.TOS>();
+        public List<TranspondObject> monitorList { get; set; } = new List<TranspondObject>();
 
 
         private IDetectSepartation _detectSepartation;
@@ -28,13 +28,13 @@ namespace ATMSystem
             _detectSepartation = detectSepartation;
         }
 
-        public void ReceiveNewTOS(TOS.TOS NewTOS)
+        public void ReceiveNewTranspondObject(TranspondObject NewTOS)
         {
             
             if (monitorList.Exists(x => x.Tag == NewTOS.Tag)) //if the tag exsists in the list
             {
                 int index = monitorList.FindIndex(x => x.Tag == NewTOS.Tag);
-                TOS.TOS old = monitorList[index];
+                TranspondObject old = monitorList[index];
                 
                 //measue speed
                 _measureVelocity.Measure(old,NewTOS);
@@ -71,8 +71,8 @@ namespace ATMSystem
 
             //print everything in our monitored airspace
             foreach (var VARIABLE in monitorList)
-            {
-                VARIABLE.print();
+            {                
+                VARIABLE.Print();
             }
 
         }

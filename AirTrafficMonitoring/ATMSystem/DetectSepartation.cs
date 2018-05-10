@@ -6,9 +6,15 @@ namespace ATMSystem
 {
     public class DetectSepartation : IDetectSepartation
     {
+        private readonly IOutput _out;
         public List<Separtation> FlightsInConflic { get; set; } = new List<Separtation>();
         public bool Conflict { get; set; } = false;
-        public void detect(ITOS a, ITOS b)
+
+        public DetectSepartation(IOutput @out)
+        {
+            _out = @out;
+        }
+        public void detect(ITranspondObject a, ITranspondObject b)
         {
             {
                 //need to check for timestamp too.
@@ -28,7 +34,7 @@ namespace ATMSystem
             }
         }
 
-        public void handleNoConflict(ITOS a, ITOS b)
+        public void handleNoConflict(ITranspondObject a, ITranspondObject b)
         {
             //no conflict, check if its in the flights in conflict
             if (FlightsInConflic.Exists(x => x.Tag == a.Tag))
@@ -50,7 +56,7 @@ namespace ATMSystem
             }
         }
 
-        public void handleConflict(ITOS a, ITOS b)
+        public void handleConflict(ITranspondObject a, ITranspondObject b)
         {
             //there is conflict, do something mate!
             //are the tags already in conflict??
@@ -64,8 +70,8 @@ namespace ATMSystem
                 FlightsInConflic.RemoveAt(FlightsInConflic.FindIndex(x => x.Tag == a.Tag));
             }
 
-            FlightsInConflic.Add(new Separtation(a.Tag, a.TimeStamp));
-            FlightsInConflic.Add(new Separtation(b.Tag, b.TimeStamp)); 
+            FlightsInConflic.Add(new Separtation(a.Tag, a.TimeStamp,_out));
+            FlightsInConflic.Add(new Separtation(b.Tag, b.TimeStamp,_out)); 
         }
     }
 }

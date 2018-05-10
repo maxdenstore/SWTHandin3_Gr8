@@ -5,11 +5,11 @@ using System.Xml.Schema;
 using ATMSystem.Interfaces;
 using TOS.Interfaces;
 
-namespace TOS
+namespace ATMSystem
 {
 
 
-    public class TOS : ITOS
+    public class TranspondObject : ITranspondObject
     {
         public string Tag { get; private set; }
         public int PosistionX { get; private set; }
@@ -18,9 +18,9 @@ namespace TOS
         public DateTime TimeStamp { get;private set; }
         public double Velocity { get; set; }
         public double degress { get; set; }
-        public IOutput _output;
+        public readonly IOutput _output;
 
-        public TOS(string tag, int posistionX, int posistionY, int altitude, DateTime timeStamp, IOutput _out)
+        public TranspondObject(string tag, int posistionX, int posistionY, int altitude, DateTime timeStamp, IOutput _out)
         {
             _output = _out;
             Tag = tag;
@@ -28,10 +28,10 @@ namespace TOS
             PosistionY = posistionY;
             Altitude = altitude;
             TimeStamp = timeStamp;
-            print();
+            Print();
         }
 
-         private void print()
+         public void Print()
         {
             string formattedDate = TimeStamp.ToString("F");
             formattedDate += " " + TimeStamp.Millisecond + " miliseconds";

@@ -5,9 +5,9 @@ namespace ATMSystem.Interfaces
 {
     public interface IDetectSepartation
     {
-        void detect(ITOS a, ITOS b);
-        void handleConflict(ITOS a, ITOS b);
-        void handleNoConflict(ITOS a, ITOS b);
+        void detect(ITranspondObject a, ITranspondObject b);
+        void handleConflict(ITranspondObject a, ITranspondObject b);
+        void handleNoConflict(ITranspondObject a, ITranspondObject b);
 
         void printSeparations();
     }

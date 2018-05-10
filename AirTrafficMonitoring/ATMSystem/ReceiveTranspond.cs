@@ -3,28 +3,31 @@ using System.Text.RegularExpressions;
 using ATMSystem;
 using ATMSystem.Interfaces;
 using TOS.Interfaces;
+
 using TransponderReceiver;
 
-namespace TOS
+namespace ATMSystem
 {
     public class ReceiveTranspond :IReceive
     {
 
         private readonly IAirmonitor _airspace;
         private readonly ITransponderReceiver _transponderReceiver;
+        private readonly IOutput _out;
         public EventArgs e = null;
-        public TOS Received;
+        public TranspondObject Received;
 
-        public ReceiveTranspond(ITransponderReceiver receiver, IAirmonitor airSpace = null)
+        public ReceiveTranspond(ITransponderReceiver receiver, IOutput @out, IAirmonitor airSpace = null)
         {
             _transponderReceiver = receiver;
+            _out = @out;
 
             _transponderReceiver.TransponderDataReady += transponderReceiverData;
 
             _airspace = airSpace;
         }
 
-        public TOS receive(string data)
+        public TranspondObject receive(string data)
         {
             var DataSep = Seperator(data);
 
@@ -34,7 +37,7 @@ namespace TOS
             var Alt = int.Parse(DataSep[6]);
             var time = FormateDate(DataSep[8]);
 
-            return new TOS(tag, xCord, yCord, Alt, time);
+            return new TranspondObject(tag, xCord, yCord, Alt, time,_out);
         }
 
         private string[] Seperator(string Seperate)
@@ -79,7 +82,7 @@ namespace TOS
                         (Received.PosistionX <= 90000) &&
                         (Received.PosistionY <= 90000))
                     {
-                        _airspace.ReceiveNewTOS(Received);
+                        _airspace.ReceiveNewTranspondObject(Received);
                     }
 
                     else //remove the aircraft from the airspace list

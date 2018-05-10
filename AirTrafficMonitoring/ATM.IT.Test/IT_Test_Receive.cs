@@ -41,7 +41,7 @@ namespace IT_Test_Receive
             test.Add(testString);
             uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
-            air.ReceivedWithAnyArgs(1).ReceiveNewTOS(testTos);
+            air.ReceivedWithAnyArgs(1).ReceiveNewTranspondObject(testTos);
         }
 
         [Test]
@@ -54,7 +54,7 @@ namespace IT_Test_Receive
             test.Add(testString);
             uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
-            air.ReceivedWithAnyArgs(2).ReceiveNewTOS(testTos);
+            air.ReceivedWithAnyArgs(2).ReceiveNewTranspondObject(testTos);
         }
 
         [Test]
@@ -66,7 +66,7 @@ namespace IT_Test_Receive
 
             uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
-            air.DidNotReceiveWithAnyArgs().ReceiveNewTOS(testTos);
+            air.DidNotReceiveWithAnyArgs().ReceiveNewTranspondObject(testTos);
 
         }
 

@@ -8,7 +8,7 @@ using ATMSystem.Interfaces;
 
 namespace ATMSystem
 {
-    class Output : IOutput
+    public class Output : IOutput
     {
 
         public void Print(string _out)
