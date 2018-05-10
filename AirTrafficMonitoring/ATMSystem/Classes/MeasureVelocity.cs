@@ -17,7 +17,7 @@ namespace ATMSystem
           double distance = Math.Sqrt(Math.Pow(newer.PosistionX - old.PosistionX, 2) + Math.Pow(newer.PosistionY - old.PosistionY, 2));
 
           TimeSpan timeDifference = newer.TimeStamp.Subtract(old.TimeStamp);
-          double miliseconds = timeDifference.Milliseconds;
+            double miliseconds = timeDifference.TotalMilliseconds;
 
           double meterPerSec =  (distance*1000)/miliseconds;
 

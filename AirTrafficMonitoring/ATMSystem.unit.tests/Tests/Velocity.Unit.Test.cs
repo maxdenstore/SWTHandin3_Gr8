@@ -5,8 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using ATMSystem;
 using ATMSystem.Interfaces;
+using NSubstitute;
 using NUnit.Framework;
 using TransponderReceiver;
+using TranspondObject = ATMSystem.TranspondObject;
 
 namespace MessureVelocity.Unit.Test
 {
@@ -15,44 +17,35 @@ namespace MessureVelocity.Unit.Test
         [TestFixture]
         public class ATM_Unit_Testing
         {
-
-            private IMessureDegrees _md;
             private IMessureVelocity _vl;
-            private IDetectSepartation _dt;
             private IOutput _out;
-
             [SetUp]
             public void Setup()
             {
-                _md = new MeasureDegress();
+                _out = Substitute.For<IOutput>();
                 _vl = new MeasureVelocity();
-                _dt = new DetectSepartation(_out);
             }
 
             //****************************************************************************TEST OF VELOCITY********************************************************************************
             [Test]
-            public void testVelocity_216ms()
+            public void testVelocity_10m5000m2ms()
             {
-                AirMonitor air = new AirMonitor(_md, _vl, _dt);
+                ATMSystem.TranspondObject _old = new ATMSystem.TranspondObject("Test1",0,0,1000,new DateTime(2018,1,1,12,0,0), _out);
+                ATMSystem.TranspondObject _new = new ATMSystem.TranspondObject("Test1", 10, 0, 1000, new DateTime(2018, 1, 1, 12, 0, 5), _out);
+                _vl.Measure(_old,_new);
 
-                ATMSystem.ReceiveTranspond uut =
-                    new ATMSystem.ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), _out, air);
+                Assert.That(_new.Velocity, Is.EqualTo(2));
 
-                //diff only few MS
-                string Test1 = "DTR423;39000;13000;12000;20151006213456700";
-                string Test2 = "DTR423;39019;13003;12001;20151006213456789";
+            }
 
-                List<string> test = new List<string>();
-                test.Add(Test1);
+            [Test]
+            public void testVelocity_0m5000m0ms()
+            {
+                ATMSystem.TranspondObject _old = new ATMSystem.TranspondObject("Test1", 0, 0, 1000, new DateTime(2018, 1, 1, 12, 0, 0), _out);
+                ATMSystem.TranspondObject _new = new ATMSystem.TranspondObject("Test1", 0, 0, 1000, new DateTime(2018, 1, 1, 12, 0, 5), _out);
+                _vl.Measure(_old, _new);
 
-                uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
-
-                test.Add(Test2);
-
-                uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
-
-                //assert bool is false
-                Assert.That(air.monitorList[air.monitorList.Count - 1].Velocity, Is.EqualTo(216.0));
+                Assert.That(_new.Velocity, Is.EqualTo(0));
 
             }
         }

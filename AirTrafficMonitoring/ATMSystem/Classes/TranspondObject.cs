@@ -12,8 +12,8 @@ namespace ATMSystem
         public int PosistionY { get; private set; }
         public int Altitude { get; private set; }
         public DateTime TimeStamp { get;private set; }
-        public double Velocity { get; set; }
-        public double degress { get; set; }
+        public double Velocity { get; set; } = 0;
+        public double degress { get; set; } = 0;
         public readonly IOutput _output;
 
         public TranspondObject(string tag, int posistionX, int posistionY, int altitude, DateTime timeStamp, IOutput _out) 
