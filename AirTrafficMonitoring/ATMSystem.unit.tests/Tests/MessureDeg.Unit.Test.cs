@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ATMSystem;
 using ATMSystem.Interfaces;
+using NSubstitute;
 using NUnit.Framework;
 using TransponderReceiver;
 
@@ -18,47 +19,55 @@ namespace MessureDeg.Unit.Test
         [TestFixture]
         public class ATM_Unit_Testing
         {
-
-            private IMessureDegrees _md;
-            private IMessureVelocity _vl;
-            private IDetectSepartation _dt;
+            private IMessureDegrees _degrees;
             private IOutput _out;
-
             [SetUp]
             public void Setup()
             {
-                _md = new MeasureDegress();
-                _vl = new MeasureVelocity();
-                _dt = new DetectSepartation(_out);
+                _out = Substitute.For<IOutput>();
+                _degrees = new MeasureDegress();
             }
 
 
             //*********************************************************************************TEST OF DEGREES*******************************************************************
             [Test]
-            public void testDegrees_227()
+            public void testDegrees_straightForward_0Degress()
             {
+                ATMSystem.TranspondObject _old = new ATMSystem.TranspondObject("Test1", 0, 0, 1000, new DateTime(2018, 1, 1, 12, 0, 0), _out);
+                ATMSystem.TranspondObject _new = new ATMSystem.TranspondObject("Test1", 10, 0, 1000, new DateTime(2018, 1, 1, 12, 0, 0), _out);
+                _degrees.Measure(_old, _new);
 
-                AirMonitor air = new AirMonitor(_md, _vl, _dt);
+                Assert.That(_new.degress, Is.EqualTo(0));
+            }
 
-                ATMSystem.ReceiveTranspond uut =
-                    new ATMSystem.ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), _out, air);
+            [Test]
+            public void testDegrees_straightback_180Degress()
+            {
+                ATMSystem.TranspondObject _old = new ATMSystem.TranspondObject("Test1", 0, 0, 1000, new DateTime(2018, 1, 1, 12, 0, 0), _out);
+                ATMSystem.TranspondObject _new = new ATMSystem.TranspondObject("Test1", -10, 0, 1000, new DateTime(2018, 1, 1, 12, 0, 0), _out);
+                _degrees.Measure(_old, _new);
 
-                //diff only few MS
-                string Test1Deg = "DTR423;39000;13000;12000;20151006213456700";
-                string Test2Deg = "DTR423;38099;12033;12001;20151006213456789";
+                Assert.That(_new.degress, Is.EqualTo(180));
+            }
 
-                List<string> test = new List<string>();
-                test.Add(Test1Deg);
+            [Test]
+            public void testDegrees_straightRight_90Degress()
+            {
+                ATMSystem.TranspondObject _old = new ATMSystem.TranspondObject("Test1", 0, 0, 1000, new DateTime(2018, 1, 1, 12, 0, 0), _out);
+                ATMSystem.TranspondObject _new = new ATMSystem.TranspondObject("Test1", 0, 5, 1000, new DateTime(2018, 1, 1, 12, 0, 0), _out);
+                _degrees.Measure(_old, _new);
 
-                uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+                Assert.That(_new.degress, Is.EqualTo(90));
+            }
 
-                test.Add(Test2Deg);
+            [Test]
+            public void testDegrees_straightLeft_270Degress()
+            {
+                ATMSystem.TranspondObject _old = new ATMSystem.TranspondObject("Test1", 0, 0, 1000, new DateTime(2018, 1, 1, 12, 0, 0), _out);
+                ATMSystem.TranspondObject _new = new ATMSystem.TranspondObject("Test1", 0, -5, 1000, new DateTime(2018, 1, 1, 12, 0, 0), _out);
+                _degrees.Measure(_old, _new);
 
-                uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
-
-                //assert bool is false
-                Assert.That(air.monitorList[air.monitorList.Count - 1].degress, Is.EqualTo(227.0));
-
+                Assert.That(_new.degress, Is.EqualTo(270));
             }
         }
     }

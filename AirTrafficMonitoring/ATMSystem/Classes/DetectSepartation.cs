@@ -10,9 +10,9 @@ namespace ATMSystem
         public List<Separtation> FlightsInConflic { get; set; } = new List<Separtation>();
         public bool Conflict { get; set; } = false;
 
-        public DetectSepartation(IOutput @out)
+        public DetectSepartation(IOutput outParam)
         {
-            _out = @out;
+            _out = outParam;
         }
         public void detect(ITranspondObject a, ITranspondObject b)
         {

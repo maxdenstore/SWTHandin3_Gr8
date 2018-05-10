@@ -14,11 +14,6 @@ namespace ReceiveTranspond.unit.test
     {
         private IOutput _out;
         private ATMSystem.ReceiveTranspond uut;
-        public string tag = "ATR423";
-        public int PosistionX = 39045;
-        public int PosistionY = 12932;
-        public int altitude = 14000;
-        public DateTime DateTime = new DateTime(2015, 10, 6, 21, 34, 56, 789);
         [SetUp]
         public void Setup()
         {
