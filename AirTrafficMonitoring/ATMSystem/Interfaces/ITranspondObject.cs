@@ -13,5 +13,7 @@ namespace ATMSystem.Interfaces
             double Velocity { get; set; }
             double degress { get; set; }
 
+            void Print();
+
         }
     }

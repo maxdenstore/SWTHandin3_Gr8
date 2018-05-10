@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ATMSystem;
-using TOS;
+using ATMSystem.Interfaces;
 using TransponderReceiver;
 
 namespace ATM_TestApp
@@ -13,8 +13,10 @@ namespace ATM_TestApp
     {
         static void Main(string[] args)
         {
-            ATMSystem.AirMonitor X = new AirMonitor(new MeasureDegress(), new MeasureVelocity());
-            ReceiveTranspond transpond = new ReceiveTranspond((TransponderReceiverFactory.CreateTransponderDataReceiver()),X);
+            IOutput _out = new Output();
+            IDetectSepartation _detection = new DetectSepartation(_out);
+            ATMSystem.AirMonitor X = new AirMonitor(new MeasureDegress(), new MeasureVelocity(),_detection);
+            ReceiveTranspond transpond = new ReceiveTranspond((TransponderReceiverFactory.CreateTransponderDataReceiver()),_out);
 
             string pre = Console.ReadLine();
 

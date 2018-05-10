@@ -1,20 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Resources;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 using ATMSystem.Interfaces;
-using TOS;
-using TransponderReceiver;
+
 
 namespace ATMSystem
 {
 
     public class AirMonitor: IAirmonitor
     {
-        public List<TranspondObject> monitorList { get; set; } = new List<TranspondObject>();
+        public List<ITranspondObject> monitorList { get; set; } = new List<ITranspondObject>();
 
 
         private IDetectSepartation _detectSepartation;
@@ -34,7 +28,7 @@ namespace ATMSystem
             if (monitorList.Exists(x => x.Tag == NewTOS.Tag)) //if the tag exsists in the list
             {
                 int index = monitorList.FindIndex(x => x.Tag == NewTOS.Tag);
-                TranspondObject old = monitorList[index];
+                ITranspondObject old = monitorList[index];
                 
                 //measue speed
                 _measureVelocity.Measure(old,NewTOS);
