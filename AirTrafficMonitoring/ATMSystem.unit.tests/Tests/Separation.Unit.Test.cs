@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Seperation.Unit.Test
+namespace ATMSystem.unit.tests.Tests
 {
-    public class Class1
+    class Separation
     {
     }
 }

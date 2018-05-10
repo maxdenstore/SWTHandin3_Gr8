@@ -3,25 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransponderObject.Unit.Test", "TOS.Unit.Test\TransponderObject.Unit.Test.csproj", "{15F4E192-F68F-47D3-AD55-A747B496F318}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TOS_TestApp", "TestApp\TOS_TestApp.csproj", "{53AEA9EE-9EC2-408A-99F5-39D67C4B5DF9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATMSystem", "ATMSystem\ATMSystem.csproj", "{FB5DD22B-8B43-4697-B68D-205413A18F95}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATM_TestApp", "ATM_TestApp\ATM_TestApp.csproj", "{F3073A42-7840-4855-9CD4-5AAFFF8FF087}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATM.Unit.Test", "ATM.Unit.Test\ATM.Unit.Test.csproj", "{2BA2327E-F124-40F2-88B5-70348A612069}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATMSystem.IT.Test", "ATM.IT.Test\ATMSystem.IT.Test.csproj", "{EED459CA-6890-4B0E-91F3-1EE43D7D3231}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATM.IT.Test", "ATM.IT.Test\ATM.IT.Test.csproj", "{EED459CA-6890-4B0E-91F3-1EE43D7D3231}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessureDeg.Unit.Test", "MessureDeg.Unit.Test\MessureDeg.Unit.Test.csproj", "{532B8C25-22AA-490F-87B5-005E115EAD80}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessureVelocity.Unit.Test", "MessureVelocity.Unit.Test\MessureVelocity.Unit.Test.csproj", "{6C235342-1D71-4D27-B1C0-A63F9E755EA0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seperation.Unit.Test", "Seperation.Unit.Test\Seperation.Unit.Test.csproj", "{6D3F0345-F8BB-447B-A3D3-2C9BF14AFA8D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DetectSeperation.Unit.Test", "DetectSeperation.Unit.Test\DetectSeperation.Unit.Test.csproj", "{0EE7C5AB-3FCA-4E3F-9FD2-9D5FB6F2BEBA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATMSystem.Unit.Test", "ATMSystem.unit.tests\ATMSystem.Unit.Test.csproj", "{FF9739B6-FC4C-4EAA-853E-D21EC444DACB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,14 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{15F4E192-F68F-47D3-AD55-A747B496F318}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{15F4E192-F68F-47D3-AD55-A747B496F318}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{15F4E192-F68F-47D3-AD55-A747B496F318}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{15F4E192-F68F-47D3-AD55-A747B496F318}.Release|Any CPU.Build.0 = Release|Any CPU
-		{53AEA9EE-9EC2-408A-99F5-39D67C4B5DF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{53AEA9EE-9EC2-408A-99F5-39D67C4B5DF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{53AEA9EE-9EC2-408A-99F5-39D67C4B5DF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{53AEA9EE-9EC2-408A-99F5-39D67C4B5DF9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FB5DD22B-8B43-4697-B68D-205413A18F95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FB5DD22B-8B43-4697-B68D-205413A18F95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB5DD22B-8B43-4697-B68D-205413A18F95}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,30 +25,14 @@ Global
 		{F3073A42-7840-4855-9CD4-5AAFFF8FF087}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3073A42-7840-4855-9CD4-5AAFFF8FF087}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3073A42-7840-4855-9CD4-5AAFFF8FF087}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2BA2327E-F124-40F2-88B5-70348A612069}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2BA2327E-F124-40F2-88B5-70348A612069}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2BA2327E-F124-40F2-88B5-70348A612069}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2BA2327E-F124-40F2-88B5-70348A612069}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EED459CA-6890-4B0E-91F3-1EE43D7D3231}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EED459CA-6890-4B0E-91F3-1EE43D7D3231}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EED459CA-6890-4B0E-91F3-1EE43D7D3231}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EED459CA-6890-4B0E-91F3-1EE43D7D3231}.Release|Any CPU.Build.0 = Release|Any CPU
-		{532B8C25-22AA-490F-87B5-005E115EAD80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{532B8C25-22AA-490F-87B5-005E115EAD80}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{532B8C25-22AA-490F-87B5-005E115EAD80}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{532B8C25-22AA-490F-87B5-005E115EAD80}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6C235342-1D71-4D27-B1C0-A63F9E755EA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6C235342-1D71-4D27-B1C0-A63F9E755EA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6C235342-1D71-4D27-B1C0-A63F9E755EA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6C235342-1D71-4D27-B1C0-A63F9E755EA0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6D3F0345-F8BB-447B-A3D3-2C9BF14AFA8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6D3F0345-F8BB-447B-A3D3-2C9BF14AFA8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6D3F0345-F8BB-447B-A3D3-2C9BF14AFA8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6D3F0345-F8BB-447B-A3D3-2C9BF14AFA8D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0EE7C5AB-3FCA-4E3F-9FD2-9D5FB6F2BEBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0EE7C5AB-3FCA-4E3F-9FD2-9D5FB6F2BEBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0EE7C5AB-3FCA-4E3F-9FD2-9D5FB6F2BEBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0EE7C5AB-3FCA-4E3F-9FD2-9D5FB6F2BEBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF9739B6-FC4C-4EAA-853E-D21EC444DACB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF9739B6-FC4C-4EAA-853E-D21EC444DACB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF9739B6-FC4C-4EAA-853E-D21EC444DACB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF9739B6-FC4C-4EAA-853E-D21EC444DACB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
