@@ -46,7 +46,7 @@ namespace ATM.Unit.Test
         }
 
         //***********************************************************************TEST OF DATASET*********************************************************************
-        //Test transponderReceiverData
+        //Test transponderReceiverData Tag
         [Test]
         public void transponderRecieverDataTest()
         {
@@ -57,7 +57,7 @@ namespace ATM.Unit.Test
             test.Add(testString);
             uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
-            Assert.That(air.monitorList[air.monitorList.Count - 1].Tag, Is.EqualTo(testString.Substring(0, 6)));
+            Assert.That(air.monitorList(), Is.EqualTo(testString.Substring(0, 6)));
         }
 
  
