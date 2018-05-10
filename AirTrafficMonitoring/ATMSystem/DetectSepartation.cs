@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using ATMSystem.Interfaces;
-using TOS.Interfaces;
+
 
 namespace ATMSystem
 {
