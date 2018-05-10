@@ -52,9 +52,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TOS.Unit.Test\TOS.Unit.Test.csproj">
+    <ProjectReference Include="..\TOS.Unit.Test\TransponderObject.Unit.Test.csproj">
       <Project>{15f4e192-f68f-47d3-ad55-a747b496f318}</Project>
-      <Name>TOS.Unit.Test</Name>
+      <Name>TransponderObject.Unit.Test</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

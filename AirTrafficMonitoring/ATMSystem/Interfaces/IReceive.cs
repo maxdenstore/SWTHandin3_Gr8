@@ -1,6 +1,6 @@
 ﻿using TransponderReceiver;
 
-namespace TOS.Interfaces
+namespace ATMSystem.Interfaces
 {
     public interface IReceive
     {

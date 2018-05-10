@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TOS.Unit.Test", "TOS.Unit.Test\TOS.Unit.Test.csproj", "{15F4E192-F68F-47D3-AD55-A747B496F318}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransponderObject.Unit.Test", "TOS.Unit.Test\TransponderObject.Unit.Test.csproj", "{15F4E192-F68F-47D3-AD55-A747B496F318}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TOS_TestApp", "TestApp\TOS_TestApp.csproj", "{53AEA9EE-9EC2-408A-99F5-39D67C4B5DF9}"
 EndProject

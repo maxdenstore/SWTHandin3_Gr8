@@ -52,7 +52,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\ConverterTest.cs" />
-    <Compile Include="Tests\TOSTest.cs" />
+    <Compile Include="Tests\TransponderObjectTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

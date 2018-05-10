@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using ATMSystem;
 using ATMSystem.Interfaces;
-using TOS.Interfaces;
+
 
 using TransponderReceiver;
 

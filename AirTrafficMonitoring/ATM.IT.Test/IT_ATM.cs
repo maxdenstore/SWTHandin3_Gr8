@@ -9,10 +9,8 @@ using ATMSystem;
 using ATMSystem.Interfaces;
 using NSubstitute;
 using NUnit.Framework;
-using TOS;
-using TOS.Interfaces;
 using TransponderReceiver;
-using TOS = TOS.TOS;
+
 
 namespace Integration_Test_ATM
 {
@@ -32,8 +30,10 @@ namespace Integration_Test_ATM
         public void transponderRecieverDataTest()
         {
             ITranspondObject stubTos = Substitute.For<ITranspondObject>();
-            AirMonitor air = new AirMonitor(new MeasureDegress(), new MeasureVelocity());
-            ReceiveTranspond uut = new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
+            IDetectSepartation stubDetect = Substitute.For<IDetectSepartation>();
+            IOutput _out = new Output();
+            AirMonitor air = new AirMonitor(new MeasureDegress(), new MeasureVelocity(),stubDetect);
+            ReceiveTranspond uut = new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(),_out, air);
             List<string> test = new List<string>();
             test.Add(testString);
 

@@ -1,29 +1,30 @@
 ﻿
 using System;
+using ATMSystem;
 using ATMSystem.Interfaces;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
-using TOS.Interfaces;
+
+using TranspondObject = ATMSystem.TranspondObject;
 
 namespace TOS.Unit.Test.Tests
 {
     [TestFixture]
-    public class TOSTest
+    public class TransponderObjectTest
     {
-        public string tag = "ATR423";
-        public int PosistionX = 39045;
-        public int PosistionY = 12932;
-        public int altitude = 14000;
+        private string tag = "ATR423";
+        private int PosistionX = 39045;
+        private int PosistionY = 12932;
+        private int altitude = 14000;
 
-        public DateTime DateTime = new DateTime(2015,10,6,21,34,56,789);
-        public ITranspondObject uut;
-        public IOutput Output;
+        private DateTime DateTime = new DateTime(2015,10,6,21,34,56,789);
+        private ITranspondObject uut;
+        private IOutput Output;
 
         [SetUp]
         public void setup()
         {
-
-            uut = new TOS(tag, PosistionX, PosistionY, altitude, DateTime,Output);
+            uut = new ATMSystem.TranspondObject(tag,PosistionX,PosistionY,altitude,DateTime,Output);
             
         }
         [Test]

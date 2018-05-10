@@ -1,9 +1,5 @@
-﻿
-using System;
-using System.Text.RegularExpressions;
-using System.Xml.Schema;
+﻿using System;
 using ATMSystem.Interfaces;
-using TOS.Interfaces;
 
 namespace ATMSystem
 {
@@ -20,7 +16,7 @@ namespace ATMSystem
         public double degress { get; set; }
         public readonly IOutput _output;
 
-        public TranspondObject(string tag, int posistionX, int posistionY, int altitude, DateTime timeStamp, IOutput _out)
+        public TranspondObject(string tag, int posistionX, int posistionY, int altitude, DateTime timeStamp, IOutput _out) 
         {
             _output = _out;
             Tag = tag;

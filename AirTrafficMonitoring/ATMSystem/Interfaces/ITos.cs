@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TOS.Interfaces
+namespace ATMSystem.Interfaces
 {
 
         public interface ITranspondObject

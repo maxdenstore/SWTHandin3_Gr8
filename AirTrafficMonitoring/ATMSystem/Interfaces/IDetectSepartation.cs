@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using TOS.Interfaces;
 
 namespace ATMSystem.Interfaces
 {
