@@ -55,7 +55,7 @@
     <Compile Include="Interfaces\IPrint.cs" />
     <Compile Include="Interfaces\IReceive.cs" />
     <Compile Include="Interfaces\ISeperation.cs" />
-    <Compile Include="Interfaces\ITos.cs" />
+    <Compile Include="Interfaces\ITranspondObject.cs" />
     <Compile Include="MeasureDegress.cs" />
     <Compile Include="MeasureVelocity.cs" />
     <Compile Include="Output.cs" />
