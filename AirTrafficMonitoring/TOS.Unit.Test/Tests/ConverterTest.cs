@@ -40,14 +40,14 @@ namespace TranspondObject.Unit.Test.Tests
         [Test]
         public void tagLength() //Lenght
         {
-            TranspondObject xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
+            ATMSystem.TranspondObject xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
             Assert.That(xy.Tag.Length, Is.EqualTo(6));
         }
 
         [Test]
         public void tagContains() //no diff to A-Z, 1-9
         {
-            TranspondObject xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
+            ATMSystem.TranspondObject xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
             Assert.That(xy.Tag.All(char.IsLetterOrDigit));
         }
 
@@ -56,7 +56,7 @@ namespace TranspondObject.Unit.Test.Tests
         [Test]
         public void XCordExact() //Exact
         {
-            TranspondObject xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
+            ATMSystem.TranspondObject xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
             Assert.That(xy.PosistionX == 39045);
         }
 
@@ -65,7 +65,7 @@ namespace TranspondObject.Unit.Test.Tests
         [Test]
         public void YCordContains() //Exact
         {
-            TranspondObject xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
+            ATMSystem.TranspondObject xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
             Assert.That(xy.PosistionY == 12932);
         }
 
@@ -73,7 +73,7 @@ namespace TranspondObject.Unit.Test.Tests
         [Test]
         public void AltitudeIsSame()
         {
-            TranspondObject xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
+            ATMSystem.TranspondObject xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
             Assert.That(xy.Altitude == 14000);
         }
 
@@ -81,49 +81,49 @@ namespace TranspondObject.Unit.Test.Tests
         [Test]
         public void TimeStampDay()
         {
-            TranspondObject xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
+            ATMSystem.TranspondObject xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
             Assert.That(xy.TimeStamp.Day == 6);
         }
 
         [Test]
         public void TimeStampMonth()
         {
-            TranspondObject xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
+            ATMSystem.TranspondObject xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
             Assert.That(xy.TimeStamp.Month == 10);
         }
 
         [Test]
         public void TimeStampYear()
         {
-            TranspondObject xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
+            ATMSystem.TranspondObject xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
             Assert.That(xy.TimeStamp.Year == 2015);
         }
 
         [Test]
         public void TimeStampHour()
         {
-            TranspondObject xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
+            ATMSystem.TranspondObject xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
             Assert.That(xy.TimeStamp.Hour == 21);
         }
 
         [Test]
         public void TimeStampMinute()
         {
-            TranspondObject xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
+            ATMSystem.TranspondObject xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
             Assert.That(xy.TimeStamp.Minute == 34);
         }
 
         [Test]
         public void TimeStampSecond()
         {
-            TranspondObject xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
+            ATMSystem.TranspondObject xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
             Assert.That(xy.TimeStamp.Second == 56);
         }
 
         [Test]
         public void TimeStampMSec()
         {
-            TranspondObject xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
+            ATMSystem.TranspondObject xy = uut.receive("ATR423;39045;12932;14000;20151006213456789");
             Assert.That(xy.TimeStamp.Millisecond == 789);
         }
 
