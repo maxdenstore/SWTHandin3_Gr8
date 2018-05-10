@@ -8,7 +8,6 @@ using ATMSystem.Interfaces;
 
 using NSubstitute;
 using NUnit.Framework;
-using TOS;
 using TransponderReceiver;
 
 namespace IT_Test_Receive
@@ -21,12 +20,12 @@ namespace IT_Test_Receive
         
         private string testString = "ATR423;39045;12932;14000;20151006213456789";
 
-        public TOS.TOS testTos;
+        public ITranspondObject testTos;
 
         [SetUp]
         public void Setup()
         {
-            testTos = new TOS.TOS("ATR423", 39045, 12932, 14000,
+            testTos = new TranspondObject("ATR423", 39045, 12932, 14000,
                 new DateTime(2015, 10, 06, 21, 34, 56, 789), _fakeOutput);
         }
 
@@ -36,7 +35,7 @@ namespace IT_Test_Receive
         public void transponderRecieverDataTest()
         {
             IAirmonitor air = Substitute.For<IAirmonitor>();
-            ReceiveTranspond uut = new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
+            ReceiveTranspond uut = new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(),_fakeOutput, air);
             List<string> test = new List<string>();
             test.Add(testString);
             uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
