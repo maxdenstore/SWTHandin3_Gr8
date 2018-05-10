@@ -6,9 +6,9 @@ namespace ATMSystem.Interfaces
         public interface ITranspondObject
         {
             string Tag { get; }
-            int PosistionX { get; }
-            int PosistionY { get; }
-            int Altitude { get; }
+            int PosistionX { get; set; }
+            int PosistionY { get; set; }
+            int Altitude { get; set; }
             DateTime TimeStamp { get; }
             double Velocity { get; set; }
             double degress { get; set; }

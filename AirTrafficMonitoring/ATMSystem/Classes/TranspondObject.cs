@@ -7,11 +7,11 @@ namespace ATMSystem
 
     public class TranspondObject : ITranspondObject
     {
-        public string Tag { get; private set; }
-        public int PosistionX { get; private set; }
-        public int PosistionY { get; private set; }
-        public int Altitude { get; private set; }
-        public DateTime TimeStamp { get;private set; }
+        public string Tag { get; set; }
+        public int PosistionX { get; set; }
+        public int PosistionY { get; set; }
+        public int Altitude { get; set; }
+        public DateTime TimeStamp { get; set; }
         public double Velocity { get; set; } = 0;
         public double degress { get; set; } = 0;
         public readonly IOutput _output;

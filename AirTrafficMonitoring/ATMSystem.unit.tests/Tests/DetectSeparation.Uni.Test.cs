@@ -30,15 +30,27 @@ namespace ATMSystem.unit.tests.Tests
 
 
         [Test]
-        public void OccurenceOfSep()
+        public void Detect()
         {
-            Assert.That(_sep.Occurence, Is.EqualTo(_dateTime));
+            _fakTranspondObjectA.PosistionX = 1;
+            _fakTranspondObjectA.PosistionY = 1;
+            _fakTranspondObjectA.Altitude = 200;
+     
+
+
+            _fakTranspondObjectB.PosistionY = 300;
+            _fakTranspondObjectB.PosistionX = 20;
+            _fakTranspondObjectB.Altitude = 230;
+
+            _uut.detect(_fakTranspondObjectA,_fakTranspondObjectA);
+
+            Assert.That(_uut.Conflict, Is.True);
         }
 
         [Test]
         public void tagOfSep()
         {
-            Assert.That(_sep.Tag, Is.EqualTo(_tag));
+       //     Assert.That(_sep.Tag, Is.EqualTo(_tag));
         }
     }
 }

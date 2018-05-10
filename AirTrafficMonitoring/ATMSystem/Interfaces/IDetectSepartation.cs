@@ -9,5 +9,7 @@ namespace ATMSystem.Interfaces
         void handleNoConflict(ITranspondObject a, ITranspondObject b);
 
         void printSeparations();
+
+        bool Conflict { get; set; }
     }
 }
