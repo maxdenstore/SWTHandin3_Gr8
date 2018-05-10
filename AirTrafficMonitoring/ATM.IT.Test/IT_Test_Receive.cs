@@ -47,7 +47,7 @@ namespace IT_Test_Receive
         public void transponderRecieverDataTest2()
         {
             IAirmonitor air = Substitute.For<IAirmonitor>();
-            ReceiveTranspond uut = new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
+            ReceiveTranspond uut = new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(),_fakeOutput, air);
             List<string> test = new List<string>();
             test.Add(testString);
             test.Add(testString);
@@ -60,7 +60,7 @@ namespace IT_Test_Receive
         public void transponderRecieverDataTest_noSendNoReceive()
         {
             IAirmonitor air = Substitute.For<IAirmonitor>();
-            ReceiveTranspond uut = new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
+            ReceiveTranspond uut = new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(),_fakeOutput, air);
             List<string> test = new List<string>();
 
             uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
@@ -73,12 +73,12 @@ namespace IT_Test_Receive
         public void transponderRecieverDataTest_Printed()
         {
             IAirmonitor air = Substitute.For<IAirmonitor>();
-            ReceiveTranspond uut = new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), air);
+            ReceiveTranspond uut = new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(),_fakeOutput, air);
             List<string> test = new List<string>();
 
             uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
-            Assert.That(_fakeOutput.Received(1), testString);
+            _fakeOutput.Received(1).Print(testString);
 
         }
     }

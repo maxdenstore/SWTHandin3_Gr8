@@ -11,7 +11,7 @@ namespace ATMSystem
     {
 
 
-        public void Measure(TranspondObject old,TranspondObject newer)
+        public void Measure(ITranspondObject old,ITranspondObject newer)
         {
 
           double distance = Math.Sqrt(Math.Pow(newer.PosistionX - old.PosistionX, 2) + Math.Pow(newer.PosistionY - old.PosistionY, 2));

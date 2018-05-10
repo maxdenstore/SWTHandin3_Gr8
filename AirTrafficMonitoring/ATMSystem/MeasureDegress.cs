@@ -9,7 +9,7 @@ namespace ATMSystem
 {
     public class MeasureDegress : IMessureDegrees
     {
-        public void Measure(TranspondObject old, TranspondObject newer)
+        public void Measure(ITranspondObject old, ITranspondObject newer)
         {
             int xDiff = newer.PosistionX - old.PosistionX;
             int yDiff = newer.PosistionY - old.PosistionY;

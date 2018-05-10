@@ -4,7 +4,7 @@ namespace ATMSystem.Interfaces
 {
     public interface IAirmonitor
     {
-        void ReceiveNewTranspondObject(TranspondObject NewTOS);
+        void ReceiveNewTranspondObject(ITranspondObject NewTOS);
         List<TranspondObject> monitorList { get; set; }
 
     }

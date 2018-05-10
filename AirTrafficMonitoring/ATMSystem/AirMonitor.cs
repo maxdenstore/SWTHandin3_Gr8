@@ -28,7 +28,7 @@ namespace ATMSystem
             _detectSepartation = detectSepartation;
         }
 
-        public void ReceiveNewTranspondObject(TranspondObject NewTOS)
+        public void ReceiveNewTranspondObject(ITranspondObject NewTOS)
         {
             
             if (monitorList.Exists(x => x.Tag == NewTOS.Tag)) //if the tag exsists in the list

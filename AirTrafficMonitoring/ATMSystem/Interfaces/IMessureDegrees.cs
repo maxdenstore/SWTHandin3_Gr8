@@ -3,6 +3,6 @@
     public interface IMessureDegrees
     {
 
-        void Measure(TranspondObject old, TranspondObject newer);
+        void Measure(ITranspondObject old, ITranspondObject newer);
     }
 }
