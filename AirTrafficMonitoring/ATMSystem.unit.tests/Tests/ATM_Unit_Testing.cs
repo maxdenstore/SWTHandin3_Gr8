@@ -53,7 +53,7 @@ namespace ATM.Unit.Test
         public void transponderRecieverDataTest()
         {
             AirMonitor air;
-            ReceiveTranspond uut;
+            ATMSystem.ReceiveTranspond uut;
             setAir(out air, out uut);
             List<string> test = new List<string>();
             test.Add(testString);
@@ -69,7 +69,7 @@ namespace ATM.Unit.Test
         public void transponderRecieverDataTestXCord()
         {
             AirMonitor air;
-            ReceiveTranspond uut;
+            ATMSystem.ReceiveTranspond uut;
             setAir(out air, out uut);
 
             List<string> test = new List<string>();
@@ -85,7 +85,7 @@ namespace ATM.Unit.Test
         public void transponderRecieverDataTestYCord()
         {
             AirMonitor air;
-            ReceiveTranspond uut;
+            ATMSystem.ReceiveTranspond uut;
             setAir(out air, out uut);
 
             List<string> test = new List<string>();
@@ -101,7 +101,7 @@ namespace ATM.Unit.Test
         public void transponderRecieverDataTestAltitude()
         {
             AirMonitor air;
-            ReceiveTranspond uut;
+            ATMSystem.ReceiveTranspond uut;
             setAir(out air, out uut);
             List<string> test = new List<string>();
             test.Add(testString);
@@ -117,7 +117,7 @@ namespace ATM.Unit.Test
         {
 
             AirMonitor air;
-            ReceiveTranspond uut;
+            ATMSystem.ReceiveTranspond uut;
             setAir(out air, out uut);
 
             List<string> test = new List<string>();
@@ -135,7 +135,7 @@ namespace ATM.Unit.Test
         public void TestXConflicts()
         {
             AirMonitor air;
-            ReceiveTranspond uut;
+            ATMSystem.ReceiveTranspond uut;
             setAir(out air, out uut);
 
             string Test1xConflict = "DTR423;39000;12932;14000;20151006213456789";
@@ -158,7 +158,7 @@ namespace ATM.Unit.Test
         public void TestXNoConflictsK()
         {
             AirMonitor air;
-            ReceiveTranspond uut;
+            ATMSystem.ReceiveTranspond uut;
             setAir(out air, out uut);
 
             string Test1xNoConflict = "DTR423;39000;13000;14000;20151006213456789";
@@ -181,7 +181,7 @@ namespace ATM.Unit.Test
         public void TestXAltNotConflictsK()
         {
             AirMonitor air;
-            ReceiveTranspond uut;
+            ATMSystem.ReceiveTranspond uut;
             setAir(out air, out uut);
 
             string Test1xNoConflict = "DTR423;39000;13000;02000;20151006213456789";
@@ -204,7 +204,7 @@ namespace ATM.Unit.Test
         public void TestYConflicts()
         {
             AirMonitor air;
-            ReceiveTranspond uut;
+            ATMSystem.ReceiveTranspond uut;
             setAir(out air, out uut);
 
             string Test1yConflict = "DTR423;39000;10000;14000;20151006213456789";
@@ -227,7 +227,7 @@ namespace ATM.Unit.Test
         public void TestYNoConflictsK()
         {
             AirMonitor air;
-            ReceiveTranspond uut;
+            ATMSystem.ReceiveTranspond uut;
             setAir(out air, out uut);
 
             string Test1yNoConflict = "DTR423;39000;13000;14000;20151006213456789";
@@ -250,7 +250,7 @@ namespace ATM.Unit.Test
         public void TestYAltNotConflictsK()
         {
             AirMonitor air;
-            ReceiveTranspond uut;
+            ATMSystem.ReceiveTranspond uut;
             setAir(out air, out uut);
 
             string Test1yNoConflict = "DTR423;39000;13000;02000;20151006213456789";
@@ -276,7 +276,7 @@ namespace ATM.Unit.Test
         public void TestConflictsIsOver()
         {
             AirMonitor air;
-            ReceiveTranspond uut;
+            ATMSystem.ReceiveTranspond uut;
             setAir(out air, out uut);
 
             //start a conflict Y&X +/-300 & Alt within 5000meters ****************
@@ -319,7 +319,7 @@ namespace ATM.Unit.Test
         public void TestConflictsBoolIsTrue()
         {
             AirMonitor air;
-            ReceiveTranspond uut;
+            ATMSystem.ReceiveTranspond uut;
             setAir(out air, out uut);
 
             //start a conflict Y&X +/-300 & Alt within 5000meters ****************
@@ -343,7 +343,7 @@ namespace ATM.Unit.Test
         public void TestConflictsBoolIsFalse()
         {
             AirMonitor air;
-            ReceiveTranspond uut;
+            ATMSystem.ReceiveTranspond uut;
             setAir(out air, out uut);
 
             //start a conflict Y&X +/-300 & Alt within 5000meters ****************
@@ -386,7 +386,7 @@ namespace ATM.Unit.Test
         public void testTimeNoConflict()
         {
             AirMonitor air;
-            ReceiveTranspond uut;
+            ATMSystem.ReceiveTranspond uut;
             setAir(out air, out uut);
 
             string Test1Time = "DTR423;39000;13000;12000;20151006203456789";
@@ -414,7 +414,7 @@ namespace ATM.Unit.Test
         {
 
             AirMonitor air;
-            ReceiveTranspond uut;
+            ATMSystem.ReceiveTranspond uut;
             setAir(out air, out uut);
 
             //diff only few MS
@@ -441,7 +441,7 @@ namespace ATM.Unit.Test
         {
 
             AirMonitor air;
-            ReceiveTranspond uut;
+            ATMSystem.ReceiveTranspond uut;
             setAir(out air, out uut);
 
             //diff only few MS
@@ -467,7 +467,7 @@ namespace ATM.Unit.Test
         public void testVelocity_216ms()
         {
             AirMonitor air;
-            ReceiveTranspond uut;
+            ATMSystem.ReceiveTranspond uut;
             setAir(out air, out uut);
 
             //diff only few MS
@@ -493,7 +493,7 @@ namespace ATM.Unit.Test
         {
 
             AirMonitor air;
-            ReceiveTranspond uut;
+            ATMSystem.ReceiveTranspond uut;
             setAir(out air, out uut);
 
             //First Conflict
@@ -530,10 +530,10 @@ namespace ATM.Unit.Test
         }
 
         //Airmethod
-        private void setAir(out AirMonitor air, out ReceiveTranspond uut)
+        private void setAir(out AirMonitor air, out ATMSystem.ReceiveTranspond uut)
         {
             air = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation);
-            uut = new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), _fakeOutput, air);
+            uut = new ATMSystem.ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), _fakeOutput, air);
         }
     }
 }

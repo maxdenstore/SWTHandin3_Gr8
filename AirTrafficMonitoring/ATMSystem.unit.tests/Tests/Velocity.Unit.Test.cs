@@ -35,8 +35,8 @@ namespace MessureVelocity.Unit.Test
             {
                 AirMonitor air = new AirMonitor(_md, _vl, _dt);
 
-                ReceiveTranspond uut =
-                    new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), _out, air);
+                ATMSystem.ReceiveTranspond uut =
+                    new ATMSystem.ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), _out, air);
 
                 //diff only few MS
                 string Test1 = "DTR423;39000;13000;12000;20151006213456700";

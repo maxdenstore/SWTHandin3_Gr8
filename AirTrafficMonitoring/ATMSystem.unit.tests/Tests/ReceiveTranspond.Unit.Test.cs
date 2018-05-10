@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ATMSystem;
 using ATMSystem.Interfaces;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
-using TOS;
+
 using TransponderReceiver;
 
-namespace TranspondObject.Unit.Test.Tests
+namespace ReceiveTranspond.unit.test
 {
     [TestFixture]
-    class ConverterTest
+    class ReceiveTranspondTest
     {
         private IOutput _out;
-        private ReceiveTranspond uut;
+        private ATMSystem.ReceiveTranspond uut;
         public string tag = "ATR423";
         public int PosistionX = 39045;
         public int PosistionY = 12932;
@@ -26,7 +23,7 @@ namespace TranspondObject.Unit.Test.Tests
         public void Setup()
         {
             _out = new Output();
-            uut = new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), _out);
+            uut = new ATMSystem.ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), _out);
         }
 
         //Test Tag

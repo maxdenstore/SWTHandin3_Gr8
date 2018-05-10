@@ -1,13 +1,10 @@
-﻿
-using System;
+﻿using System;
 using ATMSystem;
 using ATMSystem.Interfaces;
+using NSubstitute;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 
-using TranspondObject = ATMSystem.TranspondObject;
-
-namespace TOS.Unit.Test.Tests
+namespace TranspondObject.Unit.Test
 {
     [TestFixture]
     public class TransponderObjectTest
@@ -24,6 +21,7 @@ namespace TOS.Unit.Test.Tests
         [SetUp]
         public void setup()
         {
+            Output = Substitute.For<IOutput>();
             uut = new ATMSystem.TranspondObject(tag,PosistionX,PosistionY,altitude,DateTime,Output);
             
         }
