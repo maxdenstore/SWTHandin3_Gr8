@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessureDeg.Unit.Test", "Mes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessureVelocity.Unit.Test", "MessureVelocity.Unit.Test\MessureVelocity.Unit.Test.csproj", "{6C235342-1D71-4D27-B1C0-A63F9E755EA0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seperation.Unit.Test", "Seperation.Unit.Test\Seperation.Unit.Test.csproj", "{6D3F0345-F8BB-447B-A3D3-2C9BF14AFA8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DetectSeperation.Unit.Test", "DetectSeperation.Unit.Test\DetectSeperation.Unit.Test.csproj", "{0EE7C5AB-3FCA-4E3F-9FD2-9D5FB6F2BEBA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +61,14 @@ Global
 		{6C235342-1D71-4D27-B1C0-A63F9E755EA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C235342-1D71-4D27-B1C0-A63F9E755EA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C235342-1D71-4D27-B1C0-A63F9E755EA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D3F0345-F8BB-447B-A3D3-2C9BF14AFA8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D3F0345-F8BB-447B-A3D3-2C9BF14AFA8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D3F0345-F8BB-447B-A3D3-2C9BF14AFA8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D3F0345-F8BB-447B-A3D3-2C9BF14AFA8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EE7C5AB-3FCA-4E3F-9FD2-9D5FB6F2BEBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EE7C5AB-3FCA-4E3F-9FD2-9D5FB6F2BEBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EE7C5AB-3FCA-4E3F-9FD2-9D5FB6F2BEBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EE7C5AB-3FCA-4E3F-9FD2-9D5FB6F2BEBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
