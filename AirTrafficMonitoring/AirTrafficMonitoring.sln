@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TOS.Unit.Test", "TOS.Unit.Test\TOS.Unit.Test.csproj", "{15F4E192-F68F-47D3-AD55-A747B496F318}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransponderObject.Unit.Test", "TOS.Unit.Test\TransponderObject.Unit.Test.csproj", "{15F4E192-F68F-47D3-AD55-A747B496F318}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TOS_TestApp", "TestApp\TOS_TestApp.csproj", "{53AEA9EE-9EC2-408A-99F5-39D67C4B5DF9}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATM.IT.Test", "ATM.IT.Test\ATM.IT.Test.csproj", "{EED459CA-6890-4B0E-91F3-1EE43D7D3231}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessureDeg.Unit.Test", "MessureDeg.Unit.Test\MessureDeg.Unit.Test.csproj", "{532B8C25-22AA-490F-87B5-005E115EAD80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessureVelocity.Unit.Test", "MessureVelocity.Unit.Test\MessureVelocity.Unit.Test.csproj", "{6C235342-1D71-4D27-B1C0-A63F9E755EA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{532B8C25-22AA-490F-87B5-005E115EAD80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{532B8C25-22AA-490F-87B5-005E115EAD80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{532B8C25-22AA-490F-87B5-005E115EAD80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C235342-1D71-4D27-B1C0-A63F9E755EA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C235342-1D71-4D27-B1C0-A63F9E755EA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C235342-1D71-4D27-B1C0-A63F9E755EA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C235342-1D71-4D27-B1C0-A63F9E755EA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
