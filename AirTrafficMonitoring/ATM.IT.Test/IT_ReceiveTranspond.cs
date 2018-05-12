@@ -39,14 +39,14 @@ namespace ATM.IT.Test
             {
                 string tag = "ATR423";
                 int posX = 39000;
-                int posY = 4200;
+                int posY = 42000;
                 int alt = 2000;
                 DateTime date = new DateTime(2018, 1, 1, 12, 0, 0);
                 _transpondObjectA = new TranspondObject(tag, posX, posY, alt, date, _fakeOutput);
 
                 string tag2 = "ATR423";
                 int posX2 = 39000;
-                int posY2 = 4200;
+                int posY2 = 42000;
                 int alt2 = 2000;
                 DateTime date2 = new DateTime(2018, 1, 1, 12, 0, 0);
                 _transpondObjectB = new TranspondObject(tag2, posX2, posY2, alt2, date2, _fakeOutput);
