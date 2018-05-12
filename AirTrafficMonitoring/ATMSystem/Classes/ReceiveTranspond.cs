@@ -30,13 +30,8 @@ namespace ATMSystem
                 Received = Receive(track);
 
                 if (Received != null)
-                {
                     if (_airspace != null)
-                    {
                         _airspace.ReceiveNewTranspondObject(Received);
-                    }
-                }
-
             }
         }
 
