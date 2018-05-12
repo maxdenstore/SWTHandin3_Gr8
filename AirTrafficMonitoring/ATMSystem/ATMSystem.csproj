@@ -52,7 +52,6 @@
     <Compile Include="Interfaces\IAirmonitor.cs" />
     <Compile Include="Interfaces\IMessureDegrees.cs" />
     <Compile Include="Interfaces\IMessureVelocity.cs" />
-    <Compile Include="Interfaces\IPrint.cs" />
     <Compile Include="Interfaces\IReceive.cs" />
     <Compile Include="Interfaces\ISeperation.cs" />
     <Compile Include="Interfaces\ITranspondObject.cs" />
