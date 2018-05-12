@@ -26,6 +26,9 @@ namespace ATMSystem.Unit.Tests.Tests
 
         private ITranspondObject _fakeTranspondObject;
 
+        private int airspaceMin = 10000;
+        private int airspaceMax = 90000;
+
         [SetUp]
         public void Setup()
         {
@@ -34,6 +37,10 @@ namespace ATMSystem.Unit.Tests.Tests
             _fakeMessureDegrees = Substitute.For<IMessureDegrees>();
             _fakeMessureVelocity = Substitute.For<IMessureVelocity>();
             _fakeOutput = Substitute.For<IOutput>();
+
+            _fakeTranspondObject.Tag = "test";
+            _fakeTranspondObject.PosistionX = 15000;
+            _fakeTranspondObject.PosistionY = 15000;
 
 
         }
@@ -62,6 +69,7 @@ namespace ATMSystem.Unit.Tests.Tests
             setAir(out air, out uut);
 
             //act
+
             air.ReceiveNewTranspondObject(_fakeTranspondObject);
 
             //assert
@@ -98,6 +106,8 @@ namespace ATMSystem.Unit.Tests.Tests
             setAir(out air, out uut);
             ITranspondObject _fake2 = Substitute.For<ITranspondObject>();
             _fake2.Tag = "Tag2";
+            _fake2.PosistionX = 20000;
+            _fake2.PosistionY = 20000;
             _fakeTranspondObject.Tag = "Tag1";
 
             //act
@@ -593,7 +603,7 @@ namespace ATMSystem.Unit.Tests.Tests
         //Airmethod
         private void setAir(out AirMonitor air, out ATMSystem.ReceiveTranspond uut)
         {
-            air = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput);
+            air = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput, airspaceMin,airspaceMax);
             uut = new ATMSystem.ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), _fakeOutput, air);
         }
     }
