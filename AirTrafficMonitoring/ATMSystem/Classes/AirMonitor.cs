@@ -26,7 +26,10 @@ namespace ATMSystem
 
         public void ReceiveNewTranspondObject(ITranspondObject NewTOS)
         {
-            
+
+
+            _out.ClearScreen();
+
             if (monitorList.Exists(x => x.Tag == NewTOS.Tag)) //if the tag exsists in the list
             {
                 int index = monitorList.FindIndex(x => x.Tag == NewTOS.Tag);
@@ -47,7 +50,6 @@ namespace ATMSystem
                 monitorList.Add(NewTOS);
             }
 
-            _out.ClearScreen();
 
             //check for conflicts for each in monitor
             foreach (var Outer in monitorList)

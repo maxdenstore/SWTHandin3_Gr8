@@ -18,6 +18,7 @@ namespace ATMSystem
 
         public void ClearScreen()
         {
+
             Console.Clear();
             Console.WriteLine("New data: ");
         }

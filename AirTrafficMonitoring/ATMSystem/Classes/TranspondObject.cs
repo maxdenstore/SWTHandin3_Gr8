@@ -24,7 +24,7 @@ namespace ATMSystem
             PosistionY = posistionY;
             Altitude = altitude;
             TimeStamp = timeStamp;
-            Print();
+
         }
 
          public void Print()

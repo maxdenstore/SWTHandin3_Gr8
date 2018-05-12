@@ -15,17 +15,11 @@ namespace ATM_TestApp
         {
             IOutput _out = new Output();
             IDetectSepartation _detection = new DetectSepartation(_out);
-            ATMSystem.AirMonitor X = new AirMonitor(new MeasureDegress(), new MeasureVelocity(),_detection,_out);
-            ReceiveTranspond transpond = new ReceiveTranspond((TransponderReceiverFactory.CreateTransponderDataReceiver()),_out);
 
-            string pre = Console.ReadLine();
+            AirMonitor x = new AirMonitor(new MeasureDegress(), new MeasureVelocity(), _detection , _out);
+            ReceiveTranspond transpond = new ReceiveTranspond((TransponderReceiverFactory.CreateTransponderDataReceiver()),_out, x);
 
-            if (pre == "New data: ")
-            {
-                Console.Clear();
-            }
-            else
-                Console.ReadLine();
+             Console.ReadLine();
 
         }
     }
