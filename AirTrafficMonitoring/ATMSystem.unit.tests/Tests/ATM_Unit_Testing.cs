@@ -120,7 +120,7 @@ namespace ATMSystem.Unit.Tests.Tests
         }
 
         [Test]
-        public void TestList_OutOfBorderby1_assert0()
+        public void TestList_OutOfBorderby1x_assert0()
         {
             //arrange
             AirMonitor air;
@@ -140,7 +140,7 @@ namespace ATMSystem.Unit.Tests.Tests
         }
 
         [Test]
-        public void TestList_OutOfBorderby0_assert1()
+        public void TestList_OutOfBorderby0x_assert1()
         {
             //arrange
             AirMonitor air;
@@ -158,6 +158,28 @@ namespace ATMSystem.Unit.Tests.Tests
             Assert.That(air.monitorList.Count, Is.EqualTo(1));
 
         }
+
+
+        [Test]
+        public void TestList_OutOfBorderby1y_assert0()
+        {
+            //arrange
+            AirMonitor air;
+            ATMSystem.ReceiveTranspond uut;
+            setAir(out air, out uut);
+            ITranspondObject _fakeOutOfBord = Substitute.For<ITranspondObject>();
+            _fakeOutOfBord.PosistionX = 10000;
+            _fakeOutOfBord.PosistionY = 9999;
+
+            //act
+
+            air.ReceiveNewTranspondObject(_fakeOutOfBord);
+
+            //assert
+            Assert.That(air.monitorList.Count, Is.EqualTo(0));
+
+        }
+
 
         private void setAir(out AirMonitor air, out ATMSystem.ReceiveTranspond uut)
         {
