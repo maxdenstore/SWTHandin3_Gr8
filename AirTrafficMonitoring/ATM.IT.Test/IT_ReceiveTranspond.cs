@@ -70,6 +70,7 @@ namespace ATM.IT.Test
                 _fakeAirmonitor.Received(1).ReceiveNewTranspondObject(Arg.Any<TranspondObject>());
             }
 
+<<<<<<< HEAD
             [Test]
             public void Test_airspaceListEmpty()
             {
@@ -90,6 +91,8 @@ namespace ATM.IT.Test
                 Assert.That(_fakeAirmonitor.monitorList.Exists(x => x.Tag == teststr), Is.False);
             }
 
+=======
+>>>>>>> c4c558c8206a80f5356054dc7b3f51794febf859
         }
     }
 }
