@@ -9,6 +9,7 @@ using ATMSystem;
 using ATMSystem.Interfaces;
 using Castle.DynamicProxy.Generators;
 using NSubstitute;
+using NSubstitute.ClearExtensions;
 using NSubstitute.Core.Arguments;
 using NUnit.Framework;
 using TransponderReceiver;
@@ -19,17 +20,39 @@ namespace Integration_Test_ATM
     [TestFixture]
     public class IT_ATM
     {
+        IOutput _fakeOutput = Substitute.For<IOutput>();
+        IDetectSepartation _fakeDetectSepartation = Substitute.For<IDetectSepartation>();
+        IMessureDegrees _fakeMessureDegrees = Substitute.For<IMessureDegrees>();
+        IMessureVelocity _fakeMessureVelocity = Substitute.For<IMessureVelocity>();
+        IAirmonitor _uut;
 
+        private TranspondObject _transpondObjectA;
+        private TranspondObject _transpondObjectB;
         [SetUp]
         public void Setup()
         {
+            string tag = "ATR423";
+            int posX = 39000;
+            int posY = 4200;
+            int alt = 2000;
+            DateTime date = new DateTime(2018, 1, 1, 12, 0, 0);
+            _transpondObjectA = new TranspondObject(tag, posX, posY, alt, date, _fakeOutput);
 
+            string tag2 = "ATR423";
+            int posX2 = 39000;
+            int posY2 = 4200;
+            int alt2 = 2000;
+            DateTime date2 = new DateTime(2018, 1, 1, 12, 0, 0);
+            _transpondObjectB = new TranspondObject(tag2, posX2, posY2, alt2, date2, _fakeOutput);
+
+            _fakeMessureDegrees = Substitute.For<IMessureDegrees>();
+            _fakeMessureVelocity = Substitute.For<IMessureVelocity>();
+            _fakeDetectSepartation = Substitute.For<IDetectSepartation>();
+            _fakeOutput = Substitute.For<IOutput>();
         }
 
-        private void testsetUp()
-        {
 
-        }
+
 
         //***********************************************************************IntegrationTest*********************************************************************
         // Test transponderReceive
@@ -39,40 +62,11 @@ namespace Integration_Test_ATM
         [Test]
         public void messureDegrees()
         {
-
-            IDetectSepartation _fakeDetectSepartation = Substitute.For<IDetectSepartation>();
-            IMessureDegrees _fakeMessureDegrees = Substitute.For<IMessureDegrees>();
-            IMessureVelocity _fakeMessureVelocity = Substitute.For<IMessureVelocity>();
-            IOutput _fakeOutput = Substitute.For<IOutput>();
-            IReceive _faceReceive = Substitute.For<IReceive>();
-            ISeperation _fakeSeperation = Substitute.For<ISeperation>();
-            ITranspondObject _fakeTranspondObject = Substitute.For<ITranspondObject>();
-            IAirmonitor _uut;
-
-            TranspondObject _transpondObjectA;
-            TranspondObject _transpondObjectB;
-            TranspondObject _transpondObjectConflictA;
-            TranspondObject _transpondObjectConflictB;
-
-            string tag = "ATR423";
-            int posX = 39000;
-            int posY = 4200;
-            int alt = 2000;
-            DateTime date = new DateTime(2018, 1, 1, 12, 0, 0);
-            _transpondObjectA = new TranspondObject(tag, posX, posY, alt, date, _fakeOutput);
-
-            string tag2 = "ATR423";
-            int posX2 = 39000;
-            int posY2 = 4200;
-            int alt2 = 2000;
-            DateTime date2 = new DateTime(2018, 1, 1, 12, 0, 0);
-            _transpondObjectB = new TranspondObject(tag2, posX2, posY2, alt2, date2, _fakeOutput);
-
             _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput);
 
-            testsetUp();
             _uut.ReceiveNewTranspondObject(_transpondObjectA);
             _uut.ReceiveNewTranspondObject(_transpondObjectB);
+
             _fakeMessureDegrees.Received(1).Measure(Arg.Any<TranspondObject>(), Arg.Any<TranspondObject>());
         }
 
@@ -80,37 +74,9 @@ namespace Integration_Test_ATM
         public void messureVelocity()
         {
 
-            IDetectSepartation _fakeDetectSepartation = Substitute.For<IDetectSepartation>();
-            IMessureDegrees _fakeMessureDegrees = Substitute.For<IMessureDegrees>();
-            IMessureVelocity _fakeMessureVelocity = Substitute.For<IMessureVelocity>();
-            IOutput _fakeOutput = Substitute.For<IOutput>();
-            IReceive _faceReceive = Substitute.For<IReceive>();
-            ISeperation _fakeSeperation = Substitute.For<ISeperation>();
-            ITranspondObject _fakeTranspondObject = Substitute.For<ITranspondObject>();
-            IAirmonitor _uut;
-
-            TranspondObject _transpondObjectA;
-            TranspondObject _transpondObjectB;
-            TranspondObject _transpondObjectConflictA;
-            TranspondObject _transpondObjectConflictB;
-
-            string tag = "ATR423";
-            int posX = 39000;
-            int posY = 4200;
-            int alt = 2000;
-            DateTime date = new DateTime(2018, 1, 1, 12, 0, 0);
-            _transpondObjectA = new TranspondObject(tag, posX, posY, alt, date, _fakeOutput);
-
-            string tag2 = "ATR423";
-            int posX2 = 39000;
-            int posY2 = 4200;
-            int alt2 = 2000;
-            DateTime date2 = new DateTime(2018, 1, 1, 12, 0, 0);
-            _transpondObjectB = new TranspondObject(tag2, posX2, posY2, alt2, date2, _fakeOutput);
-
             _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput);
 
-            testsetUp();
+
             _uut.ReceiveNewTranspondObject(_transpondObjectA);
             _uut.ReceiveNewTranspondObject(_transpondObjectB);
             _fakeMessureVelocity.Received(1).Measure(Arg.Any<TranspondObject>(), Arg.Any<TranspondObject>());
@@ -119,39 +85,14 @@ namespace Integration_Test_ATM
         [Test]
         public void printSeperation()
         {
-
-
-            IDetectSepartation _fakeDetectSepartation = Substitute.For<IDetectSepartation>();
-            IMessureDegrees _fakeMessureDegrees = Substitute.For<IMessureDegrees>();
-            IMessureVelocity _fakeMessureVelocity = Substitute.For<IMessureVelocity>();
-            IOutput _fakeOutput = Substitute.For<IOutput>();
-            IReceive _faceReceive = Substitute.For<IReceive>();
-            ISeperation _fakeSeperation = Substitute.For<ISeperation>();
-            ITranspondObject _fakeTranspondObject = Substitute.For<ITranspondObject>();
-            IAirmonitor _uut;
-
-            TranspondObject _transpondObjectA;
-            TranspondObject _transpondObjectB;
             TranspondObject _transpondObjectConflictA;
             TranspondObject _transpondObjectConflictB;
 
-            string tag = "ATR423";
-            int posX = 39000;
-            int posY = 4200;
-            int alt = 2000;
-            DateTime date = new DateTime(2018, 1, 1, 12, 0, 0);
-            _transpondObjectA = new TranspondObject(tag, posX, posY, alt, date, _fakeOutput);
 
-            string tag2 = "ATR423";
-            int posX2 = 39000;
-            int posY2 = 4200;
-            int alt2 = 2000;
-            DateTime date2 = new DateTime(2018, 1, 1, 12, 0, 0);
-            _transpondObjectB = new TranspondObject(tag2, posX2, posY2, alt2, date2, _fakeOutput);
 
             _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput);
 
-            testsetUp();
+
             string tag3 = "ATR423";
             int posX3 = 39000;
             int posY3 = 4200;
@@ -180,76 +121,19 @@ namespace Integration_Test_ATM
         [Test]
         public void detectSeperation()
         {
-
-            IDetectSepartation _fakeDetectSepartation = Substitute.For<IDetectSepartation>();
-            IMessureDegrees _fakeMessureDegrees = Substitute.For<IMessureDegrees>();
-            IMessureVelocity _fakeMessureVelocity = Substitute.For<IMessureVelocity>();
-            IOutput _fakeOutput = Substitute.For<IOutput>();
-            IReceive _faceReceive = Substitute.For<IReceive>();
-            ISeperation _fakeSeperation = Substitute.For<ISeperation>();
-            ITranspondObject _fakeTranspondObject = Substitute.For<ITranspondObject>();
-            IAirmonitor _uut;
-
-            TranspondObject _transpondObjectA;
-            TranspondObject _transpondObjectB;
-            TranspondObject _transpondObjectConflictA;
-            TranspondObject _transpondObjectConflictB;
-
-            string tag = "ATR423";
-            int posX = 39000;
-            int posY = 4200;
-            int alt = 2000;
-            DateTime date = new DateTime(2018, 1, 1, 12, 0, 0);
-            _transpondObjectA = new TranspondObject(tag, posX, posY, alt, date, _fakeOutput);
-
-            string tag2 = "ATR423";
-            int posX2 = 39000;
-            int posY2 = 4200;
-            int alt2 = 2000;
-            DateTime date2 = new DateTime(2018, 1, 1, 12, 0, 0);
-            _transpondObjectB = new TranspondObject(tag2, posX2, posY2, alt2, date2, _fakeOutput);
-
             _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput);
-            testsetUp();
+
             _uut.ReceiveNewTranspondObject(_transpondObjectA);
             _uut.ReceiveNewTranspondObject(_transpondObjectB);
+
             _fakeDetectSepartation.detect(Arg.Any<TranspondObject>(), Arg.Any<TranspondObject>());
         }
 
         [Test]
         public void output()
         {
-
-            IDetectSepartation _fakeDetectSepartation = Substitute.For<IDetectSepartation>();
-            IMessureDegrees _fakeMessureDegrees = Substitute.For<IMessureDegrees>();
-            IMessureVelocity _fakeMessureVelocity = Substitute.For<IMessureVelocity>();
-            IOutput _fakeOutput = Substitute.For<IOutput>();
-            IReceive _faceReceive = Substitute.For<IReceive>();
-            ISeperation _fakeSeperation = Substitute.For<ISeperation>();
-            ITranspondObject _fakeTranspondObject = Substitute.For<ITranspondObject>();
-            IAirmonitor _uut;
-
-            TranspondObject _transpondObjectA;
-            TranspondObject _transpondObjectB;
-            TranspondObject _transpondObjectConflictA;
-            TranspondObject _transpondObjectConflictB;
-
-            string tag = "ATR423";
-            int posX = 39000;
-            int posY = 4200;
-            int alt = 2000;
-            DateTime date = new DateTime(2018, 1, 1, 12, 0, 0);
-            _transpondObjectA = new TranspondObject(tag, posX, posY, alt, date, _fakeOutput);
-
-            string tag2 = "ATR423";
-            int posX2 = 39000;
-            int posY2 = 4200;
-            int alt2 = 2000;
-            DateTime date2 = new DateTime(2018, 1, 1, 12, 0, 0);
-            _transpondObjectB = new TranspondObject(tag2, posX2, posY2, alt2, date2, _fakeOutput);
-
             _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput);
-            testsetUp();
+
             _uut.ReceiveNewTranspondObject(_transpondObjectA);
             _fakeOutput.Received(1).ClearScreen();
         }
@@ -258,38 +142,23 @@ namespace Integration_Test_ATM
         public void fakePrint()
         {
 
-            IDetectSepartation _fakeDetectSepartation = Substitute.For<IDetectSepartation>();
-            IMessureDegrees _fakeMessureDegrees = Substitute.For<IMessureDegrees>();
-            IMessureVelocity _fakeMessureVelocity = Substitute.For<IMessureVelocity>();
-            IOutput _fakeOutput = Substitute.For<IOutput>();
-            IReceive _faceReceive = Substitute.For<IReceive>();
-            ISeperation _fakeSeperation = Substitute.For<ISeperation>();
             ITranspondObject _fakeTranspondObject = Substitute.For<ITranspondObject>();
             IAirmonitor _uut;
 
-            TranspondObject _transpondObjectA;
-            TranspondObject _transpondObjectB;
-            TranspondObject _transpondObjectConflictA;
-            TranspondObject _transpondObjectConflictB;
-
-            string tag = "ATR423";
-            int posX = 39000;
-            int posY = 4200;
-            int alt = 2000;
-            DateTime date = new DateTime(2018, 1, 1, 12, 0, 0);
-            _transpondObjectA = new TranspondObject(tag, posX, posY, alt, date, _fakeOutput);
-
-            string tag2 = "ATR423";
-            int posX2 = 39000;
-            int posY2 = 4200;
-            int alt2 = 2000;
-            DateTime date2 = new DateTime(2018, 1, 1, 12, 0, 0);
-            _transpondObjectB = new TranspondObject(tag2, posX2, posY2, alt2, date2, _fakeOutput);
-
             _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput);
-            testsetUp();
+
             _uut.ReceiveNewTranspondObject(_fakeTranspondObject);
             _fakeTranspondObject.Received(1).Print();
+        }
+
+        [TearDown]
+        public void TeaDown()
+        {
+            _fakeOutput.ClearSubstitute();
+            _fakeDetectSepartation.ClearSubstitute();
+            _fakeMessureDegrees.ClearSubstitute();
+            _fakeMessureVelocity.ClearSubstitute();
+            
         }
     }
 }
