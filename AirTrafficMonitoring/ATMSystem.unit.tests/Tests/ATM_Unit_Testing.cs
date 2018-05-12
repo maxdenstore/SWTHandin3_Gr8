@@ -11,6 +11,7 @@ using NSubstitute;
 using NUnit;
 using NUnit.Framework;
 using TransponderReceiver;
+using TranspondObject = ATMSystem.TranspondObject;
 
 namespace ATM.Unit.Test
 {
@@ -18,7 +19,6 @@ namespace ATM.Unit.Test
     [TestFixture]
     public class ATM_Unit_Testing
     {
-        private string testString = "ATR423;39045;12932;14000;20151006213456789";
         private IMessureDegrees _fakeMessureDegrees;
         private IMessureVelocity _fakeMessureVelocity;
         private IOutput _fakeOutput;
@@ -38,6 +38,77 @@ namespace ATM.Unit.Test
 
         }
 
+        [Test]
+        public void TestList_nothing_assert0()
+        {
+            //arrange
+            AirMonitor air;
+            ATMSystem.ReceiveTranspond uut;
+            setAir(out air,out uut);
+
+            //act
+
+            //assert
+            Assert.That(air.monitorList.Count, Is.EqualTo(0));
+            
+        }
+
+        [Test]
+        public void TestList_plus1_assert1()
+        {
+            //arrange
+            AirMonitor air;
+            ATMSystem.ReceiveTranspond uut;
+            setAir(out air, out uut);
+
+            //act
+            air.ReceiveNewTranspondObject(_fakeTranspondObject);
+
+            //assert
+            Assert.That(air.monitorList.Count, Is.EqualTo(1));
+
+        }
+
+
+        [Test]
+        public void TestList_tagExsists_assertNoMore()
+        {
+            //arrange
+            AirMonitor air;
+            ATMSystem.ReceiveTranspond uut;
+            setAir(out air, out uut);
+            _fakeTranspondObject.Tag = "SameTag";
+
+            //act
+
+            air.ReceiveNewTranspondObject(_fakeTranspondObject);
+            air.ReceiveNewTranspondObject(_fakeTranspondObject);
+
+            //assert
+            Assert.That(air.monitorList.Count, Is.EqualTo(1));
+
+        }
+
+        [Test]
+        public void TestList_tagnew_asserplus1()
+        {
+            //arrange
+            AirMonitor air;
+            ATMSystem.ReceiveTranspond uut;
+            setAir(out air, out uut);
+            ITranspondObject _fake2 = Substitute.For<ITranspondObject>();
+            _fake2.Tag = "Tag2";
+            _fakeTranspondObject.Tag = "Tag1";
+
+            //act
+            air.ReceiveNewTranspondObject(_fakeTranspondObject);
+            air.ReceiveNewTranspondObject(_fake2);
+
+            //assert
+            Assert.That(air.monitorList.Count, Is.EqualTo(2));
+
+        }
+
         //***********************************************************************TEST OF DATASET*********************************************************************
         //[Test]
         //public void transponderRecieverDataTest()
@@ -52,7 +123,7 @@ namespace ATM.Unit.Test
         //    Assert.That(air.monitorList[0].Tag, Is.EqualTo(testString.Substring(0, 6)));
         //}
 
- 
+
 
         //Test transponderReceiverData X cord
         //[Test]
@@ -262,268 +333,268 @@ namespace ATM.Unit.Test
 
         //Test if planes exist after conflict is ended
 
- //       [Test]
- //       public void TestConflictsIsOver()
- //       {
- //           AirMonitor air;
- //           ATMSystem.ReceiveTranspond uut;
- //           setAir(out air, out uut);
+        //       [Test]
+        //       public void TestConflictsIsOver()
+        //       {
+        //           AirMonitor air;
+        //           ATMSystem.ReceiveTranspond uut;
+        //           setAir(out air, out uut);
 
- //           //start a conflict Y&X +/-300 & Alt within 5000meters ****************
- //           string Test1IsConflict = "DTR423;39000;13000;12000;20151006213456789";
- //           string Test2IsConflict = "ATR423;39299;12933;14001;20151006213456789";
+        //           //start a conflict Y&X +/-300 & Alt within 5000meters ****************
+        //           string Test1IsConflict = "DTR423;39000;13000;12000;20151006213456789";
+        //           string Test2IsConflict = "ATR423;39299;12933;14001;20151006213456789";
 
- //           List<string> test = new List<string>();
- //           test.Add(Test1IsConflict);
+        //           List<string> test = new List<string>();
+        //           test.Add(Test1IsConflict);
 
- //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+        //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
- //           test.Add(Test2IsConflict);
+        //           test.Add(Test2IsConflict);
 
- //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+        //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
- //           //End conflict        ************************************************
+        //           //End conflict        ************************************************
 
- //           string Test1NoConflict = "DTR423;29000;13000;12000;20151006213456789";
- //           string Test2NoConflict = "ATR423;39599;15933;02001;20151006213456789";
+        //           string Test1NoConflict = "DTR423;29000;13000;12000;20151006213456789";
+        //           string Test2NoConflict = "ATR423;39599;15933;02001;20151006213456789";
 
- //           List<string> test2 = new List<string>();
- //           test2.Add(Test1NoConflict);
+        //           List<string> test2 = new List<string>();
+        //           test2.Add(Test1NoConflict);
 
- //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test2));
+        //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test2));
 
- //           test2.Add(Test2NoConflict);
+        //           test2.Add(Test2NoConflict);
 
- //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test2));
+        //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test2));
 
- //           //assert removed from list.
+        //           //assert removed from list.
 
- //          // Assert.That(air.FlightsInConflic.Exists(x => x.Tag == "ATR423"), Is.False);
+        //          // Assert.That(air.FlightsInConflic.Exists(x => x.Tag == "ATR423"), Is.False);
 
- //       }
+        //       }
 
- //       //****************************************************TEST THE CONFLICT BOOL GOES TRUE/FALSE ACCORDINGLY***********************************************************************'
+        //       //****************************************************TEST THE CONFLICT BOOL GOES TRUE/FALSE ACCORDINGLY***********************************************************************'
 
- //       //Test if bool goes true
- //       [Test]
- //       public void TestConflictsBoolIsTrue()
- //       {
- //           AirMonitor air;
- //           ATMSystem.ReceiveTranspond uut;
- //           setAir(out air, out uut);
+        //       //Test if bool goes true
+        //       [Test]
+        //       public void TestConflictsBoolIsTrue()
+        //       {
+        //           AirMonitor air;
+        //           ATMSystem.ReceiveTranspond uut;
+        //           setAir(out air, out uut);
 
- //           //start a conflict Y&X +/-300 & Alt within 5000meters ****************
- //           string Test1IsConflict = "DTR423;39000;13000;12000;20151006213456789";
- //           string Test2IsConflict = "ATR423;39299;12933;14001;20151006213456789";
+        //           //start a conflict Y&X +/-300 & Alt within 5000meters ****************
+        //           string Test1IsConflict = "DTR423;39000;13000;12000;20151006213456789";
+        //           string Test2IsConflict = "ATR423;39299;12933;14001;20151006213456789";
 
- //           List<string> test = new List<string>();
- //           test.Add(Test1IsConflict);
+        //           List<string> test = new List<string>();
+        //           test.Add(Test1IsConflict);
 
- //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+        //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
- //           test.Add(Test2IsConflict);
+        //           test.Add(Test2IsConflict);
 
- //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+        //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
- ////           Assert.That(air.Conflict, Is.True);
- //       }
+        ////           Assert.That(air.Conflict, Is.True);
+        //       }
 
- //       //Test if bool is false after raised event of conflict/none conflict
- //       [Test]
- //       public void TestConflictsBoolIsFalse()
- //       {
- //           AirMonitor air;
- //           ATMSystem.ReceiveTranspond uut;
- //           setAir(out air, out uut);
+        //       //Test if bool is false after raised event of conflict/none conflict
+        //       [Test]
+        //       public void TestConflictsBoolIsFalse()
+        //       {
+        //           AirMonitor air;
+        //           ATMSystem.ReceiveTranspond uut;
+        //           setAir(out air, out uut);
 
- //           //start a conflict Y&X +/-300 & Alt within 5000meters ****************
- //           string Test1IsConflict = "DTR423;39000;13000;12000;20151006213456789";
- //           string Test2IsConflict = "ATR423;39299;12933;14001;20151006213456789";
+        //           //start a conflict Y&X +/-300 & Alt within 5000meters ****************
+        //           string Test1IsConflict = "DTR423;39000;13000;12000;20151006213456789";
+        //           string Test2IsConflict = "ATR423;39299;12933;14001;20151006213456789";
 
- //           List<string> test = new List<string>();
- //           test.Add(Test1IsConflict);
+        //           List<string> test = new List<string>();
+        //           test.Add(Test1IsConflict);
 
- //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+        //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
- //           test.Add(Test2IsConflict);
+        //           test.Add(Test2IsConflict);
 
- //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+        //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
- //           //End conflict        ************************************************
+        //           //End conflict        ************************************************
 
- //           string Test1NoConflict = "DTR423;39000;13000;12000;20151006213456789";
- //           string Test2NoConflict = "ATR423;39599;15933;02001;20151006213456789";
+        //           string Test1NoConflict = "DTR423;39000;13000;12000;20151006213456789";
+        //           string Test2NoConflict = "ATR423;39599;15933;02001;20151006213456789";
 
- //           List<string> test2 = new List<string>();
- //           test.Add(Test1NoConflict);
+        //           List<string> test2 = new List<string>();
+        //           test.Add(Test1NoConflict);
 
- //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+        //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
- //           test.Add(Test2NoConflict);
+        //           test.Add(Test2NoConflict);
 
- //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+        //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
- //           //assert bool is false
+        //           //assert bool is false
 
- //  //         Assert.That(air.Conflict, Is.False);
+        //  //         Assert.That(air.Conflict, Is.False);
 
- //           //TimeTestNoConflict        ************************************************
- //           //Time diff 1 hour but cords within range should conflict as we do not handle time of occurance
- //       }
+        //           //TimeTestNoConflict        ************************************************
+        //           //Time diff 1 hour but cords within range should conflict as we do not handle time of occurance
+        //       }
 
- //       //****************************************************TEST OF TIME, NO IMPLEMENTATION OF TIME IS CONSIDERED THEREFORE ALLWAYS FALSE IF TIME IS != TIME***********************************************************************'
- //       [Test]
- //       public void testTimeNoConflict()
- //       {
- //           AirMonitor air;
- //           ATMSystem.ReceiveTranspond uut;
- //           setAir(out air, out uut);
+        //       //****************************************************TEST OF TIME, NO IMPLEMENTATION OF TIME IS CONSIDERED THEREFORE ALLWAYS FALSE IF TIME IS != TIME***********************************************************************'
+        //       [Test]
+        //       public void testTimeNoConflict()
+        //       {
+        //           AirMonitor air;
+        //           ATMSystem.ReceiveTranspond uut;
+        //           setAir(out air, out uut);
 
- //           string Test1Time = "DTR423;39000;13000;12000;20151006203456789";
- //           string Test2Time = "ATR423;39099;13033;12001;20151006213456789";
+        //           string Test1Time = "DTR423;39000;13000;12000;20151006203456789";
+        //           string Test2Time = "ATR423;39099;13033;12001;20151006213456789";
 
- //           List<string> test = new List<string>();
- //           test.Add(Test1Time);
+        //           List<string> test = new List<string>();
+        //           test.Add(Test1Time);
 
- //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+        //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
- //           test.Add(Test2Time);
+        //           test.Add(Test2Time);
 
- //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+        //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
- //           //assert bool is true
+        //           //assert bool is true
 
- //    //       Assert.That(air.Conflict, Is.True);
+        //    //       Assert.That(air.Conflict, Is.True);
 
- //       }
+        //       }
 
- //       //Time diff 1 hour but cords within range should conflict as we do not handle time of occurance
+        //       //Time diff 1 hour but cords within range should conflict as we do not handle time of occurance
 
- //       [Test]
- //       public void testTimeDoesConflict()
- //       {
+        //       [Test]
+        //       public void testTimeDoesConflict()
+        //       {
 
- //           AirMonitor air;
- //           ATMSystem.ReceiveTranspond uut;
- //           setAir(out air, out uut);
+        //           AirMonitor air;
+        //           ATMSystem.ReceiveTranspond uut;
+        //           setAir(out air, out uut);
 
- //           //diff only few MS
- //           string Test1Time = "DTR423;39000;13000;12000;20151006213456700";
- //           string Test2Time = "ATR423;39099;13033;12001;20151006213456789";
+        //           //diff only few MS
+        //           string Test1Time = "DTR423;39000;13000;12000;20151006213456700";
+        //           string Test2Time = "ATR423;39099;13033;12001;20151006213456789";
 
- //           List<string> test = new List<string>();
- //           test.Add(Test1Time);
+        //           List<string> test = new List<string>();
+        //           test.Add(Test1Time);
 
- //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+        //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
- //           test.Add(Test2Time);
+        //           test.Add(Test2Time);
 
- //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+        //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
- //           //assert bool is true
- //      //     Assert.That(air.Conflict, Is.True);
+        //           //assert bool is true
+        //      //     Assert.That(air.Conflict, Is.True);
 
- //       }
+        //       }
 
- //       //*********************************************************************************TEST OF DEGREES*******************************************************************
- //       [Test]
- //       public void testDegrees_227()
- //       {
+        //       //*********************************************************************************TEST OF DEGREES*******************************************************************
+        //       [Test]
+        //       public void testDegrees_227()
+        //       {
 
- //           AirMonitor air;
- //           ATMSystem.ReceiveTranspond uut;
- //           setAir(out air, out uut);
+        //           AirMonitor air;
+        //           ATMSystem.ReceiveTranspond uut;
+        //           setAir(out air, out uut);
 
- //           //diff only few MS
- //           string Test1Deg = "DTR423;39000;13000;12000;20151006213456700";
- //           string Test2Deg = "DTR423;38099;12033;12001;20151006213456789";
+        //           //diff only few MS
+        //           string Test1Deg = "DTR423;39000;13000;12000;20151006213456700";
+        //           string Test2Deg = "DTR423;38099;12033;12001;20151006213456789";
 
- //           List<string> test = new List<string>();
- //           test.Add(Test1Deg);
+        //           List<string> test = new List<string>();
+        //           test.Add(Test1Deg);
 
- //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+        //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
- //           test.Add(Test2Deg);
+        //           test.Add(Test2Deg);
 
- //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+        //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
- //           //assert bool is false
- //        //   Assert.That(air.monitorList[air.monitorList.Count - 1].degress, Is.EqualTo(227.0));
+        //           //assert bool is false
+        //        //   Assert.That(air.monitorList[air.monitorList.Count - 1].degress, Is.EqualTo(227.0));
 
- //       }
+        //       }
 
- //       //****************************************************************************TEST OF VELOCITY********************************************************************************
- //       [Test]
- //       public void testVelocity_216ms()
- //       {
- //           AirMonitor air;
- //           ATMSystem.ReceiveTranspond uut;
- //           setAir(out air, out uut);
+        //       //****************************************************************************TEST OF VELOCITY********************************************************************************
+        //       [Test]
+        //       public void testVelocity_216ms()
+        //       {
+        //           AirMonitor air;
+        //           ATMSystem.ReceiveTranspond uut;
+        //           setAir(out air, out uut);
 
- //           //diff only few MS
- //           string Test1 = "DTR423;39000;13000;12000;20151006213456700";
- //           string Test2 = "DTR423;39019;13003;12001;20151006213456789";
+        //           //diff only few MS
+        //           string Test1 = "DTR423;39000;13000;12000;20151006213456700";
+        //           string Test2 = "DTR423;39019;13003;12001;20151006213456789";
 
- //           List<string> test = new List<string>();
- //           test.Add(Test1);
+        //           List<string> test = new List<string>();
+        //           test.Add(Test1);
 
- //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+        //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
- //           test.Add(Test2);
+        //           test.Add(Test2);
 
- //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+        //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
- //           //assert bool is false
- //          // Assert.That(air.monitorList[air.monitorList.Count - 1].Velocity, Is.EqualTo(216.0));
+        //           //assert bool is false
+        //          // Assert.That(air.monitorList[air.monitorList.Count - 1].Velocity, Is.EqualTo(216.0));
 
- //       }
+        //       }
 
- //       [Test]
- //       public void testDoubleConflict_RemvovedAndAddedAgain()
- //       {
+        //       [Test]
+        //       public void testDoubleConflict_RemvovedAndAddedAgain()
+        //       {
 
- //           AirMonitor air;
- //           ATMSystem.ReceiveTranspond uut;
- //           setAir(out air, out uut);
+        //           AirMonitor air;
+        //           ATMSystem.ReceiveTranspond uut;
+        //           setAir(out air, out uut);
 
- //           //First Conflict
- //           string Test1 = "DTR423;39000;13000;12000;20151006213456700";
- //           string Test2 = "ATR423;39099;13033;12001;20151006213456700";
+        //           //First Conflict
+        //           string Test1 = "DTR423;39000;13000;12000;20151006213456700";
+        //           string Test2 = "ATR423;39099;13033;12001;20151006213456700";
 
- //           List<string> test = new List<string>();
- //           test.Add(Test1);
+        //           List<string> test = new List<string>();
+        //           test.Add(Test1);
 
- //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+        //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
- //           test.Add(Test2);
+        //           test.Add(Test2);
 
- //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+        //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
 
- //           //new Timestamp same conflict
+        //           //new Timestamp same conflict
 
- //           //diff only few MS
- //           string Test3 = "DTR423;39000;13000;12000;20151006213456700";
- //           string Test4 = "ATR423;39099;13033;12001;20151006213456789";
+        //           //diff only few MS
+        //           string Test3 = "DTR423;39000;13000;12000;20151006213456700";
+        //           string Test4 = "ATR423;39099;13033;12001;20151006213456789";
 
- //           List<string> test2 = new List<string>();
- //           test2.Add(Test3);
+        //           List<string> test2 = new List<string>();
+        //           test2.Add(Test3);
 
- //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test2));
+        //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test2));
 
- //           test2.Add(Test4);
+        //           test2.Add(Test4);
 
- //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test2));
+        //           uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test2));
 
- //           //assert bool is false
- //           //Assert.That(air.FlightsInConflic.FindAll(x => x.Tag == "DTR423").Count,Is.EqualTo(1));
+        //           //assert bool is false
+        //           //Assert.That(air.FlightsInConflic.FindAll(x => x.Tag == "DTR423").Count,Is.EqualTo(1));
 
- //       }
+        //       }
 
- //       //Airmethod
- //       private void setAir(out AirMonitor air, out ATMSystem.ReceiveTranspond uut)
- //       {
- //           air = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation,_fakeOutput);
- //           uut = new ATMSystem.ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), _fakeOutput, air);
- //       }
+        //Airmethod
+        private void setAir(out AirMonitor air, out ATMSystem.ReceiveTranspond uut)
+        {
+            air = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput);
+            uut = new ATMSystem.ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), _fakeOutput, air);
+        }
     }
 }
