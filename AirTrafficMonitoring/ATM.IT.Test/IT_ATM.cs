@@ -25,6 +25,8 @@ namespace Integration_Test_ATM
         IMessureDegrees _fakeMessureDegrees = Substitute.For<IMessureDegrees>();
         IMessureVelocity _fakeMessureVelocity = Substitute.For<IMessureVelocity>();
         IAirmonitor _uut;
+        private int airSpaceMin = 10000;
+        private int airSpaceMax = 90000;
 
         private TranspondObject _transpondObjectA;
         private TranspondObject _transpondObjectB;
@@ -33,15 +35,15 @@ namespace Integration_Test_ATM
         public void Setup()
         {
             string tag = "ATR423";
-            int posX = 39000;
-            int posY = 42000;
+            int posX = airSpaceMin + 10;
+            int posY = airSpaceMin + 10;
             int alt = 2000;
             DateTime date = new DateTime(2018, 1, 1, 12, 0, 0);
             _transpondObjectA = new TranspondObject(tag, posX, posY, alt, date, _fakeOutput);
 
             string tag2 = "ATR423";
-            int posX2 = 39000;
-            int posY2 = 42000;
+            int posX2 = airSpaceMin + 10;
+            int posY2 = airSpaceMin + 10;
             int alt2 = 2000;
             DateTime date2 = new DateTime(2018, 1, 1, 12, 0, 0);
             _transpondObjectB = new TranspondObject(tag2, posX2, posY2, alt2, date2, _fakeOutput);
@@ -64,7 +66,7 @@ namespace Integration_Test_ATM
         public void messureDegrees()
         {
             //Arrange
-            _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput);
+            _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput,airSpaceMin,airSpaceMax);
 
             //Act
             _uut.ReceiveNewTranspondObject(_transpondObjectA);
@@ -78,7 +80,7 @@ namespace Integration_Test_ATM
         public void messureVelocity()
         {
             //Arrange
-            _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput);
+            _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput, airSpaceMin, airSpaceMax);
 
             //Act
             _uut.ReceiveNewTranspondObject(_transpondObjectA);
@@ -92,19 +94,19 @@ namespace Integration_Test_ATM
         public void printSeperation()
         {
             //Arrange
-            _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput);
+            _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput, airSpaceMin, airSpaceMax);
 
 
             string tag3 = "ATR423";
-            int posX3 = 39000;
-            int posY3 = 42000;
+            int posX3 = airSpaceMin + 10;
+            int posY3 = airSpaceMin+ 10;
             int alt3 = 2000;
             DateTime date3 = new DateTime(2018, 1, 1, 12, 0, 0);
             var _transpondObjectConflictA = new TranspondObject(tag3, posX3, posY3, alt3, date3, _fakeOutput);
 
             string tag4 = "DTR423";
-            int posX4 = 39000;
-            int posY4 = 42000;
+            int posX4 = airSpaceMin + 10;
+            int posY4 = airSpaceMin + 10;
             int alt4 = 2000;
             DateTime date4 = new DateTime(2018, 1, 1, 12, 0, 0);
             var _transpondObjectConflictB = new TranspondObject(tag4, posX4, posY4, alt4, date4, _fakeOutput);
@@ -126,7 +128,7 @@ namespace Integration_Test_ATM
         public void detectSeperation()
         {
             //Arrange
-            _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput);
+            _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput, airSpaceMin, airSpaceMax);
 
             //Act
             _uut.ReceiveNewTranspondObject(_transpondObjectA);
@@ -141,7 +143,7 @@ namespace Integration_Test_ATM
         public void output()
         {
             //Arrange
-            _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput);
+            _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput, airSpaceMin, airSpaceMax);
 
             //Act
             _uut.ReceiveNewTranspondObject(_transpondObjectA);
@@ -155,11 +157,11 @@ namespace Integration_Test_ATM
         {
             //Arrange
             ITranspondObject fakeTranspondObject = Substitute.For<ITranspondObject>();
-            fakeTranspondObject.PosistionX = 20000;
-            fakeTranspondObject.PosistionY = 20000;
+            fakeTranspondObject.PosistionX = airSpaceMin + 10;
+            fakeTranspondObject.PosistionY = airSpaceMin + 10;
 
 
-            _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput);
+            _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput, airSpaceMin, airSpaceMax);
 
             //Act
             _uut.ReceiveNewTranspondObject(fakeTranspondObject);

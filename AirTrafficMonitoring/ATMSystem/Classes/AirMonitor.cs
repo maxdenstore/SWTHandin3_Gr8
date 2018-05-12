@@ -15,22 +15,26 @@ namespace ATMSystem
         private readonly IMessureDegrees _measureDegress;
         private readonly IMessureVelocity _measureVelocity;
         private readonly IOutput _out;
+        private readonly int _scaleMin;
+        private readonly int _scaleMax;
         
-        public AirMonitor(IMessureDegrees measureDegress, IMessureVelocity measureVelocity, IDetectSepartation detectSepartation, IOutput @out)
+        public AirMonitor(IMessureDegrees measureDegress, IMessureVelocity measureVelocity, IDetectSepartation detectSepartation, IOutput @out, int scaleMin, int scaleMax)
         {
             _measureDegress = measureDegress;
             _measureVelocity = measureVelocity;
             _detectSepartation = detectSepartation;
             _out = @out;
+            _scaleMin = scaleMin;
+            _scaleMax = scaleMax;
         }
 
         public void ReceiveNewTranspondObject(ITranspondObject NewTOS)
         {
             //if within this airspace!
-            if (NewTOS.PosistionX >= 10000 &&
-                NewTOS.PosistionY >= 10000 &&
-                NewTOS.PosistionX <= 90000 &&
-                NewTOS.PosistionY <= 90000)
+            if (NewTOS.PosistionX >= _scaleMin &&
+                NewTOS.PosistionY >= _scaleMin &&
+                NewTOS.PosistionX <= _scaleMax &&
+                NewTOS.PosistionY <= _scaleMax)
             {
                 _out.ClearScreen(); // new data so clear screen!
 

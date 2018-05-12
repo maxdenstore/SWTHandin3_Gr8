@@ -26,6 +26,9 @@ namespace ATMSystem.Unit.Tests.Tests
 
         private ITranspondObject _fakeTranspondObject;
 
+        private int airspaceMin = 10000;
+        private int airspaceMax = 90000;
+
         [SetUp]
         public void Setup()
         {
@@ -600,7 +603,7 @@ namespace ATMSystem.Unit.Tests.Tests
         //Airmethod
         private void setAir(out AirMonitor air, out ATMSystem.ReceiveTranspond uut)
         {
-            air = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput);
+            air = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput, airspaceMin,airspaceMax);
             uut = new ATMSystem.ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(), _fakeOutput, air);
         }
     }
