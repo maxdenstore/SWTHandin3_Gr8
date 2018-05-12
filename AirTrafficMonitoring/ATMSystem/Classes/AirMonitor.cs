@@ -14,12 +14,14 @@ namespace ATMSystem
         private IDetectSepartation _detectSepartation;
         private IMessureDegrees _measureDegress;
         private IMessureVelocity _measureVelocity;
+        private readonly IOutput _out;
         
-        public AirMonitor(IMessureDegrees measureDegress, IMessureVelocity measureVelocity, IDetectSepartation detectSepartation)
+        public AirMonitor(IMessureDegrees measureDegress, IMessureVelocity measureVelocity, IDetectSepartation detectSepartation, IOutput @out)
         {
             _measureDegress = measureDegress;
             _measureVelocity = measureVelocity;
             _detectSepartation = detectSepartation;
+            _out = @out;
         }
 
         public void ReceiveNewTranspondObject(ITranspondObject NewTOS)
@@ -44,9 +46,9 @@ namespace ATMSystem
             {
                 monitorList.Add(NewTOS);
             }
-            Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-            Console.WriteLine("New data: ");
-                
+
+            _out.ClearScreen();
+
             //check for conflicts for each in monitor
             foreach (var Outer in monitorList)
             {

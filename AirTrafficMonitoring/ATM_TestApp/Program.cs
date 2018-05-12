@@ -15,7 +15,7 @@ namespace ATM_TestApp
         {
             IOutput _out = new Output();
             IDetectSepartation _detection = new DetectSepartation(_out);
-            ATMSystem.AirMonitor X = new AirMonitor(new MeasureDegress(), new MeasureVelocity(),_detection);
+            ATMSystem.AirMonitor X = new AirMonitor(new MeasureDegress(), new MeasureVelocity(),_detection,_out);
             ReceiveTranspond transpond = new ReceiveTranspond((TransponderReceiverFactory.CreateTransponderDataReceiver()),_out);
 
             string pre = Console.ReadLine();

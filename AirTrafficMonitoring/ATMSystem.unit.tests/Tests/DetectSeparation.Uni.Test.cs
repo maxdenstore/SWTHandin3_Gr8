@@ -35,14 +35,16 @@ namespace ATMSystem.unit.tests.Tests
             _fakTranspondObjectA.PosistionX = 1;
             _fakTranspondObjectA.PosistionY = 1;
             _fakTranspondObjectA.Altitude = 200;
-     
+
 
 
             _fakTranspondObjectB.PosistionY = 300;
             _fakTranspondObjectB.PosistionX = 20;
             _fakTranspondObjectB.Altitude = 230;
 
-            _uut.detect(_fakTranspondObjectA,_fakTranspondObjectA);
+
+
+            _uut.detect(_fakTranspondObjectA,_fakTranspondObjectB);
 
             Assert.That(_uut.Conflict, Is.True);
         }

@@ -32,7 +32,7 @@ namespace Integration_Test_ATM
             ITranspondObject stubTos = Substitute.For<ITranspondObject>();
             IDetectSepartation stubDetect = Substitute.For<IDetectSepartation>();
             IOutput _out = new Output();
-            AirMonitor air = new AirMonitor(new MeasureDegress(), new MeasureVelocity(),stubDetect);
+            AirMonitor air = new AirMonitor(new MeasureDegress(), new MeasureVelocity(),stubDetect,_out);
             ReceiveTranspond uut = new ReceiveTranspond(TransponderReceiverFactory.CreateTransponderDataReceiver(),_out, air);
             List<string> test = new List<string>();
             test.Add(testString);

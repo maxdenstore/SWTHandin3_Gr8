@@ -9,6 +9,6 @@ namespace ATMSystem.Interfaces
     public interface IOutput
     {
         void Print(string _out);
-
+        void ClearScreen();
     }
 }

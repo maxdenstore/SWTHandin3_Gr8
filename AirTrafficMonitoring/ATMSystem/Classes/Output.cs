@@ -16,6 +16,11 @@ namespace ATMSystem
             Console.WriteLine(_out);
         }
 
+        public void ClearScreen()
+        {
+            Console.Clear();
+            Console.WriteLine("New data: ");
+        }
 
 
     }
