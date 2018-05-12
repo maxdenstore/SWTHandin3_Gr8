@@ -10,12 +10,11 @@ using NUnit.Framework;
 using TransponderReceiver;
 using TranspondObject = ATMSystem.TranspondObject;
 
-namespace MessureVelocity.Unit.Test
+namespace ATMSystem.Unit.Tests.Tests
 {
-    public class Velocity_Unit_Test
-    {
+
         [TestFixture]
-        public class ATM_Unit_Testing
+        public class VelocityUnitTest
         {
             private IMessureVelocity _vl;
             private IOutput _out;
@@ -50,4 +49,4 @@ namespace MessureVelocity.Unit.Test
             }
         }
     }
-}
+

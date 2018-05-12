@@ -9,10 +9,10 @@ using NSubstitute;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 
-namespace ATMSystem.unit.tests.Tests
+namespace ATMSystem.Unit.Tests.Tests
 {
     [TestFixture]
-    class DetectSeparation
+    class DetectSeparationUnitTest
     {
         private ITranspondObject _fakTranspondObjectA;
         private ITranspondObject _fakTranspondObjectB;

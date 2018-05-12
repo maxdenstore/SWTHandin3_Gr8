@@ -4,10 +4,10 @@ using ATMSystem.Interfaces;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace TranspondObject.Unit.Test
+namespace ATMSystem.Unit.Tests.Tests
 {
     [TestFixture]
-    public class TransponderObjectTest
+    public class TransponderObjectUnitTest
     {
         private string tag = "ATR423";
         private int PosistionX = 39045;

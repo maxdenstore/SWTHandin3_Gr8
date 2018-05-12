@@ -7,10 +7,10 @@ using NUnit.Framework;
 
 using TransponderReceiver;
 
-namespace ReceiveTranspond.unit.test
+namespace ATMSystem.Unit.Tests.Tests
 {
     [TestFixture]
-    class ReceiveTranspondTest
+    class ReceiveTranspondUnitTest
     {
         private IOutput _out;
         private ATMSystem.ReceiveTranspond uut;

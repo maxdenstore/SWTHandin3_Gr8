@@ -7,10 +7,10 @@ using ATMSystem.Interfaces;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace ATMSystem.unit.tests.Tests
+namespace ATMSystem.Unit.Tests.Tests
 {
     [TestFixture]
-    class Separation
+    class SeparationUnitTest
     {
         private IOutput _out;
         private Separtation _sep;

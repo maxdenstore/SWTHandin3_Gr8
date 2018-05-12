@@ -10,14 +10,14 @@ using NUnit.Framework;
 using TransponderReceiver;
 
 
-namespace MessureDeg.Unit.Test
+namespace ATMSystem.Unit.Tests.Tests
 {
     public class MessureDegreeTest
     {
 
 
         [TestFixture]
-        public class ATM_Unit_Testing
+        public class MeasureDegreesUnitTest
         {
             private IMessureDegrees _degrees;
             private IOutput _out;

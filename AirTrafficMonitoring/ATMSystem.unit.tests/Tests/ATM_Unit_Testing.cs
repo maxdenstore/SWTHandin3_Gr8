@@ -13,11 +13,11 @@ using NUnit.Framework;
 using TransponderReceiver;
 using TranspondObject = ATMSystem.TranspondObject;
 
-namespace ATM.Unit.Test
+namespace ATMSystem.Unit.Tests.Tests
 {
 
     [TestFixture]
-    public class ATM_Unit_Testing
+    public class AirMonitorUnitTest
     {
         private IMessureDegrees _fakeMessureDegrees;
         private IMessureVelocity _fakeMessureVelocity;
