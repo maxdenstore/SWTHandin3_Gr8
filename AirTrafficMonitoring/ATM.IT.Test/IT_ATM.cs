@@ -34,14 +34,14 @@ namespace Integration_Test_ATM
         {
             string tag = "ATR423";
             int posX = 39000;
-            int posY = 4200;
+            int posY = 42000;
             int alt = 2000;
             DateTime date = new DateTime(2018, 1, 1, 12, 0, 0);
             _transpondObjectA = new TranspondObject(tag, posX, posY, alt, date, _fakeOutput);
 
             string tag2 = "ATR423";
             int posX2 = 39000;
-            int posY2 = 4200;
+            int posY2 = 42000;
             int alt2 = 2000;
             DateTime date2 = new DateTime(2018, 1, 1, 12, 0, 0);
             _transpondObjectB = new TranspondObject(tag2, posX2, posY2, alt2, date2, _fakeOutput);
@@ -97,14 +97,14 @@ namespace Integration_Test_ATM
 
             string tag3 = "ATR423";
             int posX3 = 39000;
-            int posY3 = 4200;
+            int posY3 = 42000;
             int alt3 = 2000;
             DateTime date3 = new DateTime(2018, 1, 1, 12, 0, 0);
             var _transpondObjectConflictA = new TranspondObject(tag3, posX3, posY3, alt3, date3, _fakeOutput);
 
             string tag4 = "DTR423";
             int posX4 = 39000;
-            int posY4 = 4200;
+            int posY4 = 42000;
             int alt4 = 2000;
             DateTime date4 = new DateTime(2018, 1, 1, 12, 0, 0);
             var _transpondObjectConflictB = new TranspondObject(tag4, posX4, posY4, alt4, date4, _fakeOutput);
@@ -155,6 +155,9 @@ namespace Integration_Test_ATM
         {
             //Arrange
             ITranspondObject fakeTranspondObject = Substitute.For<ITranspondObject>();
+            fakeTranspondObject.PosistionX = 20000;
+            fakeTranspondObject.PosistionY = 20000;
+
 
             _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput);
 

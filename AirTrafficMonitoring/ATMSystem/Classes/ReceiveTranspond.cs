@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using ATMSystem;
 using ATMSystem.Interfaces;
-
-
 using TransponderReceiver;
 
 namespace ATMSystem
 {
-    public class ReceiveTranspond :IReceive
+    public class ReceiveTranspond : IReceive
     {
-
         private readonly IAirmonitor _airspace;
-        private readonly ITransponderReceiver _transponderReceiver;
         private readonly IOutput _out;
+        private readonly ITransponderReceiver _transponderReceiver;
         public EventArgs e = null;
         public TranspondObject Received;
 
@@ -27,7 +23,25 @@ namespace ATMSystem
             _airspace = airSpace;
         }
 
-        public TranspondObject receive(string data)
+        public void transponderReceiverData(object sender, RawTransponderDataEventArgs e)
+        {
+            foreach (var track in e.TransponderData)
+            {
+                Received = Receive(track);
+
+                if (Received != null)
+                {
+                    if (_airspace != null)
+                    {
+                        _airspace.ReceiveNewTranspondObject(Received);
+                    }
+                }
+
+            }
+        }
+
+
+        public TranspondObject Receive(string data)
         {
             var DataSep = Seperator(data);
 
@@ -37,7 +51,7 @@ namespace ATMSystem
             var Alt = int.Parse(DataSep[6]);
             var time = FormateDate(DataSep[8]);
 
-            return new TranspondObject(tag, xCord, yCord, Alt, time,_out);
+            return new TranspondObject(tag, xCord, yCord, Alt, time, _out);
         }
 
         private string[] Seperator(string Seperate)
@@ -63,41 +77,5 @@ namespace ATMSystem
 
             return dates;
         }
-
-        public void transponderReceiverData(object sender, RawTransponderDataEventArgs e)
-        {
-            foreach (var track in e.TransponderData)
-            { 
-            Received = receive(track);
-
-            if (Received != null)
-            {
-                if (_airspace != null)
-                {
-                    //also calculate if its withing this airspace parameters!
-                    //we only have one airspace so its defined here..
-                    
-                    if ((Received.PosistionX >= 10000) &&
-                        (Received.PosistionY >= 10000) &&
-                        (Received.PosistionX <= 90000) &&
-                        (Received.PosistionY <= 90000))
-                    {
-                        _airspace.ReceiveNewTranspondObject(Received);
-                    }
-
-                    else //remove the aircraft from the airspace list
-                    {
-                        if (_airspace.monitorList.Exists(x => x.Tag == Received.Tag)) //check if it exsists in the airspace, means its now out of our airspace
-                        {
-                            _airspace.monitorList.RemoveAt(_airspace.monitorList.FindIndex(x => x.Tag == Received.Tag));
-                        }
-                        
-                    }
-
-                }
-            }
-        }
-            }
     }
-
 }

@@ -11,10 +11,10 @@ namespace ATMSystem
     {
         public void Measure(ITranspondObject old, ITranspondObject newer)
         {
-            int xDiff = newer.PosistionX - old.PosistionX;
-            int yDiff = newer.PosistionY - old.PosistionY;
+            var xDiff = newer.PosistionX - old.PosistionX;
+            var yDiff = newer.PosistionY - old.PosistionY;
 
-            double result = Math.Round(Math.Atan2(yDiff, xDiff) * 180 / Math.PI);
+            var result = Math.Round(Math.Atan2(yDiff, xDiff) * 180 / Math.PI); // simply math.
 
             if (result < 0)
             {
