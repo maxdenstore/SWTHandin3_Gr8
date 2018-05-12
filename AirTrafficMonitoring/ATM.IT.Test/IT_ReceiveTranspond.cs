@@ -70,19 +70,6 @@ namespace ATM.IT.Test
                 _fakeAirmonitor.Received(1).ReceiveNewTranspondObject(Arg.Any<TranspondObject>());
             }
 
-            [Test]
-            public void Test_airspaceListEmpty()
-            {
-                _uut = new ReceiveTranspond(_fakeTransponderReceiver, _fakeOutput, _fakeAirmonitor);
-
-                List<string> test = new List<string>();
-                test.Add("TestTag;0;0;0;20151006213456789");
-                _uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
-                string teststr = "TestTag";
-
-                Assert.That(_fakeAirmonitor.monitorList.Exists(x => x.Tag == teststr), Is.False);
-            }
-
         }
     }
 }
