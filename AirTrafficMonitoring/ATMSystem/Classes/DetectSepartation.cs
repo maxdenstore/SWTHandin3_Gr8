@@ -7,7 +7,7 @@ namespace ATMSystem
     public class DetectSepartation : IDetectSepartation
     {
         private readonly IOutput _out;
-        public List<Separtation> FlightsInConflic { get; set; } = new List<Separtation>();
+        private List<Separtation> FlightsInConflic { get; set; } = new List<Separtation>();
         public bool Conflict { get; set; } = false;
 
         public DetectSepartation(IOutput outParam)
@@ -38,7 +38,7 @@ namespace ATMSystem
             }
         }
 
-        public void handleNoConflict(ITranspondObject a, ITranspondObject b)
+        private void handleNoConflict(ITranspondObject a, ITranspondObject b)
         {
             //no conflict, check if its in the flights in conflict
             if (FlightsInConflic.Exists(x => x.Tag == a.Tag))
@@ -60,7 +60,7 @@ namespace ATMSystem
             }
         }
 
-        public void handleConflict(ITranspondObject a, ITranspondObject b)
+        private void handleConflict(ITranspondObject a, ITranspondObject b)
         {
             //there is conflict, do something mate!
             //are the tags already in conflict??

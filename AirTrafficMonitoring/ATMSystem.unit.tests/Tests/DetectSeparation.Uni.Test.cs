@@ -115,5 +115,6 @@ namespace ATMSystem.Unit.Tests.Tests
 
             Assert.That(_uut.Conflict, Is.False);
         }
+
     }
 }
