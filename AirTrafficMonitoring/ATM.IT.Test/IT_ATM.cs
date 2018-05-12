@@ -28,6 +28,7 @@ namespace Integration_Test_ATM
 
         private TranspondObject _transpondObjectA;
         private TranspondObject _transpondObjectB;
+
         [SetUp]
         public void Setup()
         {
@@ -62,34 +63,35 @@ namespace Integration_Test_ATM
         [Test]
         public void messureDegrees()
         {
+            //Arrange
             _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput);
 
+            //Act
             _uut.ReceiveNewTranspondObject(_transpondObjectA);
             _uut.ReceiveNewTranspondObject(_transpondObjectB);
 
+            //Assert
             _fakeMessureDegrees.Received(1).Measure(Arg.Any<TranspondObject>(), Arg.Any<TranspondObject>());
         }
 
         [Test]
         public void messureVelocity()
         {
-
+            //Arrange
             _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput);
 
-
+            //Act
             _uut.ReceiveNewTranspondObject(_transpondObjectA);
             _uut.ReceiveNewTranspondObject(_transpondObjectB);
+
+            //Assert
             _fakeMessureVelocity.Received(1).Measure(Arg.Any<TranspondObject>(), Arg.Any<TranspondObject>());
         }
 
         [Test]
         public void printSeperation()
         {
-            TranspondObject _transpondObjectConflictA;
-            TranspondObject _transpondObjectConflictB;
-
-
-
+            //Arrange
             _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput);
 
 
@@ -98,15 +100,16 @@ namespace Integration_Test_ATM
             int posY3 = 4200;
             int alt3 = 2000;
             DateTime date3 = new DateTime(2018, 1, 1, 12, 0, 0);
-            _transpondObjectConflictA = new TranspondObject(tag3, posX3, posY3, alt3, date3, _fakeOutput);
+            var _transpondObjectConflictA = new TranspondObject(tag3, posX3, posY3, alt3, date3, _fakeOutput);
 
             string tag4 = "DTR423";
             int posX4 = 39000;
             int posY4 = 4200;
             int alt4 = 2000;
             DateTime date4 = new DateTime(2018, 1, 1, 12, 0, 0);
-            _transpondObjectConflictB = new TranspondObject(tag4, posX4, posY4, alt4, date4, _fakeOutput);
+            var _transpondObjectConflictB = new TranspondObject(tag4, posX4, posY4, alt4, date4, _fakeOutput);
 
+            //act
             _uut.monitorList.Add(_transpondObjectConflictA);
             _uut.monitorList.Add(_transpondObjectConflictB);
 
@@ -115,40 +118,51 @@ namespace Integration_Test_ATM
             _uut.ReceiveNewTranspondObject(_transpondObjectConflictB);
 
 
+            //Assert
             _fakeDetectSepartation.Received(2).printSeparations();
         }
 
         [Test]
         public void detectSeperation()
         {
+            //Arrange
             _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput);
 
+            //Act
             _uut.ReceiveNewTranspondObject(_transpondObjectA);
             _uut.ReceiveNewTranspondObject(_transpondObjectB);
 
+
+            //Assert
             _fakeDetectSepartation.detect(Arg.Any<TranspondObject>(), Arg.Any<TranspondObject>());
         }
 
         [Test]
         public void output()
         {
+            //Arrange
             _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput);
 
+            //Act
             _uut.ReceiveNewTranspondObject(_transpondObjectA);
+
+            //Assert
             _fakeOutput.Received(1).ClearScreen();
         }
 
         [Test]
         public void fakePrint()
         {
-
-            ITranspondObject _fakeTranspondObject = Substitute.For<ITranspondObject>();
-            IAirmonitor _uut;
+            //Arrange
+            ITranspondObject fakeTranspondObject = Substitute.For<ITranspondObject>();
 
             _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput);
 
-            _uut.ReceiveNewTranspondObject(_fakeTranspondObject);
-            _fakeTranspondObject.Received(1).Print();
+            //Act
+            _uut.ReceiveNewTranspondObject(fakeTranspondObject);
+
+            //Assert
+            fakeTranspondObject.Received(1).Print();
         }
 
         [TearDown]
