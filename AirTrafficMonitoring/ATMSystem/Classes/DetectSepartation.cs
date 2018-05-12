@@ -29,8 +29,12 @@ namespace ATMSystem
                     handleConflict(a,b);
                 }
 
-                Conflict = false;
-                handleNoConflict(a,b);
+                else
+                {
+                    Conflict = false;
+                    handleNoConflict(a, b);
+                }
+
             }
         }
 
