@@ -26,14 +26,22 @@ namespace ATMSystem
 
                 if (x <= 300 && x >= -300 && y <= 300 && y >= -300 && z <= 5000 && z >= -5000) //conflict
                 {
-                    Conflict = true;
+                    Conflict = true; // make sure alarm is on
                     handleConflict(a, b);
                 }
 
                 else
                 {
-                    Conflict = false;
+
                     handleNoConflict(a, b);
+
+                    if (FlightsInConflic.Count < 1)
+                    {
+                        Conflict = false; // so theres no more conflicts, no alarm.
+                    }
+
+                    
+             
                 }
             }
         }
