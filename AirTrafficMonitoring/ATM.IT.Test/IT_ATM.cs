@@ -54,7 +54,7 @@ namespace Integration_Test_ATM
             _fakeMessureDegrees = Substitute.For<IMessureDegrees>();
             _fakeMessureVelocity = Substitute.For<IMessureVelocity>();
             _fakeDetectSepartation = Substitute.For<IDetectSepartation>();
-            _fakeOutput = Substitute.For<IOutput>();
+
         }
 
 
@@ -250,10 +250,10 @@ namespace Integration_Test_ATM
 
 
         [Test]
-        public void CheckForConflict_Seperation_ObjMade()
+        public void Conflict_DetectSeparation_prints()
         {
             //Arrange
-            _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput, airSpaceMin, airSpaceMax);
+            _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, new DetectSepartation(_fakeOutput), _fakeOutput, airSpaceMin, airSpaceMax);
 
             //Act
             string tag5 = "ATR423";
@@ -272,20 +272,51 @@ namespace Integration_Test_ATM
 
 
             //act
-            _uut.monitorList.Add(_transpondObjectConflictA);
-            _uut.monitorList.Add(_transpondObjectConflictB);
+
+            _uut.ReceiveNewTranspondObject(_transpondObjectConflictA);
+            _uut.ReceiveNewTranspondObject(_transpondObjectConflictB);
+
+            //Assert
+
+            _fakeOutput.Received(1).Print(Arg.Is<string>(x => x.Contains("occured: Tag" + tag5)));
+        }
+
+        [Test]
+        public void ConflictOver_DetectSeparation_prints()
+        {
+            //Arrange
+            _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, new DetectSepartation(_fakeOutput), _fakeOutput, airSpaceMin, airSpaceMax);
+
+            //Act
+            string tag5 = "ATR423";
+            int posX5 = airSpaceMin + 10;
+            int posY5 = airSpaceMin + 10;
+            int alt5 = 2000;
+            DateTime date5 = new DateTime(2018, 1, 1, 12, 0, 0);
+            var _transpondObjectConflictA = new TranspondObject(tag5, posX5, posY5, alt5, date5, _fakeOutput);
+
+            string tag6 = "DTR423";
+            int posX6 = airSpaceMin + 10;
+            int posY6 = airSpaceMin + 10;
+            int alt6 = 2000;
+            DateTime date6 = new DateTime(2018, 1, 1, 12, 0, 0);
+            var _transpondObjectConflictB = new TranspondObject(tag6, posX6, posY6, alt6, date6, _fakeOutput);
 
 
-
-
+            //act
+            //conflicting    
+            _uut.ReceiveNewTranspondObject(_transpondObjectConflictA); 
+            _uut.ReceiveNewTranspondObject(_transpondObjectConflictB);
+            //remove conflict
+            _transpondObjectConflictA.PosistionX += 1000;
             _uut.ReceiveNewTranspondObject(_transpondObjectConflictA);
             _uut.ReceiveNewTranspondObject(_transpondObjectConflictB);
 
 
 
-
             //Assert
-            Assert.That(1 == 1);
+            // asserts only 1 conflict ( means its over, otherwise 3 conflicts)
+            _fakeOutput.Received(1).Print(Arg.Is<string>(x => x.Contains("occured: Tag" + tag5)));
         }
 
 
@@ -294,18 +325,14 @@ namespace Integration_Test_ATM
         public void fakePrint()
         {
             //Arrange
-            ITranspondObject fakeTranspondObject = Substitute.For<ITranspondObject>();
-            fakeTranspondObject.PosistionX = airSpaceMin + 10;
-            fakeTranspondObject.PosistionY = airSpaceMin + 10;
-
 
             _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput, airSpaceMin, airSpaceMax);
 
             //Act
-            _uut.ReceiveNewTranspondObject(fakeTranspondObject);
+            _uut.ReceiveNewTranspondObject(_transpondObjectA);
 
             //Assert
-            fakeTranspondObject.Received(1).Print();
+           _fakeOutput.Received(1).Print(Arg.Is<string>(x => x.Contains(_transpondObjectA.Tag)));
         }
 
 
