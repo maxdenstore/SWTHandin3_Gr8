@@ -59,6 +59,18 @@ namespace ATM.IT.Test
             }
 
             [Test]
+            public void Test_TagIfObjIsCreated()
+            {
+                _uut = new ReceiveTranspond(_fakeTransponderReceiver, _fakeOutput, _fakeAirmonitor);
+
+                List<string> test = new List<string>();
+                test.Add("TestTag;39045;12932;14000;20151006213456789");
+                _uut.transponderReceiverData(this, new RawTransponderDataEventArgs(test));
+
+                Assert.That(this._uut.Received.Tag, Is.EqualTo("TestTag"));
+            }
+
+            [Test]
             public void Test_airspaceIsCalled()
             {
                 _uut = new ReceiveTranspond(_fakeTransponderReceiver, _fakeOutput, _fakeAirmonitor);
@@ -69,6 +81,8 @@ namespace ATM.IT.Test
 
                 _fakeAirmonitor.Received(1).ReceiveNewTranspondObject(Arg.Any<TranspondObject>());
             }
+
+
         }
     }
 }
