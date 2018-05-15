@@ -174,18 +174,18 @@ namespace Integration_Test_ATM
         public void messureDegreesN()
         {
             //Arrange
-            _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput, airSpaceMin, airSpaceMax);
+            _uut = new AirMonitor(new MeasureDegress(), _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput, airSpaceMin, airSpaceMax);
 
             //Act
             _uut.ReceiveNewTranspondObject(_transpondObjectA);
             _uut.ReceiveNewTranspondObject(_transpondObjectB);
 
             //Assert
-            Assert.That(_transpondObjectB.degress, Is.EqualTo(0.00));
+            Assert.That(_transpondObjectB.degress, Is.EqualTo(65.0));
         }
 
         [TearDown]
-        public void TeaDown()
+        public void TearDown()
         {
             _fakeOutput.ClearSubstitute();
             _fakeDetectSepartation.ClearSubstitute();
