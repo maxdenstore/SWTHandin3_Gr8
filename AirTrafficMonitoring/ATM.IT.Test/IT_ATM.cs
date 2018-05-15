@@ -42,9 +42,9 @@ namespace Integration_Test_ATM
             _transpondObjectA = new TranspondObject(tag, posX, posY, alt, date, _fakeOutput);
 
             string tag2 = "ATR423";
-            int posX2 = airSpaceMin + 10;
-            int posY2 = airSpaceMin + 10;
-            int alt2 = 2000;
+            int posX2 = airSpaceMin + 100;
+            int posY2 = airSpaceMin + 200;
+            int alt2 = 3000;
             DateTime date2 = new DateTime(2018, 1, 1, 12, 0, 0);
             _transpondObjectB = new TranspondObject(tag2, posX2, posY2, alt2, date2, _fakeOutput);
 
@@ -170,6 +170,20 @@ namespace Integration_Test_ATM
             fakeTranspondObject.Received(1).Print();
         }
 
+        [Test]
+        public void messureDegreesN()
+        {
+            //Arrange
+            _uut = new AirMonitor(_fakeMessureDegrees, _fakeMessureVelocity, _fakeDetectSepartation, _fakeOutput, airSpaceMin, airSpaceMax);
+
+            //Act
+            _uut.ReceiveNewTranspondObject(_transpondObjectA);
+            _uut.ReceiveNewTranspondObject(_transpondObjectB);
+
+            //Assert
+            Assert.That(_transpondObjectB.degress, Is.EqualTo(0.00));
+        }
+
         [TearDown]
         public void TeaDown()
         {
@@ -179,5 +193,8 @@ namespace Integration_Test_ATM
             _fakeMessureVelocity.ClearSubstitute();
             
         }
+
+
+
     }
 }
